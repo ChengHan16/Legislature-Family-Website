@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<style>
+        /* --- 基礎樣式 --- */
+    body {
+        font-family: "Noto Sans TC", "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4; /* 淺灰色背景 */
+        color: #333;
+    }
+
+    /* --- 1. 導覽列樣式 (深藍色底) --- */
+    .navbar-static {
+        background-color: #1a237e; /* 主深藍色 */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-full {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+    }
+
+    /* Logo 樣式 (深藍底上的黃色圓圈) */
+    .logo {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+    .logo-circle {
+        background-color: #ffcc00; /* 強調黃色 */
+        color: #1a237e;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1em;
+        margin-right: 8px;
+        font-weight: 700;
+    }
+
+    /* 連結樣式 */
+    .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links li {
+        margin-left: 30px;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 15px;
+        transition: background-color 0.3s, border-bottom 0.3s;
+    }
+
+    /* Active/Hover 狀態 */
+    .nav-links a:hover {
+        border-bottom: 2px solid #ffcc00; /* 首頁/Hover 狀態的黃色底線 */
+    }
+    .nav-links a.active-dark {
+        background-color: #004d99; /* 當前頁面的深色底 */
+        border-radius: 4px;
+        color: white !important;
+        border-bottom: none; 
+    }
+
+
+    /* --- 2. 次級 Banner 樣式 (深藍色底) --- */
+    .page-banner {
+        background-color: #1a237e; /* 主深藍色 */
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .banner-content h2 {
+        font-size: 3em;
+        margin-bottom: 15px;
+    }
+
+    .banner-content p {
+        font-size: 1.1em;
+        max-width: 700px;
+        margin: 0 auto;
+        font-weight: 300;
+    }
+
+    /* --- 3. 主要內容區域 --- */
+    .main-content-area {
+        padding: 40px;
+        text-align: center;
+        min-height: 400px; /* 確保內容區域不會太短 */
+    }
+
+
+    /* --- 4. 頁腳樣式 (深藍色底) --- */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1a237e; 
+        color: white;
+        font-size: 0.8em;
+    }
+
+    /* 確保卡片圖標是黃色的 (用於 info-card, etc.) */
+    .info-icon, .card-icon {
+        color: #ffcc00; 
+    }
+    .card-section {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding: 50px 40px;
+        /* 將卡片區塊向上拉，覆蓋在主視覺圖片下方 */
+        margin-top: -100px; 
+        position: relative;
+        z-index: 5; /* 確保卡片在上方 */
+    }
+
+    .card {
+        background-color: white;
+        padding: 30px;
+        width: 300px;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* 滑鼠懸停時微抬升 */
+    }
+
+    .card-icon {
+        font-size: 2.5em;
+        color: #004d99; /* 藍色 */
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        color: #004d99;
+        font-size: 1.5em;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        font-size: 0.95em;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /* --- 4. 頁腳 (Footer) --- */
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1a237e; /* 深藍色，與導覽列顏色呼應 */
+        color: white;
+        font-size: 0.8em;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立法院 - [頁面名稱]</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar-static">
+        <nav class="navbar-full">
+            <div class="logo">
+                <div class="logo-circle">立</div> 
+                立法院 
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="about.html" class="active-dark">關於我們</a></li> 
+                <li><a href="members.html">成員介紹</a></li> 
+                <li><a href="events.html">活動行程</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h2>歡迎來到 立法院 Legislature</h2>
+            <p>為人民服務，推動國家法制建設，促進民主發展</p>
+        </div>
+    </section>
+
+    <main class="card-section">
+        
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-landmark"></i></div>
+            <h3>關於我們</h3>
+            <p>了解立法院的歷史沿革、組織架構及核心理念</p>
+            <a href="about.html" class="card-link">了解更多</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-user-group"></i></div>
+            <h3>成員介紹</h3>
+            <p>認識各位立法委員及服務團隊的專業背景與願景</p>
+            <a href="members.html" class="card-link">了解更多</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-calendar-alt"></i></div>
+            <h3>活動行程</h3>
+            <p>掌握最新議程、公聽會及各項重要活動排程</p>
+            <a href="events.html" class="card-link">了解更多</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 立法院 Legislature. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

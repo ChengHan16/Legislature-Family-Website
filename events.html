@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立法院 - 活動行程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- 基礎樣式 --- */
+        body {
+            font-family: "Noto Sans TC", "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* 淺灰色背景 */
+            color: #333;
+        }
+
+        /* --- 1. 導覽列樣式 (深藍色底) --- */
+        .navbar-static {
+            background-color: #1a237e; /* 主深藍色 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-full {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+        }
+
+        /* Logo 樣式 (深藍底上的黃色圓圈) */
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        .logo-circle {
+            background-color: #ffcc00; /* 強調黃色 */
+            color: #1a237e;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1em;
+            margin-right: 8px;
+            font-weight: 700;
+        }
+
+        /* 連結樣式 */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            transition: background-color 0.3s, border-bottom 0.3s;
+        }
+
+        /* Active/Hover 狀態 */
+        .nav-links a:hover {
+            border-bottom: 2px solid #ffcc00; /* 首頁/Hover 狀態的黃色底線 */
+        }
+        .nav-links a.active-dark {
+            background-color: #004d99; /* 當前頁面的深色底 */
+            border-radius: 4px;
+            color: white !important;
+            border-bottom: none; 
+        }
+
+
+        /* --- 2. 次級 Banner 樣式 (深藍色底) --- */
+        .page-banner {
+            background-color: #1a237e; /* 主深藍色 */
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .banner-content h2 {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .banner-content p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* --- 3. 主要內容區域 --- */
+        .main-content-area {
+            padding: 40px;
+            text-align: center;
+            min-height: 400px; /* 確保內容區域不會太短 */
+        }
+
+        /* 確保卡片圖標是黃色的 (用於 info-card, etc.) */
+        .info-icon, .card-icon {
+            color: #ffcc00; 
+        }
+        .card-section {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 50px 40px;
+            /* 將卡片區塊向上拉，覆蓋在主視覺圖片下方 */
+            margin-top: -100px; 
+            position: relative;
+            z-index: 5; /* 確保卡片在上方 */
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* 滑鼠懸停時微抬升 */
+        }
+
+        .card-icon {
+            font-size: 2.5em;
+            color: #004d99; /* 藍色 */
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #004d99;
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* --- 4. 頁腳樣式 (深藍色底) --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1a237e; 
+            color: white;
+            font-size: 0.8em;
+        }
+        
+        /* --- 5. 簡易活動連結卡片樣式 (Simple Event Card) --- */
+
+        /* 重設活動列表區塊樣式以置中單一卡片 */
+        .events-list-section {
+            display: flex;
+            justify-content: center; /* 置中卡片 */
+            flex-wrap: wrap; 
+            gap: 30px;
+            padding: 60px 40px;
+        }
+
+        /* 整個卡片連結容器 */
+        .event-card-link {
+            text-decoration: none; /* 移除連結底線 */
+            color: inherit;
+            display: block;
+            width: 400px; /* 設定單個卡片的固定寬度 */
+            max-width: 100%;
+        }
+
+        .event-card-simple {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .event-card-link:hover .event-card-simple {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-date-simple {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background-color: #ffcc00; /* 強調黃色 */
+            color: #1a237e;
+            border-radius: 50%; /* 改為圓形 */
+            text-align: center;
+            padding: 5px 0;
+            margin-right: 20px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .event-date-simple .day {
+            font-size: 1.5em;
+            line-height: 1;
+        }
+
+        .event-date-simple .month {
+            font-size: 0.7em;
+            margin-top: 3px;
+        }
+
+        .event-details-simple {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative; /* For date-info positioning */
+        }
+
+        .event-details-simple h3 {
+            color: #004d99;
+            font-size: 1.4em;
+            margin: 0;
+        }
+
+        .event-details-simple .date-info {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0;
+            position: absolute; /* Place date-info below title */
+            margin-top: 25px; 
+        }
+
+        .event-details-simple .action-arrow {
+            font-size: 1.2em;
+            color: #004d99;
+            flex-shrink: 0;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header class="navbar-static">
+        <nav class="navbar-full">
+            <div class="logo">
+                <div class="logo-circle">立</div> 
+                立法院 
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="about.html">關於我們</a></li> 
+                <li><a href="members.html">成員介紹</a></li> 
+                <li><a href="events.html" class="active-dark">活動行程</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h2>活動行程</h2>
+            <p>掌握最新的立法院議程、委員會排程及重要活動資訊</p>
+        </div>
+    </section>
+
+    <main class="events-list-section">
+        
+        <a href="2025-Christmas-Party.html" class="event-card-link">
+            <article class="event-card-simple">
+                <div class="event-date-simple">
+                    <span class="day">25</span>
+                    <span class="month">DEC</span>
+                </div>
+                <div class="event-details-simple">
+                    <div> 
+                        <h3>聖誕聚會</h3>
+                        <p class="date-info">2025-12-25 晚間</p>
+                    </div>
+                    <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </article>
+        </a>
+        
+    </main>
+
+    <footer>
+        <p>© 2025 立法院 Legislature. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
