@@ -1,151 +1,235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
+<style>
+        /* --- 基礎樣式 --- */
+    body {
+        font-family: "Noto Sans TC", "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4; /* 淺灰色背景 */
+        color: #333;
+    }
+
+    /* --- 1. 導覽列樣式 (深藍色底) --- */
+    .navbar-static {
+        background-color: #1a237e; /* 主深藍色 */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-full {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+    }
+
+    /* Logo 樣式 (深藍底上的黃色圓圈) */
+    .logo {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+    .logo-circle {
+        background-color: #ffcc00; /* 強調黃色 */
+        color: #1a237e;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1em;
+        margin-right: 8px;
+        font-weight: 700;
+    }
+
+    /* 連結樣式 */
+    .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links li {
+        margin-left: 30px;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 15px;
+        transition: background-color 0.3s, border-bottom 0.3s;
+    }
+
+    /* Active/Hover 狀態 */
+    .nav-links a:hover {
+        border-bottom: 2px solid #ffcc00; /* 首頁/Hover 狀態的黃色底線 */
+    }
+    .nav-links a.active-dark {
+        background-color: #004d99; /* 當前頁面的深色底 */
+        border-radius: 4px;
+        color: white !important;
+        border-bottom: none; 
+    }
+
+
+    /* --- 2. 次級 Banner 樣式 (深藍色底) --- */
+    .page-banner {
+        background-color: #1a237e; /* 主深藍色 */
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .banner-content h2 {
+        font-size: 3em;
+        margin-bottom: 15px;
+    }
+
+    .banner-content p {
+        font-size: 1.1em;
+        max-width: 700px;
+        margin: 0 auto;
+        font-weight: 300;
+    }
+
+    /* --- 3. 主要內容區域 --- */
+    .main-content-area {
+        padding: 40px;
+        text-align: center;
+        min-height: 400px; /* 確保內容區域不會太短 */
+    }
+
+
+    /* --- 4. 頁腳樣式 (深藍色底) --- */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1a237e; 
+        color: white;
+        font-size: 0.8em;
+    }
+
+    /* 確保卡片圖標是黃色的 (用於 info-card, etc.) */
+    .info-icon, .card-icon {
+        color: #ffcc00; 
+    }
+    .card-section {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding: 50px 40px;
+        /* 將卡片區塊向上拉，覆蓋在主視覺圖片下方 */
+        margin-top: -100px; 
+        position: relative;
+        z-index: 5; /* 確保卡片在上方 */
+    }
+
+    .card {
+        background-color: white;
+        padding: 30px;
+        width: 300px;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* 滑鼠懸停時微抬升 */
+    }
+
+    .card-icon {
+        font-size: 2.5em;
+        color: #004d99; /* 藍色 */
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        color: #004d99;
+        font-size: 1.5em;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        font-size: 0.95em;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /* --- 4. 頁腳 (Footer) --- */
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1a237e; /* 深藍色，與導覽列顏色呼應 */
+        color: white;
+        font-size: 0.8em;
+    }
+</style>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>大阪旅遊 — 簡報轉網頁</title>
-  <style>
-    :root{--accent:#e63946;--muted:#666;--bg:#f7f7f8;--card:#fff;--max:980px}
-    *{box-sizing:border-box}
-    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans CJK TC", "Helvetica Neue",Arial;line-height:1.6;color:#222;background:var(--bg);padding:24px}
-    .container{max-width:var(--max);margin:0 auto}
-    header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-    .logo{width:84px;height:84px;background:linear-gradient(135deg,#ffecd2,#fcb69f);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#333}
-    h1{font-size:1.6rem;margin:0}
-    p.lead{margin:6px 0 0;color:var(--muted)}
-    nav.toc{margin:18px 0}
-    nav.toc ul{display:flex;gap:12px;flex-wrap:wrap;padding:0;list-style:none}
-    nav.toc a{background:var(--card);padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--accent);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
-    main.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(20,20,30,0.04)}
-    aside.card{background:var(--card);padding:14px;border-radius:12px;height:fit-content}
-    section{margin-bottom:18px}
-    h2{margin:0 0 8px;font-size:1.05rem}
-    .steps ol{padding-left:18px;margin:8px 0}
-    .note{font-size:0.95rem;color:var(--muted);background:#fff8f8;padding:10px;border-left:4px solid var(--accent);border-radius:6px}
-    .hotel{display:flex;align-items:flex-start;gap:12px;padding:10px;border-radius:8px;background:#fbfbfc;margin-bottom:10px}
-    .hotel img{width:80px;height:60px;object-fit:cover;border-radius:6px}
-    .hotel .info{font-size:0.95rem}
-    .small{font-size:0.9rem;color:var(--muted)}
-    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:0.9rem}
-    @media (max-width:880px){.grid{grid-template-columns:1fr;}.logo{width:64px;height:64px}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立法院 - [頁面名稱]</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">大阪</div>
-      <div>
-        <h1>BAPE STORE OSAKA — 大阪旅遊攻略</h1>
-        <p class="lead">整理自簡報檔，內容包含：在日使用應用程式、電車搭乘教學與推薦飯店。</p>
-      </div>
+
+    <header class="navbar-static">
+        <nav class="navbar-full">
+            <div class="logo">
+                <div class="logo-circle">立</div> 
+                立法院 
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"class="active-dark">首頁</a></li>
+                <li><a href="about.html">關於我們</a></li> 
+                <li><a href="members.html">成員介紹</a></li> 
+                <li><a href="events.html">活動行程</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav class="toc" aria-label="目錄">
-      <ul>
-        <li><a href="#apps">在日使用應用程式</a></li>
-        <li><a href="#cards">交通卡（Suica / ICOCA）</a></li>
-        <li><a href="#routes">電車搭乘教學</a></li>
-        <li><a href="#hotels">推薦飯店</a></li>
-      </ul>
-    </nav>
+    <section class="page-banner">
+        <div class="banner-content">
+            <h2>歡迎來到 立法院 Legislature</h2>
+            <p>為人民服務，推動國家法制建設，促進民主發展</p>
+        </div>
+    </section>
 
-    <div class="grid">
-      <main class="card">
-        <section id="apps">
-          <h2>在日使用應用程式（APP）</h2>
-          <p class="small">建議安裝：乘車案內（乗車案内）等查詢時刻與換乘路線的 App，可同時查詢站內轉車資訊與 IC 卡餘額。</p>
+    <main class="card-section">
+        
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-landmark"></i></div>
+            <h3>關於我們</h3>
+            <p>了解立法院的歷史沿革、組織架構及核心理念</p>
+            <a href="about.html" class="card-link">了解更多</a>
+        </div>
 
-          <div class="steps">
-            <h3 style="margin-top:8px">功能重點</h3>
-            <ol>
-              <li>查看電車時刻表與路線。</li>
-              <li>輸入「出發」與「到着」以取得推薦路線（中文站名亦可搜尋）。</li>
-              <li>確認當下時刻表與月台號碼是否一致（避免跑錯月台）。</li>
-            </ol>
-            <p class="note">小提醒：搜尋時可直接貼上以下站名來避免輸入日文困難：大阪空港、蛍池、梅田、なんば。</p>
-          </div>
-        </section>
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-user-group"></i></div>
+            <h3>成員介紹</h3>
+            <p>認識各位立法委員及服務團隊的專業背景與願景</p>
+            <a href="members.html" class="card-link">了解更多</a>
+        </div>
 
-        <section id="cards">
-          <h2>交通卡（Suica / ICOCA）</h2>
-          <p class="small">交通卡可綁定手機或購買實體卡，方便在關西地區搭乘電車與付費。</p>
-
-          <h3 style="margin-top:8px">1) 在手機加入 Suica（電子卡）</h3>
-          <p>若手機已綁定信用卡，可在 Suica App 中按「+」→ 選擇無記名 → 按「発行手続き」進行發行並儲值。</p>
-
-          <h3 style="margin-top:8px">2) 在車站購買實體 ICOCA</h3>
-          <ol>
-            <li>找到售票處或自動售票機。</li>
-            <li>選擇「ICOCA を買う」。</li>
-            <li>投入現金或刷卡後取得實體卡。</li>
-          </ol>
-
-          <p class="small">更多說明可參考：關西交通或機場購買 ICOCA 的教學（簡報內附連結）。</p>
-        </section>
-
-        <section id="routes">
-          <h2>電車搭乘教學（示例路線）</h2>
-          <p class="small">以範例路線：大阪空港 → 蛍池 → 梅田 → 難波（なんば）。下方為簡要步驟與注意事項。</p>
-
-          <ol>
-            <li>在電車案內 App 的「出發」輸入「大阪空港」，「到着」輸入「大阪難波」，按「検索」。</li>
-            <li>搭乘モノレール至蛍池，注意月台（1/2番線）與時刻表是否一致。</li>
-            <li>在蛍池轉乘對應標誌的電車（確認車站內指示與顏色）。</li>
-            <li>於梅田再次轉車，轉乘御堂筋線（示例為 M 線）至難波，抵達後步行至目的地。</li>
-          </ol>
-
-          <p class="note">實際車次與月台會依當日時刻表變動，搭乘前請再次以 App 確認當下資訊。</p>
-        </section>
-
-        <section id="hotels">
-          <h2>推薦飯店（位於難波 / 心齋橋）</h2>
-
-          <div class="hotel">
-            <img src="https://via.placeholder.com/160x120?text=GRAND+FRESA" alt="相鐵 GRAND FRESA">
-            <div class="info">
-              <strong>大阪難波相鐵 GRAND FRESA</strong>
-              <div class="small">性價比高 — 約 NT$ 4,086 / 晚<br>步行約 5-10 分鐘可到難波、心齋橋、道頓堀。</div>
-            </div>
-          </div>
-
-          <div class="hotel">
-            <img src="https://via.placeholder.com/160x120?text=UNIZO" alt="ホテルユニゾ大阪心斎橋">
-            <div class="info">
-              <strong>ホテルユニゾ大阪心斎橋</strong>
-              <div class="small">中價位 — 約 NT$ 4,306 / 晚<br>距離心齋橋地鐵站約 5 分鐘步行。</div>
-            </div>
-          </div>
-
-          <div class="hotel">
-            <img src="https://via.placeholder.com/160x120?text=CROSS+HOTEL" alt="クロスホテル大阪">
-            <div class="info">
-              <strong>クロスホテル大阪</strong>
-              <div class="small">中高價位 — 約 NT$ 8,379 / 晚<br>步行約 5-10 分鐘可到道頓堀與購物區。</div>
-            </div>
-          </div>
-
-          <p class="small">以上飯店位置皆靠近車站，適合行程以購物、美食與交通便利為主的旅客。</p>
-        </section>
-
-      </main>
-
-      <aside class="card">
-        <h3>快速備註</h3>
-        <ul class="small">
-          <li>建議下載：乘車案内 App、Suica / ICOCA 官方 App。</li>
-          <li>車站內請留意電車標誌與顏色，轉車時跟隨路標方向即可。</li>
-          <li>若需我把簡報裡的圖片嵌入網頁，請上傳圖片或告訴我想放哪張圖。</li>
-        </ul>
-
-        <h3 style="margin-top:12px">來源</h3>
-        <p class="small">內容整理自您上傳的簡報：大阪旅遊.pptx</p>
-      </aside>
-    </div>
+        <div class="card">
+            <div class="card-icon"><i class="fa-solid fa-calendar-alt"></i></div>
+            <h3>活動行程</h3>
+            <p>掌握最新議程、公聽會及各項重要活動排程</p>
+            <a href="events.html" class="card-link">了解更多</a>
+        </div>
+    </main>
 
     <footer>
-      若要我把此網頁轉成單一下載檔（.html）或加入更細的 CSS / JavaScript 動畫，也可以告訴我！
+        <p>© 2025 立法院 Legislature. All rights reserved.</p>
     </footer>
-  </div>
+
 </body>
 </html>
