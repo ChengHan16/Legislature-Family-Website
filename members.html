@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立法院 - 成員介紹</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- 基礎樣式 --- */
+        body {
+            font-family: "Noto Sans TC", "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* 淺灰色背景 */
+            color: #333;
+        }
+
+        /* --- 1. 導覽列樣式 (深藍色底) --- */
+        .navbar-static {
+            background-color: #1a237e; /* 主深藍色 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-full {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+        }
+
+        /* Logo 樣式 */
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        .logo-circle {
+            background-color: #ffcc00; /* 強調黃色 */
+            color: #1a237e;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1em;
+            margin-right: 8px;
+            font-weight: 700;
+        }
+
+        /* 連結樣式 */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            transition: background-color 0.3s, border-bottom 0.3s;
+        }
+
+        /* Active/Hover 狀態 */
+        .nav-links a:hover {
+            border-bottom: 2px solid #ffcc00;
+        }
+        .nav-links a.active-dark {
+            background-color: #004d99; /* 當前頁面的深色底 */
+            border-radius: 4px;
+            color: white !important;
+            border-bottom: none; 
+        }
+
+
+        /* --- 2. 次級 Banner 樣式 (深藍色底) --- */
+        .page-banner {
+            background-color: #1a237e; /* 主深藍色 */
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .banner-content h2 {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .banner-content p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* --- 3. 主要內容區域 (成員介紹) --- */
+        /* 成員列表容器 - 使用 Flexbox 實現置中和換行 */
+        .member-list {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center; /* 水平置中 */
+            gap: 30px; /* 卡片間距 */
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto; /* 確保整個列表在頁面居中 */
+        }
+
+        /* 單個成員卡片樣式 */
+        .member-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 180px; 
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .member-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 成員圖片容器 - 圓形圖片效果 */
+        .member-image-wrapper {
+            width: 140px; 
+            height: 140px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #ffcc00; /* 黃色邊框 */
+        }
+
+        .member-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 關鍵：確保圖片填滿容器並保持比例 */
+            display: block;
+        }
+        
+        /* 職稱樣式 */
+        .member-title {
+            font-size: 1.1em;
+            color: #1a237e; /* 深藍色 */
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* 成員姓名樣式 */
+        .member-name-placeholder {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #004d99; /* 次深藍色 */
+            margin-bottom: 10px;
+            /* 修正：如果使用真實姓名，請將 class 名稱改成 .member-name */
+        }
+        
+
+        /* --- 4. 頁腳樣式 (深藍色底) --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1a237e; 
+            color: white;
+            font-size: 0.8em;
+        }
+        
+        /* --- 5. RWD 響應式調整 --- */
+        @media (max-width: 900px) {
+            .navbar-full {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            .nav-links {
+                margin-top: 10px;
+            }
+            .nav-links li {
+                margin: 0 10px;
+            }
+            .member-list {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-links li {
+                margin-bottom: 5px;
+            }
+            .member-item {
+                width: 140px; /* 手機上縮小卡片寬度 */
+            }
+            .member-image-wrapper {
+                width: 100px; /* 手機上縮小圖片 */
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar-static">
+        <nav class="navbar-full">
+            <div class="logo">
+                <div class="logo-circle">立</div> 
+                立法院 
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="about.html">關於我們</a></li> 
+                <li><a href="members.html" class="active-dark">成員介紹</a></li> 
+                <li><a href="events.html">活動行程</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <div class="banner-content">
+            <h2>成員介紹</h2>
+            <p>認識我們立法院的重要成員</p>
+        </div>
+    </section>
+
+    <main class="member-list">
+        
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 1</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/leader2.png?raw=true" alt="成員 1 頭像">
+            </div>
+            <div class="member-title">班長</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 2</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/MOMOE.png?raw=true" alt="成員 2 頭像">
+            </div>
+            <div class="member-title">もも</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 3</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ding_Junqi.png?raw=true" alt="成員 3 頭像">
+            </div>
+            <div class="member-title">俊齊</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 4</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Huang_Weiren.png?raw=true" alt="成員 4 頭像">
+            </div>
+            <div class="member-title">韋仁</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 5</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye%20Guangting.png?raw=true" alt="成員 5 頭像">
+            </div>
+            <div class="member-title">光庭</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 6</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Li_Zhengde.png?raw=true" alt="成員 6 頭像">
+            </div>
+            <div class="member-title">正德</div>
+        </div>
+        
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 7</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye_Yixian.png?raw=true" alt="成員 7 頭像">
+            </div>
+            <div class="member-title">奕賢</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 8</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Chen%20Jiawei.png?raw=true" alt="成員 8 頭像">
+            </div>
+            <div class="member-title">佳瑋</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 9</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Guo_Jiangxu.png?raw=true" alt="成員 9 頭像">
+            </div>
+            <div class="member-title">江旭</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 10</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/ShumingvVs%20Weicheng.png?raw=true" alt="成員 10 頭像">
+            </div>
+            <div class="member-title">未定</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 11</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Wang%20Zunxuan.png?raw=true" alt="成員 11 頭像">
+            </div>
+            <div class="member-title">**</div>
+        </div>
+
+        <div class="member-item">
+            <div class="member-name-placeholder">成員 12</div>
+            <div class="member-image-wrapper">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 12 頭像">
+            </div>
+            <div class="member-title">**</div>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>© 2025 立法院 Legislature. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
