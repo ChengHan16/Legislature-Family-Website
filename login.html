@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase 測試登入頁面 (僅登入)</title>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    
+    <style>
+        /* ... 樣式保持不變 ... */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f7f6;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="email"], input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        #loginBtn { background-color: #4CAF50; color: white; }
+        #logoutBtn { background-color: #f44336; color: white; }
+        button:hover { opacity: 0.9; }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #e0e0e0;
+            color: #333;
+            text-align: left;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Firebase 網頁登入</h2>
+
+        <div id="authArea">
+            <input type="email" id="emailInput" placeholder="電子郵件" required>
+            <input type="password" id="passwordInput" placeholder="密碼" required>
+            
+            <button id="loginBtn">登入</button>
+        </div>
+
+        <div id="profileArea" class="hidden">
+            <p><strong>正在導向至私人頁面...</strong></p>
+        </div>
+
+        <div id="status">等待使用者登入...</div>
+
+    </div>
+
+    <script>
+        // 🚨 步驟 2: 配置您的 Firebase 設定 🚨
+        const firebaseConfig = {
+        apiKey: "AIzaSyACnoimIASfb1rb59SbgLDkUmyYR6ODbUU",
+        authDomain: "llwb-ed686.firebaseapp.com",
+        projectId: "llwb-ed686",
+        storageBucket: "llwb-ed686.firebasestorage.app",
+        messagingSenderId: "940345852074",
+        appId: "1:940345852074:web:7a30cca5a6d997a92350d3",
+        measurementId: "G-KWL4ZE3D18"
+        };
+        
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // 定義私人頁面的 URL
+        const PRIVATE_PAGE_URL = 'private.html'; 
+
+        // 獲取 DOM 元素 (部分不再需要，但保留以防萬一)
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        const loginBtn = document.getElementById('loginBtn');
+        const statusDiv = document.getElementById('status');
+
+        function updateStatus(message, isError = false) {
+            statusDiv.textContent = message;
+            statusDiv.style.backgroundColor = isError ? '#fdd' : '#ddf';
+        }
+
+        // --- 登入處理函數 (維持不變) ---
+        loginBtn.addEventListener('click', () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            if (!email || !password) {
+                updateStatus("請輸入電子郵件和密碼。", true);
+                return;
+            }
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    updateStatus("登入成功，正在重定向...");
+                    // 成功登入後，狀態監聽器 (onAuthStateChanged) 將會觸發重定向
+                })
+                .catch((error) => {
+                    updateStatus(`登入失敗: ${error.message}`, true);
+                });
+        });
+
+        // 💡 關鍵修改處: 監聽使用者狀態變化並執行重定向 💡
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // 使用者已登入
+                // 檢查目前是否已在私人頁面，避免無限重定向循環（雖然在登入頁面不會發生，但習慣性檢查）
+                if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
+                    // 如果目前在登入頁面，則導向到私人頁面
+                    window.location.href = PRIVATE_PAGE_URL = 'https://llwb-ed686.web.app/private.html';
+                }
+            } else {
+                // 使用者已登出 (或未登入)
+                // 檢查目前是否在私人頁面
+                if (window.location.pathname.includes(PRIVATE_PAGE_URL = 'https://llwb-ed686.web.app/private.html')) {
+                    // 如果在私人頁面，但未登入，則導回登入頁面 (index.html 或其他)
+                    window.location.href = 'index.html'; // 假設登入頁面是 index.html
+                }
+                // 如果目前就在登入頁面，則不執行任何操作
+            }
+        });
+    </script>
+</body>
+</html>
