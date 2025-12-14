@@ -1,201 +1,183 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+<style>
+        /* --- 基礎樣式 --- */
+    body {
+        font-family: "Noto Sans TC", "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4; /* 淺灰色背景 */
+        color: #333;
+    }
+
+    /* --- 1. 導覽列樣式 (深藍色底) --- */
+    .navbar-static {
+        background-color: #1a237e; /* 主深藍色 */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-full {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+    }
+
+    /* Logo 樣式 (深藍底上的黃色圓圈) */
+    .logo {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+    .logo-circle {
+        background-color: #ffcc00; /* 強調黃色 */
+        color: #1a237e;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1em;
+        margin-right: 8px;
+        font-weight: 700;
+    }
+
+    /* 連結樣式 */
+    .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links li {
+        margin-left: 30px;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 15px;
+        transition: background-color 0.3s, border-bottom 0.3s;
+    }
+
+    /* Active/Hover 狀態 */
+    .nav-links a:hover {
+        border-bottom: 2px solid #ffcc00; /* 首頁/Hover 狀態的黃色底線 */
+    }
+    .nav-links a.active-dark {
+        background-color: #004d99; /* 當前頁面的深色底 */
+        border-radius: 4px;
+        color: white !important;
+        border-bottom: none; 
+    }
+
+
+    /* --- 2. 次級 Banner 樣式 (深藍色底) --- */
+    .page-banner {
+        background-color: #1a237e; /* 主深藍色 */
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .banner-content h2 {
+        font-size: 3em;
+        margin-bottom: 15px;
+    }
+
+    .banner-content p {
+        font-size: 1.1em;
+        max-width: 700px;
+        margin: 0 auto;
+        font-weight: 300;
+    }
+
+    /* --- 3. 主要內容區域 --- */
+    .main-content-area {
+        padding: 40px;
+        text-align: center;
+        min-height: 400px; /* 確保內容區域不會太短 */
+    }
+
+
+    /* --- 4. 頁腳樣式 (深藍色底) --- */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1a237e; 
+        color: white;
+        font-size: 0.8em;
+    }
+
+    /* 確保卡片圖標是黃色的 (用於 info-card, etc.) */
+    .info-icon, .card-icon {
+        color: #ffcc00; 
+    }
+    .card-section {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding: 50px 40px;
+        /* 將卡片區塊向上拉，覆蓋在主視覺圖片下方 */
+        margin-top: -100px; 
+        position: relative;
+        z-index: 5; /* 確保卡片在上方 */
+    }
+
+    .card {
+        background-color: white;
+        padding: 30px;
+        width: 300px;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* 滑鼠懸停時微抬升 */
+    }
+
+    .card-icon {
+        font-size: 2.5em;
+        color: #004d99; /* 藍色 */
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        color: #004d99;
+        font-size: 1.5em;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        font-size: 0.95em;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /* --- 4. 頁腳 (Footer) --- */
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1a237e; /* 深藍色，與導覽列顏色呼應 */
+        color: white;
+        font-size: 0.8em;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>立法院 - 首頁</title>
-    
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-
+    <title>立法院 - [頁面名稱]</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        /* --- 基礎樣式 --- */
-        body {
-            font-family: "Noto Sans TC", "Arial", sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4; /* 淺灰色背景 */
-            color: #333;
-        }
-
-        /* --- 1. 導覽列樣式 (深藍色底) --- */
-        .navbar-static {
-            background-color: #1a237e; /* 主深藍色 */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .navbar-full {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-        }
-
-        /* Logo 樣式 (深藍底上的黃色圓圈) */
-        .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: white;
-            display: flex;
-            align-items: center;
-        }
-        .logo-circle {
-            background-color: #ffcc00; /* 強調黃色 */
-            color: #1a237e;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1em;
-            margin-right: 8px;
-            font-weight: 700;
-        }
-
-        /* 連結樣式 */
-        .nav-links {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            transition: background-color 0.3s, border-bottom 0.3s;
-            white-space: nowrap; /* 防止郵箱換行 */
-        }
-
-        /* Active/Hover 狀態 */
-        .nav-links a:hover {
-            border-bottom: 2px solid #ffcc00; /* 首頁/Hover 狀態的黃色底線 */
-        }
-        .nav-links a.active-dark {
-            background-color: #004d99; /* 當前頁面的深色底 */
-            border-radius: 4px;
-            color: white !important;
-            border-bottom: none; 
-        }
-        /* 登入按鈕的專屬樣式 */
-        .nav-links a.login-btn,
-        .nav-links a.user-email-btn {
-            background-color: #ffcc00 !important; /* 強調黃色 */
-            color: #1a237e !important; /* 深藍色文字 */
-            font-weight: bold;
-            border-radius: 4px;
-            border-bottom: none !important;
-        }
-        .nav-links a.login-btn:hover,
-        .nav-links a.user-email-btn:hover {
-            opacity: 0.9;
-            border-bottom: none !important;
-        }
-
-
-        /* --- 2. 次級 Banner 樣式 (深藍色底) --- */
-        .page-banner {
-            background-color: #1a237e; /* 主深藍色 */
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .banner-content h2 {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .banner-content p {
-            font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        /* --- 3. 主要內容區域 --- */
-        .main-content-area {
-            padding: 40px;
-            text-align: center;
-            min-height: 400px; /* 確保內容區域不會太短 */
-        }
-
-
-        /* --- 4. 頁腳樣式 (深藍色底) --- */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #1a237e; 
-            color: white;
-            font-size: 0.8em;
-        }
-
-        /* 確保卡片圖標是黃色的 (用於 info-card, etc.) */
-        .info-icon, .card-icon {
-            color: #ffcc00; 
-        }
-        .card-section {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 50px 40px;
-            margin-top: -100px; 
-            position: relative;
-            z-index: 5; 
-        }
-
-        .card {
-            background-color: white;
-            padding: 30px;
-            width: 300px;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        .card:hover {
-            transform: translateY(-5px); 
-        }
-
-        .card-icon {
-            font-size: 2.5em;
-            color: #004d99; /* 藍色 */
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            color: #004d99;
-            font-size: 1.5em;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        /* --- 4. 頁腳 (Footer) --- */
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #1a237e; 
-            color: white;
-            font-size: 0.8em;
-        }
-    </style>
 </head>
 <body>
 
@@ -206,12 +188,10 @@
                 立法院 
             </div>
             <ul class="nav-links">
-                <li><a href="index.html" class="active-dark">首頁</a></li>
+                <li><a href="index.html"class="active-dark">首頁</a></li>
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html">成員介紹</a></li> 
                 <li><a href="events.html">活動行程</a></li>
-                <li id="authNavItem">
-                    </li>
             </ul>
         </nav>
     </header>
@@ -251,50 +231,5 @@
         <p>© 2025 立法院 Legislature. All rights reserved.</p>
     </footer>
 
-    <script>
-        // 🚨 步驟 1: 配置您的 Firebase 設定 🚨
-        const firebaseConfig = {
-            apiKey: "AIzaSyACnoimIASfb1rb59SbgLDkUmyYR6ODbUU",
-            authDomain: "llwb-ed686.firebaseapp.com",
-            projectId: "llwb-ed686",
-            storageBucket: "llwb-ed686.firebasestorage.app",
-            messagingSenderId: "940345852074",
-            appId: "1:940345852074:web:7a30cca5a6d997a92350d3",
-            measurementId: "G-KWL4ZE3D18"
-        };
-        
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        
-        const authNavItem = document.getElementById('authNavItem');
-        
-        // 🚨 步驟 2: 定義您的登入頁面 URL 和私人頁面 URL 🚨
-        const LOGIN_PAGE_URL = 'login.html'; // 假設登入表單在同目錄下的 login.html
-        const PRIVATE_PAGE_URL = 'https://llwb-ed686.web.app/private.html'; // 您的 Firebase Hosting 網址
-        
-        // 監聽登入狀態
-        auth.onAuthStateChanged((user) => {
-            authNavItem.innerHTML = ''; // 清空佔位符
-            
-            if (user) {
-                // 使用者已登入：顯示用戶郵箱和導向私人頁面的連結
-                const privateLink = document.createElement('a');
-                privateLink.href = PRIVATE_PAGE_URL;
-                privateLink.textContent = user.email; // 顯示郵箱作為連結文字
-                privateLink.classList.add('user-email-btn');
-
-                authNavItem.appendChild(privateLink);
-
-            } else {
-                // 使用者未登入：顯示登入按鈕
-                const loginLink = document.createElement('a');
-                loginLink.href = LOGIN_PAGE_URL;
-                loginLink.textContent = '登入';
-                loginLink.classList.add('login-btn');
-                
-                authNavItem.appendChild(loginLink);
-            }
-        });
-    </script>
 </body>
 </html>
