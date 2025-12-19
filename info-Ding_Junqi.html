@@ -17,41 +17,42 @@
             line-height: 1.6;
         }
 
-        /* --- 新增：固定容器樣式 --- */
+        /* --- 1. 智慧隱藏導覽容器 --- */
         #header-wrapper {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: transform 0.4s ease-in-out; /* 控制消失與出現的平滑度 */
+            transition: transform 0.4s ease-in-out;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* 向上隱藏的類別 */
         .nav-up {
             transform: translateY(-100%);
         }
 
-        /* --- 1. 導覽列樣式 --- */
+        /* --- 導覽列 --- */
         .navbar-static {
             background-color: #1a237e;
         }
 
         .navbar-full {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* 手機端垂直排列以容納連結 */
             align-items: center;
-            padding: 10px 40px;
+            padding: 10px 15px;
         }
 
         .logo {
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: bold;
             color: white;
             display: flex;
             align-items: center;
             letter-spacing: 2px;
+            margin-bottom: 8px;
         }
+
         .logo-circle {
             background-color: #ffcc00;
             color: #1a237e;
@@ -66,42 +67,52 @@
             font-weight: 700;
         }
 
+        /* 手機版導覽連結樣式 */
         .nav-links {
             list-style: none;
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             margin: 0;
             padding: 0;
+            gap: 10px;
         }
 
         .nav-links li {
-            margin-left: 20px;
+            margin: 0;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            padding: 5px 10px;
+            padding: 4px 8px;
+            font-size: 0.85em;
+            border-radius: 4px;
             transition: 0.3s;
-            font-size: 0.9em;
         }
 
-        /* --- 2. Banner 橫幅 (手機版修正) --- */
+        .nav-links a.active-dark {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffcc00;
+        }
+
+        /* --- 2. Banner 橫幅 --- */
         .page-banner {
             background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
             color: white;
-            padding: 15px 20px; /* 縮小內距符合手機感 */
+            padding: 15px 20px;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .banner-content h2 {
-            font-size: 1.2em; /* 手機版標題縮小 */
+            font-size: 1.2em;
             margin: 0;
         }
         .banner-content p {
-            font-size: 0.8em;
-            margin: 5px 0 0 0;
+            font-size: 0.75em;
+            margin: 3px 0 0 0;
             opacity: 0.8;
         }
 
@@ -109,7 +120,7 @@
         .parent {
             display: flex;
             justify-content: center;
-            margin: 140px auto 40px auto; /* 預留空間給固定的 Header */
+            margin: 150px auto 40px auto; /* 預留空間給 Header */
             max-width: 1000px;
             padding: 0 15px;
             position: relative;
@@ -118,7 +129,7 @@
 
         .profile-card {
             display: flex;
-            flex-direction: column; /* 手機版預設垂直 */
+            flex-direction: column;
             width: 100%;
             background-color: #ffffff;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -133,7 +144,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
             text-align: center;
         }
 
@@ -158,16 +168,15 @@
 
         .info-grid {
             display: grid;
-            grid-template-columns: 1fr; /* 手機單欄 */
+            grid-template-columns: 1fr;
             gap: 10px;
-            margin-bottom: 20px;
         }
 
         .info-detail {
             font-size: 14px;
-            color: #444;
             display: flex;
             justify-content: center;
+            align-items: center;
         }
 
         .section-title {
@@ -185,16 +194,42 @@
 
         .tag { background: #e8eaf6; color: #3f51b5; padding: 1px 6px; border-radius: 4px; font-size: 11px; margin-left: 5px; }
 
-        /* 右側頭像 */
+        /* 頭像樣式 */
         .photo-section { order: -1; text-align: center; }
         .avatar-img { width: 150px; height: 150px; border-radius: 12px; object-fit: cover; border: 4px solid #f0f0f0; }
 
-        /* 媒體查詢：電腦版還原樣式 */
+        /* --- 4. 回到最上頁按鈕 --- */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background-color: #ffcc00;
+            color: #1a237e;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: none; /* 捲動後顯示 */
+            z-index: 1001;
+            font-size: 1.2em;
+            transition: 0.3s;
+        }
+
+        #backToTop:hover {
+            background-color: #1a237e;
+            color: white;
+        }
+
+        /* --- 媒體查詢：桌面版還原 --- */
         @media (min-width: 768px) {
-            .navbar-full { padding: 15px 40px; }
-            .logo { font-size: 1.5em; }
+            .navbar-full { flex-direction: row; padding: 10px 40px; }
+            .logo { margin-bottom: 0; font-size: 1.4em; }
+            .nav-links { gap: 20px; }
+            .nav-links a { font-size: 1em; padding: 8px 15px; }
+            .page-banner { padding: 30px 20px; }
             .banner-content h2 { font-size: 2.2em; }
-            .banner-content p { font-size: 1em; }
             .parent { margin-top: 180px; }
             .profile-card { flex-direction: row; padding: 50px; gap: 40px; }
             .photo-section { order: 1; }
@@ -215,12 +250,13 @@
         <header class="navbar-static">
             <nav class="navbar-full">
                 <div class="logo">
-                    <div class="logo-circle">立</div> 
-                    立法院
+                    <div class="logo-circle">立</div> 立法院
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#"><i class="fas fa-users"></i></a></li>
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i></a></li>
+                    <li><a href="#">首頁</a></li>
+                    <li><a href="#">關於我們</a></li> 
+                    <li><a href="#" class="active-dark">成員介紹</a></li> 
+                    <li><a href="#">活動行程</a></li>
                 </ul>
             </nav>
         </header>
@@ -228,7 +264,7 @@
         <section class="page-banner">
             <div class="banner-content">
                 <h2>資深研究員簡介</h2>
-                <p>數位轉型委員會 - 醫學 AI 策略組</p>
+                <p>醫學人工智慧與公共衛生策略組</p>
             </div>
         </section>
     </div>
@@ -250,45 +286,70 @@
 
                 <div class="section-title">專業經歷</div>
                 <ul class="experience-list">
-                    <li><strong>113年度急性腸胃炎病理機轉首席講師</strong> <span class="tag">Expert</span></li>
+                    <li><strong>113年度急性腸胃炎病理機轉首席講師</strong> <span class="tag">Clinical Specialist</span></li>
                     <li><strong>WHO 腸道致病原應變小組 外部專家</strong></li>
                 </ul>
 
                 <div class="section-title">醫學 AI 研究論文</div>
                 <ul class="experience-list">
-                    <li><em>"Transformer-based Inference for AGE Diagnosis"</em> <span class="tag">IEEE</span></li>
+                    <li>論文：<em>"Transformer-based Inference for AGE Diagnosis"</em></li>
                 </ul>
+
+                <div style="height: 600px; border-top: 1px dashed #eee; margin-top: 20px; padding: 10px; color: #ccc;">
+                    測試捲動空間...
+                </div>
             </div>
 
             <div class="photo-section">
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ding_Junqi.png?raw=true" alt="丁俊齊照片" class="avatar-img">
-                <div class="cert-stamp" style="font-size: 10px; border: 1px dashed #ccc; margin-top:10px; padding:5px;">
-                    Verified ID: 2001-AI-092
+                <div style="font-size: 10px; color: #999; margin-top:10px; border:1px dashed #ccc; padding: 5px;">
+                    Verified Member<br>ID: 2001-AI-092
                 </div>
             </div>
         </div>
     </main>
 
+    <button id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <footer>
-        <p>© 2025 立法院 Legislative Yuan</p>
+        <p>© 2025 立法院 Legislative Yuan - 數位資訊發展處</p>
     </footer>
 
     <script>
-        var lastScrollTop = 0;
-        var headerWrapper = document.getElementById("header-wrapper");
+        // 1. 智慧隱藏導覽列邏輯
+        let lastScrollTop = 0;
+        const header = document.getElementById("header-wrapper");
+        const backToTopBtn = document.getElementById("backToTop");
 
         window.addEventListener("scroll", function() {
-            var st = window.pageYOffset || document.documentElement.scrollTop;
+            let st = window.pageYOffset || document.documentElement.scrollTop;
             
+            // 導覽列隱藏邏輯
             if (st > lastScrollTop && st > 100) {
-                // 向下捲動 -> 隱藏
-                headerWrapper.classList.add("nav-up");
+                header.classList.add("nav-up");
             } else {
-                // 向上捲動 -> 顯示
-                headerWrapper.classList.remove("nav-up");
+                header.classList.remove("nav-up");
             }
-            lastScrollTop = st <= 0 ? 0 : st; // 為手機瀏覽器處理負數捲動
-        }, false);
+
+            // 回到最上頁按鈕顯示邏輯 (超過 300px 顯示)
+            if (st > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+
+            lastScrollTop = st <= 0 ? 0 : st;
+        });
+
+        // 2. 捲動至頂端函數
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
     </script>
 
 </body>
