@@ -17,31 +17,31 @@
             line-height: 1.6;
         }
 
-        /* --- 1. 導覽列與橫幅智慧隱藏容器 --- */
-        .header-container {
+        /* --- 新增：固定容器樣式 --- */
+        #header-wrapper {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: transform 0.4s ease-in-out; /* 關鍵：平滑滑動動畫 */
-            background-color: #1a237e;
+            transition: transform 0.4s ease-in-out; /* 控制消失與出現的平滑度 */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* 當捲動向下時，套用這個 Class 隱藏 */
-        .header-hidden {
+        /* 向上隱藏的類別 */
+        .nav-up {
             transform: translateY(-100%);
         }
 
+        /* --- 1. 導覽列樣式 --- */
         .navbar-static {
             background-color: #1a237e;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .navbar-full {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 10px 40px;
         }
 
         .logo {
@@ -50,118 +50,123 @@
             color: white;
             display: flex;
             align-items: center;
+            letter-spacing: 2px;
         }
-
         .logo-circle {
             background-color: #ffcc00;
             color: #1a237e;
-            width: 28px;
-            height: 28px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 0.9em;
+            font-size: 0.8em;
             margin-right: 8px;
             font-weight: 700;
         }
 
         .nav-links {
             list-style: none;
-            display: none; /* 手機端隱藏 */
+            display: flex;
             margin: 0;
             padding: 0;
         }
 
-        /* --- 2. Banner 横幅優化 --- */
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: 0.3s;
+            font-size: 0.9em;
+        }
+
+        /* --- 2. Banner 橫幅 (手機版修正) --- */
         .page-banner {
             background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
             color: white;
-            padding: 20px;
+            padding: 15px 20px; /* 縮小內距符合手機感 */
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .banner-content h2 {
-            font-size: 1.5em;
-            margin: 0 0 5px 0;
-        }
-
-        .banner-content p {
-            font-size: 0.85em;
+            font-size: 1.2em; /* 手機版標題縮小 */
             margin: 0;
+        }
+        .banner-content p {
+            font-size: 0.8em;
+            margin: 5px 0 0 0;
             opacity: 0.8;
         }
 
-        /* --- 3. 主要內容區域 (調整 Padding 避免被固定導覽列遮住) --- */
+        /* --- 3. 主要內容區域 --- */
         .parent {
             display: flex;
             justify-content: center;
-            margin: 160px auto 40px auto; /* 預留空間給 Header */
-            width: 95%;
+            margin: 140px auto 40px auto; /* 預留空間給固定的 Header */
             max-width: 1000px;
+            padding: 0 15px;
             position: relative;
             z-index: 10;
         }
 
         .profile-card {
             display: flex;
-            flex-direction: column; /* 手機端垂直 */
+            flex-direction: column; /* 手機版預設垂直 */
             width: 100%;
             background-color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             padding: 30px 20px;
             border-radius: 12px;
             gap: 20px;
         }
 
-        /* 手機版頭像置頂 */
-        .photo-section {
-            order: -1;
-            text-align: center;
-        }
-
-        .avatar-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 4px solid #f0f0f0;
-        }
+        .info-section { flex: 2; }
 
         .header-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
             text-align: center;
         }
 
         .header-row h1 {
             font-size: 28px;
-            color: #1a237e;
             margin: 0;
+            color: #1a237e;
+            letter-spacing: 4px;
         }
 
-        .nickname {
-            display: block;
+        .header-row .nickname {
             font-size: 16px;
             color: #666;
-            margin-top: 5px;
         }
 
         .blue-line {
             height: 2px;
             background: linear-gradient(to right, transparent, #1a237e, transparent);
-            margin: 20px 0;
+            width: 100%;
+            margin: 15px 0;
         }
 
         .info-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* 手機單欄 */
             gap: 10px;
+            margin-bottom: 20px;
         }
 
         .info-detail {
             font-size: 14px;
+            color: #444;
             display: flex;
-            align-items: center;
             justify-content: center;
         }
 
@@ -169,89 +174,61 @@
             font-size: 16px;
             font-weight: bold;
             color: #1a237e;
+            margin: 20px 0 10px 0;
             border-left: 4px solid #ffcc00;
             padding-left: 10px;
-            margin: 25px 0 10px 0;
         }
 
-        .experience-list {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-        }
+        .experience-list { list-style: none; padding: 0; }
+        .experience-list li { font-size: 14px; margin-bottom: 10px; padding-left: 15px; position: relative; }
+        .experience-list li::before { content: "•"; color: #1a237e; position: absolute; left: 0; }
 
-        .experience-list li {
-            font-size: 14px;
-            margin-bottom: 12px;
-            padding-left: 15px;
-            position: relative;
-        }
+        .tag { background: #e8eaf6; color: #3f51b5; padding: 1px 6px; border-radius: 4px; font-size: 11px; margin-left: 5px; }
 
-        .experience-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #1a237e;
-        }
+        /* 右側頭像 */
+        .photo-section { order: -1; text-align: center; }
+        .avatar-img { width: 150px; height: 150px; border-radius: 12px; object-fit: cover; border: 4px solid #f0f0f0; }
 
-        .tag {
-            background: #e8eaf6;
-            color: #3f51b5;
-            padding: 1px 6px;
-            border-radius: 4px;
-            font-size: 11px;
-            margin-left: 5px;
-        }
-
-        /* --- 4. 桌面版優化 (媒體查詢) --- */
+        /* 媒體查詢：電腦版還原樣式 */
         @media (min-width: 768px) {
             .navbar-full { padding: 15px 40px; }
-            .nav-links { display: flex; }
-            .nav-links li { margin-left: 25px; }
-            .nav-links a { color: white; text-decoration: none; font-size: 15px; }
-            .page-banner { padding: 30px 20px; }
+            .logo { font-size: 1.5em; }
             .banner-content h2 { font-size: 2.2em; }
-            .parent { margin-top: 200px; width: 90%; }
+            .banner-content p { font-size: 1em; }
+            .parent { margin-top: 180px; }
             .profile-card { flex-direction: row; padding: 50px; gap: 40px; }
-            .photo-section { order: 1; flex: 1; }
-            .info-section { flex: 2; }
-            .header-row { text-align: left; }
+            .photo-section { order: 1; }
+            .avatar-img { width: 220px; height: 220px; }
+            .header-row { flex-direction: row; align-items: baseline; text-align: left; }
             .header-row h1 { font-size: 42px; }
+            .blue-line { background: linear-gradient(to right, #1a237e, transparent); }
             .info-grid { grid-template-columns: 1fr 1fr; }
             .info-detail { justify-content: flex-start; }
-            .blue-line { background: linear-gradient(to right, #1a237e, transparent); }
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #1a237e;
-            color: white;
-            font-size: 0.8em;
-        }
+        footer { text-align: center; padding: 20px; background-color: #1a237e; color: white; font-size: 0.8em; }
     </style>
 </head>
 <body>
 
-    <div id="smart-header" class="header-container">
+    <div id="header-wrapper">
         <header class="navbar-static">
             <nav class="navbar-full">
                 <div class="logo">
                     <div class="logo-circle">立</div> 
-                    立法院 <span style="font-weight: 300; font-size: 0.7em; margin-left:8px;">Legislature</span>
+                    立法院
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#">首頁</a></li>
-                    <li><a href="#">成員介紹</a></li> 
-                    <li><a href="#">活動行程</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i></a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i></a></li>
                 </ul>
             </nav>
         </header>
 
         <section class="page-banner">
             <div class="banner-content">
-                <h2>人員詳細清冊</h2>
-                <p>醫學 AI 與公共衛生研究專案組</p>
+                <h2>資深研究員簡介</h2>
+                <p>數位轉型委員會 - 醫學 AI 策略組</p>
             </div>
         </section>
     </div>
@@ -261,58 +238,57 @@
             <div class="info-section">
                 <div class="header-row">
                     <h1>丁俊齊</h1>
-                    <span class="nickname">Dr. Andre Ding / 暱稱：安德烈</span>
+                    <span class="nickname">Dr. Andre Ding</span>
                 </div>
                 
                 <div class="blue-line"></div>
 
                 <div class="info-grid">
-                    <div class="info-detail">出生地：台灣 <img src="https://raw.githubusercontent.com/ChengHan16/Legislature-Family-Website/c5599eac05dbcdaf97afd7dfabdf762d8d4f7e3a/image/Flag_of_the_Republic_of_China.svg" alt="ROC" style="height:12px; margin-left:8px; border:1px solid #ddd;"></div>
+                    <div class="info-detail">出生地：台灣 <img src="https://raw.githubusercontent.com/ChengHan16/Legislature-Family-Website/c5599eac05dbcdaf97afd7dfabdf762d8d4f7e3a/image/Flag_of_the_Republic_of_China.svg" alt="ROC" style="height:12px; margin-left:8px;"></div>
                     <div class="info-detail">技術職稱：AI 推論架構師</div>
                 </div>
 
                 <div class="section-title">專業經歷</div>
                 <ul class="experience-list">
                     <li><strong>113年度急性腸胃炎病理機轉首席講師</strong> <span class="tag">Expert</span></li>
-                    <li><strong>醫學 AI 推論專科論文：</strong> <em>"Transformer-based Inference for AGE"</em></li>
-                    <li><strong>深度學習研究：</strong> 消化道病理圖像識別精準度分析</li>
-                    <li><strong>國家級高級急性腸胃炎臨床處置證照</strong></li>
+                    <li><strong>WHO 腸道致病原應變小組 外部專家</strong></li>
+                </ul>
+
+                <div class="section-title">醫學 AI 研究論文</div>
+                <ul class="experience-list">
+                    <li><em>"Transformer-based Inference for AGE Diagnosis"</em> <span class="tag">IEEE</span></li>
                 </ul>
             </div>
 
             <div class="photo-section">
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ding_Junqi.png?raw=true" alt="丁俊齊照片" class="avatar-img">
-                <div style="font-size: 10px; color: #999; margin-top:10px; border:1px dashed #ccc; padding: 5px;">
-                    Verified: 2025-MED-AI
+                <div class="cert-stamp" style="font-size: 10px; border: 1px dashed #ccc; margin-top:10px; padding:5px;">
+                    Verified ID: 2001-AI-092
                 </div>
             </div>
         </div>
     </main>
 
-    <div style="height: 1000px; padding: 20px; text-align: center; color: #ccc;">
-        捲動頁面以測試導覽列隱藏效果...
-    </div>
-
     <footer>
-        <p>© 2025 立法院 Legislature - 數位發展處</p>
+        <p>© 2025 立法院 Legislative Yuan</p>
     </footer>
 
     <script>
-        let lastScrollTop = 0;
-        const header = document.getElementById("smart-header");
+        var lastScrollTop = 0;
+        var headerWrapper = document.getElementById("header-wrapper");
 
         window.addEventListener("scroll", function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            var st = window.pageYOffset || document.documentElement.scrollTop;
             
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
+            if (st > lastScrollTop && st > 100) {
                 // 向下捲動 -> 隱藏
-                header.classList.add("header-hidden");
+                headerWrapper.classList.add("nav-up");
             } else {
                 // 向上捲動 -> 顯示
-                header.classList.remove("header-hidden");
+                headerWrapper.classList.remove("nav-up");
             }
-            lastScrollTop = scrollTop;
-        });
+            lastScrollTop = st <= 0 ? 0 : st; // 為手機瀏覽器處理負數捲動
+        }, false);
     </script>
 
 </body>
