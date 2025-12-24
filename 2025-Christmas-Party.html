@@ -12,14 +12,15 @@
             font-family: "Noto Sans TC", "Arial", sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4; /* 淺灰色背景 */
+            background-color: #f4f4f4;
             color: #333;
         }
 
         /* --- 1. 導覽列樣式 (深藍色底) --- */
         .navbar-static {
-            background-color: #1a237e; /* 主深藍色 */
+            background-color: #1a237e;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 頂部微細線 */
         }
 
         .navbar-full {
@@ -29,7 +30,6 @@
             padding: 15px 40px;
         }
 
-        /* Logo 樣式 (深藍底上的黃色圓圈) */
         .logo {
             font-size: 1.5em;
             font-weight: bold;
@@ -38,7 +38,7 @@
             align-items: center;
         }
         .logo-circle {
-            background-color: #ffcc00; /* 強調黃色 */
+            background-color: #ffcc00;
             color: #1a237e;
             width: 30px;
             height: 30px;
@@ -51,7 +51,6 @@
             font-weight: 700;
         }
 
-        /* 連結樣式 */
         .nav-links {
             list-style: none;
             display: flex;
@@ -68,117 +67,39 @@
             text-decoration: none;
             font-weight: 500;
             padding: 8px 15px;
-            transition: background-color 0.3s, border-bottom 0.3s;
+            transition: all 0.3s;
         }
 
-        /* Active/Hover 狀態 */
         .nav-links a:hover {
-            border-bottom: 2px solid #ffcc00; /* 首頁/Hover 狀態的黃色底線 */
+            border-bottom: 2px solid #ffcc00;
         }
         .nav-links a.active-dark {
-            background-color: #004d99; /* 當前頁面的深色底 */
+            background-color: #004d99;
             border-radius: 4px;
             color: white !important;
             border-bottom: none; 
         }
 
-        /* --- 2. 次級 Banner 樣式 (深藍色底) --- */
-        .page-banner {
-            background-color: #1a237e; /* 主深藍色 */
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .banner-content h2 {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .banner-content p {
-            font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        /* --- 3. 主要內容區域 --- */
-        .main-content-area {
-            padding: 40px;
-            text-align: center;
-            min-height: 400px; /* 確保內容區域不會太短 */
-        }
-
-        /* --- 4. 頁腳樣式 (深藍色底) --- */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #1a237e; 
-            color: white;
-            font-size: 0.8em;
-        }
-
-        /* 確保卡片圖標是黃色的 (用於 info-card, etc.) */
-        .info-icon, .card-icon {
-            color: #ffcc00; 
-        }
-        .card-section {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 50px 40px;
-            margin-top: -100px; 
-            position: relative;
-            z-index: 5; /* 確保卡片在上方 */
-        }
-
-        .card {
-            background-color: white;
-            padding: 30px;
-            width: 300px;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        .card:hover {
-            transform: translateY(-5px); /* 滑鼠懸停時微抬升 */
-        }
-
-        .card-icon {
-            font-size: 2.5em;
-            color: #004d99; /* 藍色 */
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            color: #004d99;
-            font-size: 1.5em;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        /* --- 活動詳情 Banner 樣式 --- */
+        /* --- 2. 活動詳情 Banner 樣式 (新增漸層與分隔線) --- */
         .event-banner {
-            background-color: #1a237e;
+            /* 使用深藍到更深藍的線性漸層 */
+            background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
             color: white;
-            padding: 80px 20px 40px 20px;
+            padding: 80px 20px 60px 20px;
             text-align: center;
+            position: relative;
+            /* 底部金色裝飾線 */
+            border-bottom: 4px solid #ffcc00;
         }
 
         .event-banner h1 {
             font-size: 3.5em;
             margin: 0;
             letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* 文字陰影增加立體感 */
         }
         
+        /* --- 3. 主要內容區域 --- */
         .event-content-area {
             max-width: 900px;
             margin: 0 auto;
@@ -215,7 +136,7 @@
             border-radius: 50%;
             overflow: hidden;
             border: 5px solid #fff;
-            box-shadow: 0 0 0 1px #eee;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             margin: 0 auto 10px auto;
         }
 
@@ -251,11 +172,20 @@
             object-fit: cover; 
         }
 
+        /* --- 4. 頁腳樣式 --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #1a237e; 
+            color: white;
+            font-size: 0.8em;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
         /* ============================================================
-           手機版本優化 (Mobile Optimization) - 針對螢幕寬度 768px 以下
+           手機版本優化 (Mobile Optimization) 
            ============================================================ */
         @media (max-width: 768px) {
-            /* 導覽列優化：改為垂直排列或調整內距 */
             .navbar-full {
                 flex-direction: column;
                 padding: 15px 10px;
@@ -264,33 +194,31 @@
                 margin-top: 15px;
                 width: 100%;
                 justify-content: center;
+                border-top: 1px solid rgba(255,255,255,0.1); /* 手機版選單分隔線 */
+                padding-top: 10px;
             }
             .nav-links li {
-                margin-left: 10px;
-                margin-right: 10px;
+                margin: 0 8px;
             }
             .nav-links a {
-                padding: 5px 8px;
-                font-size: 0.9em;
+                padding: 5px 5px;
+                font-size: 0.85em;
             }
 
-            /* Banner 字體縮小 */
-            .event-banner h1 {
-                font-size: 2em;
-            }
             .event-banner {
-                padding: 60px 15px 30px 15px;
+                padding: 50px 15px;
+                border-bottom-width: 3px; /* 手機版分隔線稍細 */
+            }
+            .event-banner h1 {
+                font-size: 1.8em;
             }
 
-            /* 成員列表改為置中並自然換行 */
             .member-list {
                 justify-content: center;
-                overflow-x: visible; /* 關閉水平滾動，讓其自然排列 */
             }
             .member-item {
-                margin-right: 10px;
-                margin-left: 10px;
-                width: 80px; /* 稍微縮小容器 */
+                margin: 0 10px 20px 10px;
+                width: 85px;
             }
             .member-image-wrapper {
                 width: 80px;
@@ -300,16 +228,12 @@
                 font-size: 1em;
             }
 
-            /* 內容區域文字大小微調 */
             .event-content-area {
-                text-align: center; /* 手機上文字居中較美觀 */
-                padding: 20px 15px;
+                text-align: center;
+                padding: 30px 15px;
             }
-
-            /* 圖片容器高度自動，避免在手機上過扁 */
             .image-container-final {
                 height: 250px;
-                margin: 20px auto;
             }
         }
     </style>
@@ -340,7 +264,7 @@
     <main class="event-content-area">
         
         <div class="event-info">
-            <p><strong>集合時間 17:00</strong></p>
+            <p><strong><i class="fa-regular fa-clock"></i> 集合時間 17:00</strong></p>
             
             <p><strong>成員：</strong></p>
             
@@ -348,7 +272,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 1</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/leader2.png?raw=true" alt="成員 1 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/leader2.png?raw=true" alt="成員 1">
                     </div>
                     <div class="member-title">班長</div>
                 </div>
@@ -356,7 +280,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 2</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/MOMOE.png?raw=true" alt="成員 2 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/MOMOE.png?raw=true" alt="成員 2">
                     </div>
                     <div class="member-title">もも</div>
                 </div>
@@ -364,7 +288,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 3</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ding_Junqi.png?raw=true" alt="成員 3 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ding_Junqi.png?raw=true" alt="成員 3">
                     </div>
                     <div class="member-title">俊齊</div>
                 </div>
@@ -372,7 +296,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 4</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Huang_Weiren.png?raw=true" alt="成員 4 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Huang_Weiren.png?raw=true" alt="成員 4">
                     </div>
                     <div class="member-title">韋仁</div>
                 </div>
@@ -380,7 +304,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 5</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye%20Guangting.png?raw=true" alt="成員 5 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye%20Guangting.png?raw=true" alt="成員 5">
                     </div>
                     <div class="member-title">光庭</div>
                 </div>
@@ -388,7 +312,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 6</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Li_Zhengde.png?raw=true" alt="成員 6 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Li_Zhengde.png?raw=true" alt="成員 6">
                     </div>
                     <div class="member-title">正德</div>
                 </div>
@@ -396,7 +320,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 7</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye_Yixian.png?raw=true" alt="成員 7 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye_Yixian.png?raw=true" alt="成員 7">
                     </div>
                     <div class="member-title">奕賢</div>
                 </div>
@@ -404,7 +328,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 8</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Chen%20Jiawei.png?raw=true" alt="成員 8 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Chen%20Jiawei.png?raw=true" alt="成員 8">
                     </div>
                     <div class="member-title">佳瑋</div>
                 </div>
@@ -412,7 +336,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 9</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Guo_Jiangxu.png?raw=true" alt="成員 9 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Guo_Jiangxu.png?raw=true" alt="成員 9">
                     </div>
                     <div class="member-title">江旭</div>
                 </div>
@@ -420,7 +344,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 10</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Carry.png?raw=true" alt="成員 10 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Carry.png?raw=true" alt="成員 10">
                     </div>
                     <div class="member-title">凱瑞</div>
                 </div>
@@ -428,7 +352,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 11</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/ShumingvVs%20Weicheng.png?raw=true" alt="成員 11 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/ShumingvVs%20Weicheng.png?raw=true" alt="成員 11">
                     </div>
                     <div class="member-title">未定</div>
                 </div>
@@ -436,7 +360,7 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 12</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Wang%20Zunxuan.png?raw=true" alt="成員 12 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Wang%20Zunxuan.png?raw=true" alt="成員 12">
                     </div>
                     <div class="member-title">**</div>
                 </div>
@@ -444,13 +368,15 @@
                 <div class="member-item">
                     <div class="member-name-placeholder">成員 13</div>
                     <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 13 頭像">
+                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 13">
                     </div>
                     <div class="member-title">**</div>
                 </div>
             </div>
 
-            <p>洋城義大利餐廳-台南安平家樂福店</p>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
+
+            <p><i class="fa-solid fa-utensils"></i> 洋城義大利餐廳-台南安平家樂福店</p>
             <p>地址：<strong>700台灣臺南市中西區中華西路二段16號2F</strong></p>
             <p>電話號碼：<strong>+886 6 295 7558</strong></p>
             <p>平均每人：<strong>$200-400</strong></p>
