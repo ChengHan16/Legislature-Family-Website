@@ -17,7 +17,7 @@
             overflow-x: hidden;
         }
 
-        /* --- [新增] 啟動動畫 Preloader CSS --- */
+        /* --- 啟動動畫 Preloader --- */
         #preloader {
             position: fixed;
             top: 0;
@@ -50,7 +50,7 @@
             100% { transform: scale(1); opacity: 0.8; }
         }
 
-        /* --- [新增] 內容進場動畫 --- */
+        /* --- 內容進場動畫 --- */
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
@@ -60,136 +60,27 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 1. 導覽列樣式 --- */
-        .navbar-static {
-            background-color: #1a237e;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar-full {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-        }
-
-        .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: white;
-            display: flex;
-            align-items: center;
-        }
-        .logo-circle {
-            background-color: #ffcc00;
-            color: #1a237e;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 8px;
-            font-weight: 700;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* --- 導覽列與 Banner (保持原設計) --- */
+        .navbar-static { background-color: #1a237e; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .navbar-full { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; }
+        .logo { font-size: 1.5em; font-weight: bold; color: white; display: flex; align-items: center; }
+        .logo-circle { background-color: #ffcc00; color: #1a237e; width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 8px; font-weight: 700; }
+        .nav-links { list-style: none; display: flex; margin: 0; padding: 0; }
         .nav-links li { margin-left: 30px; }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            transition: all 0.3s;
-        }
-
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 15px; transition: all 0.3s; }
         .nav-links a:hover { border-bottom: 2px solid #ffcc00; }
-        .nav-links a.active-dark {
-            background-color: #004d99;
-            border-radius: 4px;
-            color: white !important;
-        }
-
-        /* --- 2. 活動詳情 Banner 樣式 --- */
-        .event-banner {
-            background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
-            color: white;
-            padding: 80px 20px 60px 20px;
-            text-align: center;
-            border-bottom: 4px solid #ffcc00;
-        }
-
-        .event-banner h1 {
-            font-size: 3.5em;
-            margin: 0;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        /* --- 3. 主要內容區域 --- */
-        .event-content-area {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: left;
-            font-size: 1.1em;
-        }
+        .nav-links a.active-dark { background-color: #004d99; border-radius: 4px; color: white !important; }
+        .event-banner { background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%); color: white; padding: 80px 20px 60px 20px; text-align: center; border-bottom: 4px solid #ffcc00; }
+        .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .event-content-area { max-width: 900px; margin: 0 auto; padding: 40px 20px; text-align: left; font-size: 1.1em; }
 
         /* --- 影片播放器樣式 --- */
-        .video-blessing-section {
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .blessing-title {
-            font-size: 2.2em;
-            color: #1a237e;
-            margin-bottom: 25px;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
+        .video-blessing-section { margin: 40px 0; text-align: center; }
+        .blessing-title { font-size: 2.2em; color: #1a237e; margin-bottom: 25px; font-weight: 900; display: flex; align-items: center; justify-content: center; gap: 15px; }
         .blessing-title i { color: #ffcc00; }
-
-        .video-wrapper {
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 10px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            overflow: hidden;
-            border: 1px solid #ddd;
-        }
-
-        video {
-            width: 100%;
-            border-radius: 15px;
-            display: block;
-            background-color: #000;
-        }
-
-        /* --- 4. 頁腳樣式 --- */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background-color: #1a237e; 
-            color: white;
-            font-size: 0.8em;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
+        .video-wrapper { width: 100%; max-width: 700px; margin: 0 auto; background: #fff; padding: 10px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); overflow: hidden; border: 1px solid #ddd; }
+        video { width: 100%; border-radius: 15px; display: block; background-color: #000; }
+        footer { text-align: center; padding: 30px; background-color: #1a237e; color: white; font-size: 0.8em; border-top: 1px solid rgba(255,255,255,0.1); }
 
         /* 手機版本優化 */
         @media (max-width: 768px) {
@@ -247,7 +138,6 @@
                     </video>
                 </div>
             </section>
-
             <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
         </div>
     </main>
@@ -261,17 +151,26 @@
             const preloader = document.getElementById('preloader');
             const video = document.getElementById('blessingVideo');
 
-            // 1. 處理開場遮罩滑開動畫
+            // 1. 處理開場遮罩
             setTimeout(() => {
                 preloader.style.transform = 'translateY(-100%)';
                 
-                // 2. 當遮罩滑開時，啟動影片播放
-                // 延遲一點點時間（等內容浮現）再播放，效果最順暢
+                // 2. 當內容浮現後嘗試播放並進入全螢幕
                 setTimeout(() => {
-                    video.play().catch(error => {
-                        console.log("自動播放被攔截，通常是因為需要使用者先互動：", error);
+                    // 執行播放
+                    video.play().then(() => {
+                        // 嘗試進入全螢幕
+                        if (video.requestFullscreen) {
+                            video.requestFullscreen();
+                        } else if (video.webkitRequestFullscreen) { /* Safari / Older Chrome */
+                            video.webkitRequestFullscreen();
+                        } else if (video.msRequestFullscreen) { /* IE11 */
+                            video.msRequestFullscreen();
+                        }
+                    }).catch(error => {
+                        console.log("自動全螢幕被攔截。提示：通常需要使用者點擊網頁任一處後才能觸發 Fullscreen API。", error);
                     });
-                }, 1000);
+                }, 1200);
 
             }, 1000);
         });
