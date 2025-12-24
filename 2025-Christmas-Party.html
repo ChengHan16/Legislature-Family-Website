@@ -123,6 +123,32 @@
             flex-shrink: 0;
         }
 
+        /* 重點修改：member-item2 的慢慢浮現動畫 */
+        .member-item2 {
+            width: 100px; 
+            text-align: center;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 30px;
+            flex-shrink: 0;
+            
+            /* 設定動畫屬性 */
+            opacity: 0; /* 起始完全透明 */
+            animation: slow-fade-in 30s ease-in forwards; /* 30秒慢慢浮現 */
+        }
+
+        /* 定義浮現動畫關鍵影格 */
+        @keyframes slow-fade-in {
+            0% {
+                opacity: 0;
+                filter: blur(5px); /* 可選：起始增加一點模糊感 */
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
         .member-name-placeholder {
             font-size: 0.9em;
             color: #666;
@@ -385,6 +411,14 @@
         <div class="image-container-final">
             <img src="https://lh5.googleusercontent.com/p/AF1QipN6PvVFbdJhf9Q4prIRZJxzIXfo-54g7hy8rl9_=w960" alt="餐廳外觀" class="event-image-final">
         </div>
+
+        <div class="member-item2">
+            <div class="member-image-wrapper">
+                <a href="2025 Merry Christmas.html" target="_blank">
+                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/shiba.png?raw=true" class="avatar-img-info">
+                </a>
+            </div>
+        </div>
         
     </main>
 
@@ -394,4 +428,3 @@
 
 </body>
 </html>
-
