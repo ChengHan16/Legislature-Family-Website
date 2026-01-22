@@ -87,12 +87,21 @@
         .nav-links a.active-dark { background-color: #004d99; border-radius: 4px; color: white !important; }
 
         /* --- 2. 活動詳情 Banner 樣式 --- */
+        /* --- 2. 活動詳情 Banner 樣式 --- */
         .event-banner {
             background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 60px 20px; /* 保持你要求的內距 */
             text-align: center;
             border-bottom: 4px solid #ffcc00;
+
+            /* --- 新增以下屬性來固定範圍 --- */
+            height: 240px;           /* 設定一個固定的總高度 */
+            box-sizing: border-box;  /* 確保 padding 不會額外撐大這 300px */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 讓內容在固定高度內垂直居中 */
+            overflow: hidden;        /* 萬一文字真的太多，強制裁切不溢出 */
         }
 
         .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
