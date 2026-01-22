@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>網頁標題</title>
+    <title>立法院 - 活動行程</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -86,14 +86,14 @@
             overflow: hidden;
         }
 
-        .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .event-banner h1 { font-size: 3em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
         .banner-info-wrap {
             display: flex;
             flex-direction: column; 
             align-items: center;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
             font-size: 1.1em;
             color: #ffcc00;
         }
@@ -102,212 +102,92 @@
         .event-content-area {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
             flex: 1;
         }
 
-        .org-image-container { text-align: center; margin-bottom: 50px; }
-        .org-logo {
-            width: 180px; height: 180px; border-radius: 50%;
-            border: 6px solid white; box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            object-fit: cover;
-        }
-
-        .info-card {
-            background: white; 
-            padding: 30px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
-            margin-bottom: 40px; 
-            border-left: 6px solid #ffcc00;
-        }
-
-        .section-title {
-            border-left: 6px solid #1a237e;
-            padding-left: 15px;
-            margin: 50px 0 25px;
-            color: #1a237e;
-            font-size: 1.6em;
-            font-weight: bold;
-        }
-
-        /* --- 4. 網格佈局 (電腦版並排 4 個) --- */
-        .member-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 25px;
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        .member-card {
-            background: white;
-            padding: 30px 15px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border-top: 5px solid #1a237e;
-            transition: all 0.3s ease;
-        }
-        .member-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(26, 35, 126, 0.15);
-            border-top-color: #ffcc00;
-        }
-
-        .m-title { font-weight: bold; font-size: 1.3em; color: #111; margin-bottom: 10px; }
-        .m-desc { font-size: 1em; color: #666; line-height: 1.5; }
-
-        /* --- 3. 主要內容區域 --- */
-        .main-content-area {
-            padding: 40px;
-            text-align: center;
-            min-height: 400px; /* 確保內容區域不會太短 */
-        }
-
-        /* 確保卡片圖標是黃色的 (用於 info-card, etc.) */
-        .info-icon, .card-icon {
-            color: #ffcc00; 
-        }
-        .card-section {
+        /* --- 4. 修正後的活動卡片設計 (防溢出) --- */
+        .events-grid {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 30px;
-            padding: 50px 40px;
-            /* 將卡片區塊向上拉，覆蓋在主視覺圖片下方 */
-            margin-top: -100px; 
-            position: relative;
-            z-index: 5; /* 確保卡片在上方 */
         }
 
-        .card {
-            background-color: white;
-            padding: 30px;
-            width: 300px;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        .card:hover {
-            transform: translateY(-5px); /* 滑鼠懸停時微抬升 */
-        }
-
-        .card-icon {
-            font-size: 2.5em;
-            color: #004d99; /* 藍色 */
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            color: #004d99;
-            font-size: 1.5em;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-        
-        /* --- 5. 簡易活動連結卡片樣式 (Simple Event Card) --- */
-
-        /* 重設活動列表區塊樣式以置中單一卡片 */
-        .events-list-section {
-            display: flex;
-            justify-content: center; /* 置中卡片 */
-            flex-wrap: wrap; 
-            gap: 30px;
-            padding: 60px 40px;
-        }
-
-        /* 整個卡片連結容器 */
         .event-card-link {
             text-decoration: none;
             color: inherit;
             display: block;
-            width: 400px; 
-            max-width: 100%; /* 關鍵：確保寬度不會超過螢幕 */
-            margin: 0 auto;  /* 保持置中 */
+            width: 450px; 
+            max-width: 100%; /* 確保手機版不會超出螢幕 */
         }
 
         .event-card-simple {
             display: flex;
             align-items: center;
             background-color: white;
-            padding: 20px;   /* 簡化內距，防止手機版太擠 */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #ffcc00; /* 加入統一的黃色邊條 */
             transition: transform 0.3s, box-shadow 0.3s;
-            /* 移除固定 height */
         }
 
         .event-card-link:hover .event-card-simple {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(26, 35, 126, 0.1);
         }
 
-        .event-date-simple {
+        .event-date-circle {
             flex-shrink: 0;
-            width: 60px;
-            height: 60px;
-            background-color: #ffcc00; /* 強調黃色 */
-            color: #1a237e;
-            border-radius: 50%; /* 改為圓形 */
+            width: 65px;
+            height: 65px;
+            background-color: #1a237e;
+            color: #ffcc00;
+            border-radius: 50%;
             text-align: center;
-            padding: 5px 0;
-            margin-right: 20px;
-            font-weight: bold;
+            margin-right: 25px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            font-weight: bold;
+            border: 2px solid #ffcc00;
         }
 
-        .event-date-simple .day {
-            font-size: 1.5em;
-            line-height: 1;
-        }
+        .event-date-circle .day { font-size: 1.6em; line-height: 1; }
+        .event-date-circle .month { font-size: 0.75em; margin-top: 2px; }
 
-        .event-date-simple .month {
-            font-size: 0.7em;
-            margin-top: 3px;
-        }
-
-        /* 修正細節容器，不使用絕對定位 */
-        .event-details-simple {
+        .event-info-box {
             flex-grow: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative; 
-            min-width: 0; /* 防止 Flex 項目溢出 */
+            min-width: 0; /* 確保文字截斷正常運作 */
         }
 
-        /* 如果標題太長，加上省略號或允許換行 */
-        .event-details-simple h3 {
-            color: #004d99;
-            font-size: 1.2em; /* 手機版稍微縮小 */
-            margin: 0;
+        .event-info-box h3 {
+            color: #1a237e;
+            font-size: 1.4em;
+            margin: 0 0 8px 0;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        /* 修正文字資訊，改回一般流向避免碰撞 */
-        .event-details-simple .date-info {
-            font-size: 0.9em;
+        .event-info-box .date-text {
+            font-size: 0.95em;
             color: #666;
-            margin: 5px 0 0 0; /* 改用 margin 撐開距離 */
-            position: static;  /* 關鍵：改回 static，不再使用 absolute */
+            margin: 0;
         }
 
-        .event-details-simple .action-arrow {
+        .action-arrow {
             font-size: 1.2em;
-            color: #004d99;
-            flex-shrink: 0;
+            color: #1a237e;
+            margin-left: 15px;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .event-card-link:hover .action-arrow {
+            opacity: 1;
+            transform: translateX(5px);
         }
 
         /* --- 5. 其他元件 --- */
@@ -320,39 +200,27 @@
             text-decoration: none;
         }
 
-        footer { text-align: center; padding: 20px; background-color: #1a237e; color: white; font-size: 0.9em; }
+        footer { text-align: center; padding: 25px; background-color: #1a237e; color: white; font-size: 0.9em; }
 
         /* =============================================
            響應式優化 (RWD)
            ============================================= */
-        @media (max-width: 1100px) {
-            .member-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
         @media (max-width: 768px) {
-            /* 導覽列在手機版強制不換行且縮小字體 */
             .navbar-full { flex-direction: column; padding: 10px 5px; }
             .nav-links { 
-                margin-top: 10px; 
-                width: 100%; 
-                justify-content: center; 
-                display: flex;
-                flex-wrap: nowrap; 
-                padding: 10px 0 5px 0;
-                border-top: 1px solid rgba(255,255,255,0.1);
+                margin-top: 10px; width: 100%; justify-content: center; display: flex;
+                flex-wrap: nowrap; padding: 10px 0 5px 0; border-top: 1px solid rgba(255,255,255,0.1);
             }
             .nav-links li { margin: 0 4px; flex-shrink: 1; }
-            .nav-links a { 
-                padding: 5px 8px; 
-                font-size: clamp(12px, 3.2vw, 14px); 
-                white-space: nowrap; 
-            }
+            .nav-links a { padding: 5px 8px; font-size: clamp(12px, 3.2vw, 14px); white-space: nowrap; }
 
             .event-banner { height: auto; padding: 40px 20px; }
             .event-banner h1 { font-size: 2.2em; }
 
-            /* 手機版網格改為並排 2 個 */
-            .member-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .event-card-simple { padding: 20px; }
+            .event-date-circle { width: 55px; height: 55px; margin-right: 15px; }
+            .event-date-circle .day { font-size: 1.3em; }
+            .event-info-box h3 { font-size: 1.2em; }
         }
     </style>
 </head>
@@ -360,12 +228,15 @@
 
     <header class="navbar-static">
         <nav class="navbar-full">
-            <div class="logo"><div class="logo-circle">立</div> 立法院 Legislature</div>
+            <a href="index.html" class="logo">
+                <div class="logo-circle">立</div> 
+                立法院 <span style="font-weight: 300; font-size: 0.8em; margin-left:10px;">Legislature</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">首頁</a></li>
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html">成員介紹</a></li> 
-                <li><a href="events.html"class="active-dark">活動行程</a></li>
+                <li><a href="events.html" class="active-dark">活動行程</a></li>
                 <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
@@ -380,27 +251,29 @@
     </section>
 
     <main class="event-content-area">
-         <a href="2025-Christmas-Party.html" class="event-card-link">
-            <article class="event-card-simple">
-                <div class="event-date-simple">
-                    <span class="day">25</span>
-                    <span class="month">DEC</span>
-                </div>
-                <div class="event-details-simple">
-                    <div> 
+        <div class="events-grid">
+            
+            <a href="2025-Christmas-Party.html" class="event-card-link">
+                <article class="event-card-simple">
+                    <div class="event-date-circle">
+                        <span class="day">25</span>
+                        <span class="month">DEC</span>
+                    </div>
+                    <div class="event-info-box">
                         <h3>聖誕聚會</h3>
-                        <p class="date-info">2025-12-25 晚間</p>
+                        <p class="date-text"><i class="fa-regular fa-clock"></i> 2025-12-25 晚間</p>
                     </div>
                     <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-            </article>
-        </a>
+                </article>
+            </a>
+
+            </div>
     </main>
 
     <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
 
     <footer>
-        <p>© 2026 您的版權所有文字. All rights reserved.</p>
+        <p>© 2026 立法院 Legislature. All rights reserved.</p>
     </footer>
 
 </body>
