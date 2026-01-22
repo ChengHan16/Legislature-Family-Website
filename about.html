@@ -99,8 +99,9 @@
 
         .banner-info-wrap {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            flex-direction: column; /* 關鍵：由水平改為垂直排列 */
+            align-items: center;    /* 讓內容在垂直排列時依然保持居中 */
+            gap: 15px;             /* 設定兩行之間的距離 */
             margin-top: 20px;
             font-size: 1.1em;
             color: #ffcc00;
@@ -198,7 +199,7 @@
                 justify-content: center; /* 置中 */
                 display: flex;
                 flex-wrap: nowrap;      /* 關鍵：強制絕對不換行 */
-                padding: 5px 0;
+                padding: 12px 0 5px 0;
                 border-top: 1px solid rgba(255,255,255,0.1);
             }
 
