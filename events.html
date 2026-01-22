@@ -226,22 +226,23 @@
 
         /* 整個卡片連結容器 */
         .event-card-link {
-            text-decoration: none; /* 移除連結底線 */
+            text-decoration: none;
             color: inherit;
             display: block;
-            width: 400px; /* 設定單個卡片的固定寬度 */
-            max-width: 100%;
+            width: 400px; 
+            max-width: 100%; /* 關鍵：確保寬度不會超過螢幕 */
+            margin: 0 auto;  /* 保持置中 */
         }
 
         .event-card-simple {
             display: flex;
             align-items: center;
             background-color: white;
-            padding: 20px 30px 45px 30px;
+            padding: 20px;   /* 簡化內距，防止手機版太擠 */
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
+            /* 移除固定 height */
         }
 
         .event-card-link:hover .event-card-simple {
@@ -275,26 +276,32 @@
             margin-top: 3px;
         }
 
+        /* 修正細節容器，不使用絕對定位 */
         .event-details-simple {
             flex-grow: 1;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative; /* For date-info positioning */
+            position: relative; 
+            min-width: 0; /* 防止 Flex 項目溢出 */
         }
 
+        /* 如果標題太長，加上省略號或允許換行 */
         .event-details-simple h3 {
             color: #004d99;
-            font-size: 1.4em;
+            font-size: 1.2em; /* 手機版稍微縮小 */
             margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
+        /* 修正文字資訊，改回一般流向避免碰撞 */
         .event-details-simple .date-info {
             font-size: 0.9em;
             color: #666;
-            margin: 0;
-            position: absolute; /* Place date-info below title */
-            margin-top: 25px; 
+            margin: 5px 0 0 0; /* 改用 margin 撐開距離 */
+            position: static;  /* 關鍵：改回 static，不再使用 absolute */
         }
 
         .event-details-simple .action-arrow {
