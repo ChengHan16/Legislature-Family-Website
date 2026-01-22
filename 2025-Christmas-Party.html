@@ -3,31 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>立法院 - 2025-12-25 聖誕聚會</title>
+    <title>立法院 - 活動行程</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* --- 基礎樣式 --- */
+        /* --- 基礎樣式與防溢出 --- */
+        html { scroll-behavior: smooth; }
+        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+
         body {
             font-family: "Noto Sans TC", "Arial", sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* --- 1. 導覽列樣式 (深藍色底) --- */
+        /* --- 1. 導覽列樣式 --- */
         .navbar-static {
             background-color: #1a237e;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 頂部微細線 */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
         }
 
         .navbar-full {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 15px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .logo {
@@ -36,18 +43,19 @@
             color: white;
             display: flex;
             align-items: center;
+            text-decoration: none;
         }
+
         .logo-circle {
             background-color: #ffcc00;
             color: #1a237e;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1em;
-            margin-right: 8px;
+            margin-right: 10px;
             font-weight: 700;
         }
 
@@ -58,209 +66,161 @@
             padding: 0;
         }
 
-        .nav-links li {
-            margin-left: 30px;
-        }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 15px; transition: 0.3s; }
+        .nav-links a:hover { border-bottom: 2px solid #ffcc00; }
+        .nav-links a.active-dark { background-color: #004d99; border-radius: 4px; color: white !important; }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            transition: all 0.3s;
-        }
-
-        .nav-links a:hover {
-            border-bottom: 2px solid #ffcc00;
-        }
-        .nav-links a.active-dark {
-            background-color: #004d99;
-            border-radius: 4px;
-            color: white !important;
-            border-bottom: none; 
-        }
-
-        /* --- 2. 活動詳情 Banner 樣式 (新增漸層與分隔線) --- */
+        /* --- 2. Banner 樣式 (固定高度) --- */
         .event-banner {
-            /* 使用深藍到更深藍的線性漸層 */
             background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
             color: white;
-            padding: 80px 20px 60px 20px;
+            padding: 60px 20px;
             text-align: center;
-            position: relative;
-            /* 底部金色裝飾線 */
             border-bottom: 4px solid #ffcc00;
+            height: 240px; 
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .event-banner h1 {
-            font-size: 3.5em;
-            margin: 0;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* 文字陰影增加立體感 */
+        .event-banner h1 { font-size: 3em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
+        .banner-info-wrap {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: #ffcc00;
         }
-        
+
         /* --- 3. 主要內容區域 --- */
         .event-content-area {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
-            text-align: left;
-            font-size: 1.1em;
+            padding: 60px 20px;
+            flex: 1;
         }
 
-        .member-list {
+        /* --- 4. 修正後的活動卡片設計 (防溢出) --- */
+        .events-grid {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            justify-content: flex-start;
-            margin-top: 30px;
+            gap: 30px;
         }
 
-        .member-item {
-            width: 100px; 
-            text-align: center;
-            margin-right: 20px;
-            margin-bottom: 30px;
+        .event-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 450px; 
+            max-width: 100%; /* 確保手機版不會超出螢幕 */
+        }
+
+        .event-card-simple {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #ffcc00; /* 加入統一的黃色邊條 */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .event-card-link:hover .event-card-simple {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(26, 35, 126, 0.1);
+        }
+
+        .event-date-circle {
             flex-shrink: 0;
-        }
-
-        /* 重點修改：member-item2 的慢慢浮現動畫 */
-        .member-item2 {
-            width: 100px; 
-            text-align: center;
-            margin-right: auto;
-            margin-left: auto;
-            margin-bottom: 30px;
-            flex-shrink: 0;
-            
-            /* 設定動畫屬性 */
-            opacity: 0; /* 起始完全透明 */
-            animation: slow-fade-in 30s ease-in forwards; /* 30秒慢慢浮現 */
-        }
-
-        /* 定義浮現動畫關鍵影格 */
-        @keyframes slow-fade-in {
-            0% {
-                opacity: 0;
-                filter: blur(5px); /* 可選：起始增加一點模糊感 */
-            }
-            100% {
-                opacity: 1;
-                filter: blur(0);
-            }
-        }
-
-        .member-name-placeholder {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 5px;
-            white-space: nowrap;
-        }
-
-        .member-image-wrapper {
-            width: 100px;
-            height: 100px;
+            width: 65px;
+            height: 65px;
+            background-color: #1a237e;
+            color: #ffcc00;
             border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin: 0 auto 10px auto;
-        }
-
-        .member-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover; 
-            background: radial-gradient(circle at center, #ff0000 0%, #1a237e 70%); 
-        }
-        
-        .member-title {
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #111;
-        }
-
-        .image-container-final {
-            width: 100%; 
-            max-width: 600px; 
-            height: 350px; 
-            margin: 30px auto; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
-            display: block;
-        }
-
-        .event-image-final {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover; 
-        }
-
-        /* --- 4. 頁腳樣式 --- */
-        footer {
             text-align: center;
-            padding: 30px;
-            background-color: #1a237e; 
-            color: white;
-            font-size: 0.8em;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-right: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid #ffcc00;
         }
 
-        /* ============================================================
-           手機版本優化 (Mobile Optimization) 
-           ============================================================ */
+        .event-date-circle .day { font-size: 1.6em; line-height: 1; }
+        .event-date-circle .month { font-size: 0.75em; margin-top: 2px; }
+
+        .event-info-box {
+            flex-grow: 1;
+            min-width: 0; /* 確保文字截斷正常運作 */
+        }
+
+        .event-info-box h3 {
+            color: #1a237e;
+            font-size: 1.4em;
+            margin: 0 0 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .event-info-box .date-text {
+            font-size: 0.95em;
+            color: #666;
+            margin: 0;
+        }
+
+        .action-arrow {
+            font-size: 1.2em;
+            color: #1a237e;
+            margin-left: 15px;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .event-card-link:hover .action-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* --- 5. 其他元件 --- */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background-color: #1a237e;
+            color: white; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; z-index: 1000;
+            border: 2px solid #ffcc00; transition: 0.3s;
+            text-decoration: none;
+        }
+
+        footer { text-align: center; padding: 25px; background-color: #1a237e; color: white; font-size: 0.9em; }
+
+        /* =============================================
+           響應式優化 (RWD)
+           ============================================= */
         @media (max-width: 768px) {
-            .navbar-full {
-                flex-direction: column;
-                padding: 15px 10px;
+            .navbar-full { flex-direction: column; padding: 10px 5px; }
+            .nav-links { 
+                margin-top: 10px; width: 100%; justify-content: center; display: flex;
+                flex-wrap: nowrap; padding: 10px 0 5px 0; border-top: 1px solid rgba(255,255,255,0.1);
             }
-            .nav-links {
-                margin-top: 15px;
-                width: 100%;
-                justify-content: center;
-                border-top: 1px solid rgba(255,255,255,0.1); /* 手機版選單分隔線 */
-                padding-top: 10px;
-            }
-            .nav-links li {
-                margin: 0 8px;
-            }
-            .nav-links a {
-                padding: 5px 5px;
-                font-size: 0.85em;
-            }
+            .nav-links li { margin: 0 4px; flex-shrink: 1; }
+            .nav-links a { padding: 5px 8px; font-size: clamp(12px, 3.2vw, 14px); white-space: nowrap; }
 
-            .event-banner {
-                padding: 50px 15px;
-                border-bottom-width: 3px; /* 手機版分隔線稍細 */
-            }
-            .event-banner h1 {
-                font-size: 1.8em;
-            }
+            .event-banner { height: auto; padding: 40px 20px; }
+            .event-banner h1 { font-size: 2.2em; }
 
-            .member-list {
-                justify-content: center;
-            }
-            .member-item {
-                margin: 0 10px 20px 10px;
-                width: 85px;
-            }
-            .member-image-wrapper {
-                width: 80px;
-                height: 80px;
-            }
-            .member-title {
-                font-size: 1em;
-            }
-
-            .event-content-area {
-                text-align: center;
-                padding: 30px 15px;
-            }
-            .image-container-final {
-                height: 250px;
-            }
+            .event-card-simple { padding: 20px; }
+            .event-date-circle { width: 55px; height: 55px; margin-right: 15px; }
+            .event-date-circle .day { font-size: 1.3em; }
+            .event-info-box h3 { font-size: 1.2em; }
         }
     </style>
 </head>
@@ -268,162 +228,52 @@
 
     <header class="navbar-static">
         <nav class="navbar-full">
-            <div class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-circle">立</div> 
-                立法院 
-            </div>
+                立法院 <span style="font-weight: 300; font-size: 0.8em; margin-left:10px;">Legislature</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">首頁</a></li>
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html">成員介紹</a></li> 
                 <li><a href="events.html" class="active-dark">活動行程</a></li>
+                <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="event-banner">
-        <div class="banner-content">
-            <h1>2025-12-25 聖誕聚會</h1>
+        <h1>活動行程</h1>
+        <div class="banner-info-wrap">
+            <span>掌握最新的立法院議程</span>
+            <span>委員會排程及重要活動資訊</span>
         </div>
     </section>
 
     <main class="event-content-area">
-        
-        <div class="event-info">
-            <p><strong><i class="fa-regular fa-clock"></i> 集合時間 17:00</strong></p>
+        <div class="events-grid">
             
-            <p><strong>成員：</strong></p>
-            
-            <div class="member-list">
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 1</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/leader2.png?raw=true" alt="成員 1">
+            <a href="2025-Christmas-Party.html" class="event-card-link">
+                <article class="event-card-simple">
+                    <div class="event-date-circle">
+                        <span class="day">25</span>
+                        <span class="month">DEC</span>
                     </div>
-                    <div class="member-title">班長</div>
-                </div>
+                    <div class="event-info-box">
+                        <h3>聖誕聚會</h3>
+                        <p class="date-text"><i class="fa-regular fa-clock"></i> 2025-12-25 晚間</p>
+                    </div>
+                    <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </article>
+            </a>
 
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 2</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/MOMOE.png?raw=true" alt="成員 2">
-                    </div>
-                    <div class="member-title">もも</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 3</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ding_Junqi.png?raw=true" alt="成員 3">
-                    </div>
-                    <div class="member-title">俊齊</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 4</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Huang_Weiren.png?raw=true" alt="成員 4">
-                    </div>
-                    <div class="member-title">韋仁</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 5</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye%20Guangting.png?raw=true" alt="成員 5">
-                    </div>
-                    <div class="member-title">光庭</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 6</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Li_Zhengde.png?raw=true" alt="成員 6">
-                    </div>
-                    <div class="member-title">正德</div>
-                </div>
-                
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 7</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye_Yixian.png?raw=true" alt="成員 7">
-                    </div>
-                    <div class="member-title">奕賢</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 8</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Chen%20Jiawei.png?raw=true" alt="成員 8">
-                    </div>
-                    <div class="member-title">佳偉</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 9</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Guo_Jiangxu.png?raw=true" alt="成員 9">
-                    </div>
-                    <div class="member-title">江旭</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 10</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Carry.png?raw=true" alt="成員 10">
-                    </div>
-                    <div class="member-title">凱瑞</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 11</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Chen%20Weicheng.png?raw=true" alt="成員 11">
-                    </div>
-                    <div class="member-title">威丞</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 12</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Wang%20Zunxuan.png?raw=true" alt="成員 12">
-                    </div>
-                    <div class="member-title">**</div>
-                </div>
-
-                <div class="member-item">
-                    <div class="member-name-placeholder">成員 13</div>
-                    <div class="member-image-wrapper">
-                        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 13">
-                    </div>
-                    <div class="member-title">**</div>
-                </div>
             </div>
-
-            <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
-
-            <p><i class="fa-solid fa-utensils"></i> 洋城義大利餐廳-台南安平家樂福店</p>
-            <p>地址：<strong>700台灣臺南市中西區中華西路二段16號2F</strong></p>
-            <p>電話號碼：<strong>+886 6 295 7558</strong></p>
-            <p>平均每人：<strong>$200-400</strong></p>
-        </div>
-        
-        <div class="image-container-final">
-            <img src="https://lh5.googleusercontent.com/p/AF1QipN6PvVFbdJhf9Q4prIRZJxzIXfo-54g7hy8rl9_=w960" alt="餐廳外觀" class="event-image-final">
-        </div>
-
-        <div class="member-item2">
-            <div class="member-image-wrapper">
-                <a href="2025 Merry Christmas.html" target="_blank">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/shiba.png?raw=true" class="avatar-img-info">
-                </a>
-            </div>
-        </div>
-        
     </main>
 
+    <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
+
     <footer>
-        <p>© 2025 立法院 Legislature. All rights reserved.</p>
+        <p>© 2026 立法院 Legislature. All rights reserved.</p>
     </footer>
 
 </body>
