@@ -3,37 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>立法院 - 首頁</title>
-    
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-
+    <title>立法院 - 成員組織名錄</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* --- 基礎樣式 --- */
+        /* --- 基礎樣式與防溢出 --- */
+        html { scroll-behavior: smooth; }
+        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+
         body {
             font-family: "Noto Sans TC", "Arial", sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4; 
+            background-color: #f4f4f4;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* --- 1. 導覽列樣式 (深藍色底) --- */
+        /* --- 1. 導覽列樣式 --- */
         .navbar-static {
-            background-color: #1a237e; 
+            background-color: #1a237e;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
         }
 
         .navbar-full {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 15px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        /* Logo 樣式 */
         .logo {
             font-size: 1.5em;
             font-weight: bold;
@@ -41,21 +44,20 @@
             display: flex;
             align-items: center;
         }
+
         .logo-circle {
-            background-color: #ffcc00; 
+            background-color: #ffcc00;
             color: #1a237e;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1em;
-            margin-right: 8px;
+            margin-right: 10px;
             font-weight: 700;
         }
 
-        /* 連結樣式 */
         .nav-links {
             list-style: none;
             display: flex;
@@ -63,124 +65,195 @@
             padding: 0;
         }
 
-        .nav-links li {
-            margin-left: 30px;
-        }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 15px; transition: 0.3s; }
+        .nav-links a:hover { border-bottom: 2px solid #ffcc00; }
+        .nav-links a.active-dark { background-color: #004d99; border-radius: 4px; color: white !important; }
 
-        .nav-links a {
+        /* --- 2. 活動詳情 Banner 樣式 --- */
+        .event-banner {
+            background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            transition: background-color 0.3s, border-bottom 0.3s;
-            white-space: nowrap; 
-        }
-
-        /* Active/Hover 狀態 */
-        .nav-links a:hover {
-            border-bottom: 2px solid #ffcc00; 
-        }
-        .nav-links a.active-dark {
-            background-color: #004d99; 
-            border-radius: 4px;
-            color: white !important;
-            border-bottom: none; 
-        }
-        /* 登入/郵箱/登出按鈕的專屬樣式 */
-        .nav-links a.login-btn,
-        .nav-links a.user-email-btn,
-        .nav-links a.logout-btn {
-            background-color: #ffcc00 !important; /* 強調黃色 */
-            color: #1a237e !important; /* 深藍色文字 */
-            font-weight: bold;
-            border-radius: 4px;
-            border-bottom: none !important;
-        }
-        .nav-links a.login-btn:hover,
-        .nav-links a.user-email-btn:hover,
-        .nav-links a.logout-btn:hover {
-            opacity: 0.9;
-            border-bottom: none !important;
-        }
-        .nav-links a.user-email-btn {
-            background-color: #004d99 !important; /* 已登入郵箱使用深藍色 */
-            color: white !important;
-            margin-right: 10px;
-        }
-
-
-        /* --- 2. 次級 Banner 樣式 --- */
-        .page-banner {
-            background-color: #1a237e; 
-            color: white;
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
+            border-bottom: 4px solid #ffcc00;
+            height: 240px; 
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .banner-content h2 {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
+        .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
-        .banner-content p {
+        .banner-info-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
             font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
+            color: #ffcc00;
         }
 
         /* --- 3. 主要內容區域 --- */
-        .main-content-area {
-            padding: 40px;
-            text-align: center;
-            min-height: 400px; 
+        .event-content-area {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
         }
 
-        /* 卡片樣式 (與原先保持一致) */
-        .card-section {
+        .org-image-container { text-align: center; margin-bottom: 50px; }
+        .org-logo {
+            width: 180px; height: 180px; border-radius: 50%;
+            border: 6px solid white; box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            object-fit: cover;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            border-left: 6px solid #ffcc00;
+        }
+
+        /* 活動網格與溢出處理 */
+        .events-grid {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 30px;
-            padding: 50px 40px;
-            margin-top: -100px; 
-            position: relative;
-            z-index: 5; 
+            width: 100%; /* 確保容器不溢出 */
         }
 
-        .card {
+        .event-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 450px; 
+            max-width: 100%; /* 關鍵：確保卡片不超過手機螢幕寬度 */
+            box-sizing: border-box;
+        }
+
+        .event-card-simple {
+            display: flex;
+            align-items: center;
             background-color: white;
-            padding: 30px;
-            width: 300px;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            text-align: center;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #ffcc00;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+            width: 100%;
         }
 
-        .card-icon {
-            font-size: 2.5em;
-            color: #004d99; 
-            margin-bottom: 15px;
+        .event-card-link:hover .event-card-simple {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(26, 35, 126, 0.1);
         }
-        .card h3 {
-            color: #004d99;
-            font-size: 1.5em;
-            margin-top: 0;
-            margin-bottom: 10px;
+
+        .event-date-circle {
+            flex-shrink: 0;
+            width: 65px;
+            height: 65px;
+            background-color: #1a237e;
+            color: #ffcc00;
+            border-radius: 50%;
+            text-align: center;
+            margin-right: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid #ffcc00;
         }
-        .card p {
+
+        .event-date-circle .day { font-size: 1.6em; line-height: 1; }
+        .event-date-circle .month { font-size: 0.75em; margin-top: 2px; }
+
+        .event-info-box {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .event-info-box h3 {
+            color: #1a237e;
+            font-size: 1.4em;
+            margin: 0 0 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .event-info-box .date-text {
             font-size: 0.95em;
             color: #666;
-            margin-bottom: 20px;
+            margin: 0;
         }
 
-        /* --- 4. 頁腳 (Footer) --- */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #1a237e; 
-            color: white;
-            font-size: 0.8em;
+        .action-arrow {
+            font-size: 1.2em;
+            color: #1a237e;
+            margin-left: 15px;
+            opacity: 0.5;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+
+        /* --- 5. 其他元件 --- */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background-color: #1a237e;
+            color: white; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; z-index: 1000;
+            border: 2px solid #ffcc00; transition: 0.3s;
+        }
+
+        footer { text-align: center; padding: 25px; background-color: #1a237e; color: white; font-size: 0.8em; }
+
+        /* =============================================
+           響應式優化 (手機版 768px 以下)
+           ============================================= */
+        @media (max-width: 768px) {
+            .navbar-full { flex-direction: column; padding: 10px 5px; }
+            .nav-links { 
+                margin-top: 10px; width: 100%; justify-content: center; display: flex;
+                flex-wrap: nowrap; padding: 12px 0 5px 0; border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links li { margin: 0 4px; flex-shrink: 1; }
+            .nav-links a { padding: 5px 8px; font-size: clamp(12px, 3.2vw, 14px); white-space: nowrap; }
+
+            .event-banner { height: auto; padding: 40px 20px; }
+            .event-banner h1 { font-size: 2.2em; }
+
+            /* 卡片防溢出調整 */
+            .event-card-simple { padding: 20px 15px; }
+            .event-date-circle { margin-right: 15px; width: 55px; height: 55px; }
+            .event-date-circle .day { font-size: 1.3em; }
+
+            .event-card-link {
+        width: 350px !important; /* 強制執行固定寬度 */
+        max-width: 95%;         /* 預留一點邊距，防止緊貼螢幕邊緣 */
+        margin: 10px auto;      /* 上下留間距，左右自動置中 */
+    }
+
+    .event-card-simple {
+        padding: 20px 15px;      /* 縮小手機版內距 */
+        width: 100%;             /* 寬度跟隨父層的 350px */
+        box-sizing: border-box;  /* 關鍵：確保 padding 不會撐破 350px */
+    }
+
+    /* 調整日期圓圈，讓 350px 內的空間分配合理 */
+    .event-date-circle {
+        width: 55px;
+        height: 55px;
+        margin-right: 15px;
+    }
         }
     </style>
 </head>
@@ -188,119 +261,433 @@
 
     <header class="navbar-static">
         <nav class="navbar-full">
-            <div class="logo">
-                <div class="logo-circle">立</div> 
-                立法院 
-            </div>
+            <div class="logo"><div class="logo-circle">立</div> 立法院 Legislature</div>
             <ul class="nav-links">
                 <li><a href="index.html" class="active-dark">首頁</a></li>
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html">成員介紹</a></li> 
                 <li><a href="events.html">活動行程</a></li>
-                <li id="authNavItem" style="display: flex; align-items: center;">
-                    </li>
+                <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="page-banner">
-        <div class="banner-content">
-            <h2>歡迎來到 立法院 Legislature</h2>
-            <p>為人民服務，推動國家法制建設，促進民主發展</p>
+    <section class="event-banner">
+        <h1>歡迎來到立法院</h1>
+        <div class="banner-info-wrap">
+            <span>多元人才與行動力的社群</span>
+            <span>創立於 2019 年 7 月 3 日</span>
         </div>
     </section>
 
-    <main class="card-section">
-        
-        <div class="card">
-            <div class="card-icon"><i class="fa-solid fa-landmark"></i></div>
-            <h3>關於我們</h3>
-            <p>了解立法院的歷史沿革、組織架構及核心理念</p>
-            <a href="about.html" class="card-link">了解更多</a>
+    <main class="event-content-area">
+        <div class="org-image-container">
+            <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/%E7%AB%8B%E6%B3%95%E9%99%A2%E5%A4%A7%E9%A0%AD%E8%B2%BC.png?raw=true" alt="立法院大頭貼" class="org-logo">
         </div>
 
-        <div class="card">
-            <div class="card-icon"><i class="fa-solid fa-user-group"></i></div>
-            <h3>成員介紹</h3>
-            <p>認識各位立法委員及服務團隊的專業背景與願景</p>
-            <a href="members.html" class="card-link">了解更多</a>
+        <div class="info-card">
+            <h2 style="color: #1a237e; margin-top: 0; display: flex; align-items: center;">
+                <i class="fa-solid fa-landmark" style="margin-right: 12px;"></i> 組織精神
+            </h2>
+            <p style="line-height: 1.8; color: #555; font-size: 1.1em;">
+                本組織致力於匯集各界專業人才，形成一個具備高度多元性與行動力的社群。我們強調成員間的緊密聯繫，並透過定期的活動交流，持續推動組織內部的成長，在不同領域展現獨特的影響力。
+            </p>
         </div>
 
-        <div class="card">
-            <div class="card-icon"><i class="fa-solid fa-calendar-alt"></i></div>
-            <h3>活動行程</h3>
-            <p>掌握最新議程、公聽會及各項重要活動排程</p>
-            <a href="events.html" class="card-link">了解更多</a>
+        <div class="info-card">
+            <h2 style="color: #1a237e; margin-top: 0; display: flex; align-items: center;">
+                <i class="fa-solid fa-handshake" style="margin-right: 12px;"></i> 法院和諧
+            </h2>
+            <p style="line-height: 1.8; color: #555; font-size: 1.1em;">
+                和諧是「立法院」的核心價值之一。我們重視每一位成員的獨特特質，在交流中保持尊重與包容。透過彼此的專業互補與深厚情誼，共同營造一個溫暖且具備向心力的環境，確保組織能穩定且長久地運作。
+            </p>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h2 style="color: #1a237e; margin-left: 15px; border-left: 6px solid #1a237e; padding-left: 15px;">近期活動</h2>
+            <div class="events-grid">
+                <a href="events.html" class="event-card-link">
+                    <article class="event-card-simple">
+                        <div class="event-date-circle">
+                            <span class="day">25</span>
+                            <span class="month">DEC</span>
+                        </div>
+                        <div class="event-info-box">
+                            <h3>年度聖誕聚會</h3>
+                            <p class="date-text"><i class="fa-regular fa-clock"></i> 2025-12-25 晚間</p>
+                        </div>
+                        <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </article>
+                </a>
+                
+                <a href="events.html" class="event-card-link">
+                    <article class="event-card-simple" style="background-color: #fafafa;">
+                        <div class="event-date-circle" style="background-color: #9e9e9e; border-color: #ccc;">
+                            <span class="day">?</span>
+                            <span class="month">TBA</span>
+                        </div>
+                        <div class="event-info-box">
+                            <h3>例行交流會議</h3>
+                            <p class="date-text">掌握最新委員會排程及重要活動資訊</p>
+                        </div>
+                        <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </article>
+                </a>
+            </div>
         </div>
     </main>
 
+    <a href="#" class="back-to-top" title="回到最頂端"><i class="fa-solid fa-chevron-up"></i></a>
+
     <footer>
-        <p>© 2025 立法院 Legislature. All rights reserved.</p>
+        <p>© 2026 立法院 Legislature. All rights reserved.</p>
     </footer>
 
-    <script>
-        // 🚨 步驟 1: 配置您的 Firebase 設定 🚨
-        const firebaseConfig = {
-            apiKey: "AIzaSyACnoimIASfb1rb59SbgLDkUmyYR6ODbUU",
-            authDomain: "llwb-ed686.firebaseapp.com",
-            projectId: "llwb-ed686",
-            storageBucket: "llwb-ed686.firebasestorage.app",
-            messagingSenderId: "940345852074",
-            appId: "1:940345852074:web:7a30cca5a6d997a92350d3",
-            measurementId: "G-KWL4ZE3D18"
-        };
-        
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        
-        const authNavItem = document.getElementById('authNavItem');
-        
-        // 🚨 步驟 2: 定義您的登入頁面 URL 和私人頁面 URL 🚨
-        const LOGIN_PAGE_URL = 'login.html'; // 假設登入表單在同目錄下的 login.html
-        const PRIVATE_PAGE_URL = 'https://llwb-ed686.web.app/private.html'; // 您的 Firebase Hosting 網址
-        
-        // --- 登出函數 ---
-        function handleLogout() {
-            auth.signOut().catch((error) => {
-                console.error("登出失敗:", error);
-                alert("登出失敗，請重試或清除快取。");
-            });
-            // onAuthStateChanged 會自動更新導覽列
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立法院 - 成員組織名錄</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- 基礎樣式與防溢出 --- */
+        html { scroll-behavior: smooth; }
+        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Noto Sans TC", "Arial", sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        // 監聽登入狀態
-        auth.onAuthStateChanged((user) => {
-            authNavItem.innerHTML = ''; // 清空佔位符
-            
-            if (user) {
-                // 使用者已登入：
-                
-                // 1. 顯示用戶郵箱 (導向私人頁面)
-                const privateLink = document.createElement('a');
-                privateLink.href = PRIVATE_PAGE_URL;
-                privateLink.textContent = user.email; // 顯示郵箱作為連結文字
-                privateLink.classList.add('user-email-btn');
-                authNavItem.appendChild(privateLink);
+        /* --- 1. 導覽列樣式 --- */
+        .navbar-static {
+            background-color: #1a237e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
 
-                // 2. 顯示登出按鈕
-                const logoutLink = document.createElement('a');
-                logoutLink.textContent = '登出';
-                logoutLink.classList.add('login-btn');
-                logoutLink.style.marginLeft = '10px'; // 讓兩個按鈕間隔開
-                // 點擊後執行登出函數
-                logoutLink.onclick = handleLogout; 
-                authNavItem.appendChild(logoutLink);
+        .navbar-full {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-            } else {
-                // 使用者未登入：顯示登入按鈕
-                const loginLink = document.createElement('a');
-                loginLink.href = LOGIN_PAGE_URL;
-                loginLink.textContent = '登入';
-                loginLink.classList.add('login-btn');
-                
-                authNavItem.appendChild(loginLink);
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-circle {
+            background-color: #ffcc00;
+            color: #1a237e;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 15px; transition: 0.3s; }
+        .nav-links a:hover { border-bottom: 2px solid #ffcc00; }
+        .nav-links a.active-dark { background-color: #004d99; border-radius: 4px; color: white !important; }
+
+        /* --- 2. 活動詳情 Banner 樣式 --- */
+        .event-banner {
+            background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid #ffcc00;
+            height: 240px; 
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
+        .banner-info-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #ffcc00;
+        }
+
+        /* --- 3. 主要內容區域 --- */
+        .event-content-area {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        .org-image-container { text-align: center; margin-bottom: 50px; }
+        .org-logo {
+            width: 180px; height: 180px; border-radius: 50%;
+            border: 6px solid white; box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            object-fit: cover;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            border-left: 6px solid #ffcc00;
+        }
+
+        /* 活動網格與溢出處理 */
+        .events-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%; /* 確保容器不溢出 */
+        }
+
+        .event-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 450px; 
+            max-width: 100%; /* 關鍵：確保卡片不超過手機螢幕寬度 */
+            box-sizing: border-box;
+        }
+
+        .event-card-simple {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #ffcc00;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .event-card-link:hover .event-card-simple {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(26, 35, 126, 0.1);
+        }
+
+        .event-date-circle {
+            flex-shrink: 0;
+            width: 65px;
+            height: 65px;
+            background-color: #1a237e;
+            color: #ffcc00;
+            border-radius: 50%;
+            text-align: center;
+            margin-right: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid #ffcc00;
+        }
+
+        .event-date-circle .day { font-size: 1.6em; line-height: 1; }
+        .event-date-circle .month { font-size: 0.75em; margin-top: 2px; }
+
+        .event-info-box {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .event-info-box h3 {
+            color: #1a237e;
+            font-size: 1.4em;
+            margin: 0 0 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .event-info-box .date-text {
+            font-size: 0.95em;
+            color: #666;
+            margin: 0;
+        }
+
+        .action-arrow {
+            font-size: 1.2em;
+            color: #1a237e;
+            margin-left: 15px;
+            opacity: 0.5;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+
+        /* --- 5. 其他元件 --- */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background-color: #1a237e;
+            color: white; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; z-index: 1000;
+            border: 2px solid #ffcc00; transition: 0.3s;
+        }
+
+        footer { text-align: center; padding: 25px; background-color: #1a237e; color: white; font-size: 0.8em; }
+
+        /* =============================================
+           響應式優化 (手機版 768px 以下)
+           ============================================= */
+        @media (max-width: 768px) {
+            .navbar-full { flex-direction: column; padding: 10px 5px; }
+            .nav-links { 
+                margin-top: 10px; width: 100%; justify-content: center; display: flex;
+                flex-wrap: nowrap; padding: 12px 0 5px 0; border-top: 1px solid rgba(255,255,255,0.1);
             }
-        });
-    </script>
+            .nav-links li { margin: 0 4px; flex-shrink: 1; }
+            .nav-links a { padding: 5px 8px; font-size: clamp(12px, 3.2vw, 14px); white-space: nowrap; }
+
+            .event-banner { height: auto; padding: 40px 20px; }
+            .event-banner h1 { font-size: 2.2em; }
+
+            /* 卡片防溢出調整 */
+            .event-card-simple { padding: 20px 15px; }
+            .event-date-circle { margin-right: 15px; width: 55px; height: 55px; }
+            .event-date-circle .day { font-size: 1.3em; }
+
+            .event-card-link {
+        width: 350px !important; /* 強制執行固定寬度 */
+        max-width: 95%;         /* 預留一點邊距，防止緊貼螢幕邊緣 */
+        margin: 10px auto;      /* 上下留間距，左右自動置中 */
+    }
+
+    .event-card-simple {
+        padding: 20px 15px;      /* 縮小手機版內距 */
+        width: 100%;             /* 寬度跟隨父層的 350px */
+        box-sizing: border-box;  /* 關鍵：確保 padding 不會撐破 350px */
+    }
+
+    /* 調整日期圓圈，讓 350px 內的空間分配合理 */
+    .event-date-circle {
+        width: 55px;
+        height: 55px;
+        margin-right: 15px;
+    }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar-static">
+        <nav class="navbar-full">
+            <div class="logo"><div class="logo-circle">立</div> 立法院 Legislature</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active-dark">首頁</a></li>
+                <li><a href="about.html">關於我們</a></li> 
+                <li><a href="members.html">成員介紹</a></li> 
+                <li><a href="events.html">活動行程</a></li>
+                <li><a href="index.html">其他</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="event-banner">
+        <h1>歡迎來到立法院</h1>
+        <div class="banner-info-wrap">
+            <span>多元人才與行動力的社群</span>
+            <span>創立於 2019 年 7 月 3 日</span>
+        </div>
+    </section>
+
+    <main class="event-content-area">
+        <div class="org-image-container">
+            <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/%E7%AB%8B%E6%B3%95%E9%99%A2%E5%A4%A7%E9%A0%AD%E8%B2%BC.png?raw=true" alt="立法院大頭貼" class="org-logo">
+        </div>
+
+        <div class="info-card">
+            <h2 style="color: #1a237e; margin-top: 0; display: flex; align-items: center;">
+                <i class="fa-solid fa-landmark" style="margin-right: 12px;"></i> 組織精神
+            </h2>
+            <p style="line-height: 1.8; color: #555; font-size: 1.1em;">
+                本組織致力於匯集各界專業人才，形成一個具備高度多元性與行動力的社群。我們強調成員間的緊密聯繫，並透過定期的活動交流，持續推動組織內部的成長，在不同領域展現獨特的影響力。
+            </p>
+        </div>
+
+        <div class="info-card">
+            <h2 style="color: #1a237e; margin-top: 0; display: flex; align-items: center;">
+                <i class="fa-solid fa-handshake" style="margin-right: 12px;"></i> 法院和諧
+            </h2>
+            <p style="line-height: 1.8; color: #555; font-size: 1.1em;">
+                和諧是「立法院」的核心價值之一。我們重視每一位成員的獨特特質，在交流中保持尊重與包容。透過彼此的專業互補與深厚情誼，共同營造一個溫暖且具備向心力的環境，確保組織能穩定且長久地運作。
+            </p>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h2 style="color: #1a237e; margin-left: 15px; border-left: 6px solid #1a237e; padding-left: 15px;">近期活動</h2>
+            <div class="events-grid">
+                <a href="events.html" class="event-card-link">
+                    <article class="event-card-simple">
+                        <div class="event-date-circle">
+                            <span class="day">25</span>
+                            <span class="month">DEC</span>
+                        </div>
+                        <div class="event-info-box">
+                            <h3>年度聖誕聚會</h3>
+                            <p class="date-text"><i class="fa-regular fa-clock"></i> 2025-12-25 晚間</p>
+                        </div>
+                        <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </article>
+                </a>
+                
+                <a href="events.html" class="event-card-link">
+                    <article class="event-card-simple" style="background-color: #fafafa;">
+                        <div class="event-date-circle" style="background-color: #9e9e9e; border-color: #ccc;">
+                            <span class="day">?</span>
+                            <span class="month">TBA</span>
+                        </div>
+                        <div class="event-info-box">
+                            <h3>例行交流會議</h3>
+                            <p class="date-text">掌握最新委員會排程及重要活動資訊</p>
+                        </div>
+                        <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </article>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top" title="回到最頂端"><i class="fa-solid fa-chevron-up"></i></a>
+
+    <footer>
+        <p>© 2026 立法院 Legislature. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
