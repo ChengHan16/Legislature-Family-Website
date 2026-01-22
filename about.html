@@ -21,7 +21,7 @@
         }
 
         /* --- 1. 導覽列樣式 --- */
-        .navbar-static {
+        /*.navbar-static {
             background-color: #1a237e;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -32,6 +32,25 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
+        }*/
+
+        .navbar-static {
+            background-color: #1a237e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%; /* 確保背景寬度 100% */
+        }
+
+        /* 2. 導覽列內部內容：負責限制寬度並置中 */
+        .navbar-full {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px; /* 內距調整 */
+            
+            /* 關鍵修改：限制最大寬度並置中 */
+            max-width: 1100px;  /* 建議與你的 .event-content-area 寬度一致 */
+            margin: 0 auto;    /* 左右自動外距，達成置中效果 */
         }
 
         .logo {
@@ -152,7 +171,7 @@
             border: 2px solid #ffcc00; transition: 0.3s;
         }
 
-        footer { text-align: center; padding: 40px 20px; background-color: #1a237e; color: white; font-size: 0.8em; }
+        footer { text-align: center; padding: 5px 20px; background-color: #1a237e; color: white; font-size: 0.8em; }
 
         /* =============================================
            響應式優化
@@ -230,7 +249,7 @@
                 「立法院」正式成立於 <strong>2019 年 7 月 3 日</strong>，本組織致力於匯集各界專業人才與獨特特質的成員，形成一個具備高度多元性與行動力的社群。透過緊密的成員聯繫與定期的活動參與，我們持續推動組織內部的交流與成長，並在不同領域中展現獨特的影響力。
             </p>
         </div>
-        <div class="section-title">現任成員名單</div>
+        <div class="section-title">成立時成員名單</div>
         <div class="member-grid">
             <div class="member-card"><div class="m-name">吳承翰</div><div class="m-party">外星黨</div></div>
             <div class="member-card"><div class="m-name">李正德</div><div class="m-party">Kenwick 凱薩正德 民禁黨</div></div>
@@ -267,7 +286,7 @@
             <div class="member-card gone-member"><div class="m-name">陳相睿</div><div class="m-party">帥哥猛男 為什麼愛說謊</div></div>
             <div class="member-card gone-member"><div class="m-name">周郁霖</div><div class="m-party">跑山原住民</div></div>
             <div class="member-card gone-member"><div class="m-name">林立杰</div><div class="m-party">北極熊</div></div>
-            <div class="member-card gone-member"><div class="m-name">歐益均</div><div class="m-party">歐均均 ♟️</div></div>
+            <div class="member-card gone-member"><div class="m-name">歐益均</div><div class="m-party">歐均均</div></div>
             <div class="member-card gone-member"><div class="m-name">謝文德</div><div class="m-party">隱士之人</div></div>
             <div class="member-card gone-member"><div class="m-name">邱柏誠</div><div class="m-party">邱柏肥</div></div>
             <div class="member-card gone-member"><div class="m-name">黃騥安</div><div class="m-party">肉安</div></div>
@@ -283,5 +302,4 @@
 
 </body>
 </html>
-
 
