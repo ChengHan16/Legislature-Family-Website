@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立法院 - 成員介紹：丁俊齊</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- 基礎樣式與防溢出 --- */
+        html { scroll-behavior: smooth; }
+        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Noto Sans TC", "Arial", sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- 1. 導覽列樣式 --- */
+        .navbar-static {
+            background-color: #1a237e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        .navbar-full {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-circle {
+            background-color: #ffcc00;
+            color: #1a237e;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 15px; transition: 0.3s; }
+        .nav-links a:hover { border-bottom: 2px solid #ffcc00; }
+        .nav-links a.active-dark { background-color: #004d99; border-radius: 4px; color: white !important; }
+
+        /* --- 2. Banner 樣式 (固定高度) --- */
+        .event-banner {
+            background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid #ffcc00;
+            height: 240px; 
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
+        .banner-info-wrap {
+            display: flex;
+            flex-direction: column; /* 關鍵：由水平改為垂直排列 */
+            align-items: center;    /* 讓內容在垂直排列時依然保持居中 */
+            gap: 15px;             /* 設定兩行之間的距離 */
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #ffcc00;
+        }
+
+        /* --- 3. 主要內容區域 --- */
+        .event-content-area {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .photo-section { flex-shrink: 0; text-align: center; }
+        .avatar-img {
+            width: 200px; height: 200px; border-radius: 12px;
+            border: 4px solid #f0f0f0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        .info-brief h1 { font-size: 42px; color: #1a237e; margin: 0; letter-spacing: 4px; }
+        .nickname { font-size: 20px; color: #666; font-weight: 400; }
+        .blue-line { height: 3px; background: linear-gradient(to right, #1a237e, transparent); width: 300px; margin: 15px 0; }
+
+        .info-card {
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            margin-bottom: 40px; 
+            border-left: 6px solid #ffcc00;
+        }
+
+        .section-title {
+            border-left: 6px solid #1a237e;
+            padding-left: 15px;
+            margin: 40px 0 20px;
+            color: #1a237e;
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+
+        /* --- 4. 網格佈局 (經歷與研究) --- */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 25px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .member-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-top: 5px solid #1a237e;
+            transition: all 0.3s ease;
+        }
+
+        .tag {
+            display: inline-block; background: #e8eaf6; color: #3f51b5;
+            padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-bottom: 10px;
+        }
+
+        .m-title { font-weight: bold; font-size: 1.2em; color: #111; margin-bottom: 8px; display: block; }
+        .m-desc { font-size: 0.95em; color: #666; line-height: 1.6; }
+
+        /* --- 5. 其他元件 --- */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background-color: #1a237e;
+            color: white; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; z-index: 1000;
+            border: 2px solid #ffcc00; transition: 0.3s;
+            text-decoration: none;
+        }
+
+        footer { text-align: center; padding: 25px; background-color: #1a237e; color: white; font-size: 0.9em; }
+
+        /* =============================================
+           響應式優化 (RWD)
+           ============================================= */
+        @media (max-width: 768px) {
+            .navbar-full { flex-direction: column; padding: 10px 5px; }
+            .nav-links { 
+                margin-top: 10px; width: 100%; justify-content: center; display: flex;
+                flex-wrap: nowrap; padding: 10px 0 5px 0; border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links li { margin: 0 4px; flex-shrink: 1; }
+            .nav-links a { padding: 5px 8px; font-size: clamp(12px, 3.2vw, 14px); white-space: nowrap; }
+
+            .event-banner h1 { font-size: 2.2em; }
+
+            .profile-header { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .info-brief h1 { font-size: 32px; }
+            .blue-line { margin: 15px auto; }
+            
+            .member-grid { grid-template-columns: 1fr; gap: 20px; }
+
+            /* 1. 調整導覽列外殼，縮小內距 */
+            .navbar-full { 
+                flex-direction: column; 
+                padding: 10px 5px; 
+            }
+
+            /* 2. 調整導覽連結容器 */
+            .event-card-simple {
+                padding: 20px 15px;      /* 縮小手機版內距 */
+                width: 100%;             /* 寬度跟隨父層的 350px */
+                box-sizing: border-box;  /* 關鍵：確保 padding 不會撐破 350px */
+            }
+
+            /* 調整日期圓圈，讓 350px 內的空間分配合理 */
+            .event-date-circle {
+                width: 55px;
+                height: 55px;
+                margin-right: 15px;
+            }
+
+            /* 1. 調整導覽列外殼，縮小內距 */
+            .navbar-full { 
+                flex-direction: column; 
+                padding: 10px 5px; 
+            }
+
+            /* 2. 調整導覽連結容器 */
+            .nav-links { 
+                margin-top: 10px; 
+                width: 100%; 
+                justify-content: center; /* 置中 */
+                display: flex;
+                flex-wrap: nowrap;      /* 關鍵：強制絕對不換行 */
+                padding: 12px 0 5px 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            /* 3. 調整清單項目 */
+            .nav-links li { 
+                margin: 0 4px;          /* 縮小項目間的間距 */
+                flex-shrink: 1;         /* 允許項目在必要時縮小 */
+            }
+
+            /* 4. 調整文字大小與行為 */
+            .nav-links a { 
+                padding: 5px 8px;       /* 縮小按鈕內距 */
+                
+                /* 使用 clamp 讓字體在 12px 到 14px 之間隨螢幕自動縮放 */
+                font-size: clamp(12px, 3.2vw, 14px); 
+                
+                white-space: nowrap;    /* 關鍵：文字絕對不換行 */
+                letter-spacing: -0.5px; /* 稍微縮小字距，節省空間 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar-static">
+        <nav class="navbar-full">
+            <div class="logo"><div class="logo-circle">立</div> 立法院 Legislature</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="about.html">關於我們</a></li> 
+                <li><a href="members.html"class="active-dark">成員介紹</a></li> 
+                <li><a href="events.html">活動行程</a></li>
+                <li><a href="index.html">其他</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="event-banner">
+        <h1>成員簡介</h1>
+        <div class="banner-info-wrap">
+            <span>資通電化學工程委員會</span>
+            <span>人工智慧推論與植栽效能評估組</span>
+        </div>
+    </section>
+
+    <main class="event-content-area">
+        <div class="profile-header">
+            <div class="photo-section">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye%20Guangting.png?raw=true" alt="葉光庭照片" class="avatar-img">
+            </div>
+            <div class="info-brief">
+                <span class="nickname">Ye Guangting</span>
+                <h1>葉光庭</h1>
+                <div class="blue-line"></div>
+                <div style="font-size: 1.1em; color: #444; line-height: 2;">
+                    出生地：台灣 <img src="https://raw.githubusercontent.com/ChengHan16/Legislature-Family-Website/c5599eac05dbcdaf97afd7dfabdf762d8d4f7e3a/image/Flag_of_the_Republic_of_China.svg" alt="ROC" style="height:15px; vertical-align: middle; border:1px solid #ddd;"><br>
+                    兵役狀態：替代役 (資通電軍特派人員)<br>
+                    技術職稱：邊緣運算架構師 / 高速推進系統工程師<br>
+                    研究領域：演算法透明性、資料隱私、量化推論分析
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">實際經驗與專業項目</div>
+        <div class="member-grid">
+            <div class="member-card">
+                <span class="tag">AI Inference</span>
+                <strong class="m-title">AI 人工智慧推論優化</strong>
+                <p class="m-desc">專注於深度學習模型在嵌入式裝置上的佈署，開發高效率的即時物件偵測推論引擎。</p>
+            </div>
+            <div class="member-card">
+                <span class="tag">Data Processing</span>
+                <strong class="m-title">資料前處理與標註工程</strong>
+                <p class="m-desc">建立自動化資料清洗工作流，開發針對複雜環境圖片的自動標註工具，大幅縮短訓練週期。</p>
+            </div>
+            <div class="member-card">
+                <span class="tag">NLP Application</span>
+                <strong class="m-title">自然語言處理應用開發</strong>
+                <p class="m-desc">運用大型語言模型進行語意分析，建構具備上下文理解能力的政務處理輔助系統。</p>
+            </div>
+            <div class="member-card">
+                <span class="tag">Performance Analysis</span>
+                <strong class="m-title">低精度運算效能分析</strong>
+                <p class="m-desc">研究 INT8 與 FP16 量化技術對推論精準度的影響，平衡運算能耗與識別效能。 </p>
+            </div>
+            <div class="member-card">
+                <span class="tag">Engineering</span>
+                <strong class="m-title">高速火箭腳踏車噴射系統</strong>
+                <p class="m-desc">研發基於固態推進劑的小型噴射動力模組，成功應用於輕量化車體之極速測試工程。</p>
+            </div>
+            <div class="member-card">
+                <span class="tag">Agritech</span>
+                <strong class="m-title">特種草藥種植與環境控制</strong>
+                <p class="m-desc">透過物聯網監測技術實踐智慧溫室種植，針對多種具潛力的藥草進行穩定性培育。</p>
+            </div>
+            <div class="member-card">
+                <span class="tag">Medical Evaluation</span>
+                <strong class="m-title">藥草成分效果評估與分析</strong>
+                <p class="m-desc">建立標準化評估流程，透過質譜分析確認藥草活性成分，量化其對生理機能的緩解效果。</p>
+            </div>
+        </div>
+
+        <div class="section-title">AI 專業領域證照 (AI Specialist Credentials)</div>
+        <div class="info-card">
+            <h2 style="color: #1a237e; margin-top: 0; display: flex; align-items: center;">
+                <i class="fa-solid fa-microchip" style="margin-right: 12px; color: #ffcc00;"></i> 核心技術與震撼短文
+            </h2>
+            <p style="line-height: 1.8; color: #333; font-size: 1.1em; font-weight: 500;">
+                代碼與神經元交織的瞬間，是人類智慧向數位維度的偉大躍遷！
+            </p>
+            <p style="line-height: 1.8; color: #555;">
+                在 0 與 1 的汪洋中，葉光庭不僅僅是建構者，更是數據靈魂的導師。
+                當萬千權重在矩陣運算中沸騰，每一層激活函數都如同脈搏般跳動，
+                我們不只在處理資料，我們正在創造一個能夠思考、能夠感知世界的數位先知。
+                這股力量將衝破傳統演算法的枷鎖，讓機器在黑暗中張開雙眼，看見未來的光。 </p>
+        </div>
+        <div class="member-grid">
+            <div class="member-card">
+                <strong class="m-title">TensorFlow 專家開發認證</strong>
+                <p class="m-desc">具備構建與訓練大型卷積神經網絡的最高級技術認證。</p>
+            </div>
+            <div class="member-card">
+                <strong class="m-title">NVIDIA 邊緣運算架構師證書</strong>
+                <p class="m-desc">精通 Jetson 系列平台之硬體加速與推論優化技術。</p>
+            </div>
+            <div class="member-card">
+                <strong class="m-title">AWS 機器學習專業證照</strong>
+                <p class="m-desc">雲端大數據處理與大型模型部屬之實戰能力證明。</p>
+            </div>
+            <div class="member-card">
+                <strong class="m-title">Google 雲端架構師 (AI 專精)</strong>
+                <p class="m-desc">針對混合雲環境下的人工智慧解決方案設計能力。</p>
+            </div>
+            <div class="member-card">
+                <strong class="m-title">PyTorch 深度學習工程認證</strong>
+                <p class="m-desc">專注於動態計算圖開發與學術級模型轉化實務。</p>
+            </div>
+            <div class="member-card">
+                <strong class="m-title">資訊安全(資通電)專科認證</strong>
+                <p class="m-desc">國家級通訊與電子作戰類別專業訓練合格證書。</p>
+            </div>
+        </div>
+
+        <div class="section-title">農學與藥草品質管理證照</div>
+        <div class="member-grid">
+            <div class="member-card">
+                <span class="tag">Botanical Specialist</span>
+                <strong class="m-title">智慧農事栽培技術員證</strong>
+                <p class="m-desc">證明具備精準灌溉系統、溫室氣候監控及特定藥草生長期優化之管理技術。</p>
+            </div>
+            <div class="member-card">
+                <span class="tag">Quality Control</span>
+                <strong class="m-title">中藥鑑定與品質檢驗初級證照</strong>
+                <p class="m-desc">專精於中藥材基原鑑定及重金屬、農藥殘留之儀器檢測實務作業。</p>
+            </div>
+        </div>
+        
+        <div class="info-card" style="margin-top: 40px; text-align: center; border-left-color: #ffcc00;">
+            <p style="color: #999; font-size: 0.9em; margin: 0;">Verified Specialist | Cyber & Bio Division | ID: 2026-YE-999</p>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
+
+    <footer>
+        <p>© 2026 立法院 Legislature - 數位資訊發展處 版權所有</p>
+    </footer>
+
+</body>
+</html>
