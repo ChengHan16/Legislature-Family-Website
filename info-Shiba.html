@@ -172,6 +172,109 @@
         .m-title { font-weight: bold; font-size: 1.2em; color: #111; margin-bottom: 8px; display: block; }
         .m-desc { font-size: 0.95em; color: #666; line-height: 1.6; }
 
+        /* Instagram 按鈕動畫設計 */
+.ig-link-card {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.ig-btn {
+    text-decoration: none;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(188, 24, 136, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ig-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
+}
+
+/* 照片集樣式設計 */
+.photo-gallery-title {
+    text-align: center;
+    margin: 50px 0 30px;
+}
+
+.shiba-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 0 10px;
+    margin-bottom: 50px;
+}
+
+.gallery-item {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* 手機版適配 */
+@media (max-width: 768px) {
+    .ig-link-card { justify-content: center; }
+    .shiba-gallery { grid-template-columns: repeat(2, 1fr); }
+    .shiba-header {
+        display: grid !important; /* 切換為網格佈局 */
+        grid-template-areas: 
+            "photo"
+            "info"
+            "ig"; /* 定義垂直排列順序：照片 > 資訊 > IG按鈕 */
+        text-align: center;
+        justify-items: center;
+        gap: 15px;
+    }
+
+    .shiba-photo { grid-area: photo; }
+    .shiba-info { 
+        grid-area: info; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .shiba-ig { 
+        grid-area: ig; 
+        position: static; /* 取消絕對定位，回到網格流 */
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* 隱藏手機版過長的藍色橫線 */
+    .blue-line {
+        margin: 15px auto !important;
+    }
+}
+
         /* --- 5. 其他元件 --- */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
@@ -282,25 +385,33 @@
     </section>
 
     <main class="event-content-area">
-        <div class="profile-header">
-            <div class="photo-section" style="position: relative;">
-                <div style="position: absolute; top: -10px; right: -10px; background: linear-gradient(45deg, #ffcc00, #ffffff); color: #1a237e; padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; box-shadow: 0 0 15px rgba(255,204,0,0.8); z-index: 10; border: 2px solid #1a237e;">
-                    <i class="fa-solid fa-sparkles"></i> 法院吉祥物
-                </div>
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/shiba.png?raw=true" alt="可愛柴照片" class="avatar-img">
-            </div>
-            <div class="info-brief">
-                <span class="nickname">Cute Shiba</span>
-                <h1>可愛柴 Shiba</h1>
-                <div class="blue-line"></div>
-                <div style="font-size: 1.1em; color: #444; line-height: 1.8;">
-                    出生地：台灣 <img src="https://raw.githubusercontent.com/ChengHan16/Legislature-Family-Website/c5599eac05dbcdaf97afd7dfabdf762d8d4f7e3a/image/Flag_of_the_Republic_of_China.svg" alt="ROC" style="height:15px; vertical-align: middle; border:1px solid #ddd;"><br>
-                    職務隸屬：立法院高度偵查尋血犬 (特種勤務員)<br>
-                    誕生年份：2017 年<br>
-                    核心任務：守護立院和諧、場域安全偵蒐、執行萌力任務
-                </div>
-            </div>
+        <div class="profile-header shiba-header" style="position: relative;">
+    
+    <div class="photo-section shiba-photo" style="position: relative;">
+        <div style="position: absolute; top: -10px; right: -10px; background: linear-gradient(45deg, #ffcc00, #ffffff); color: #1a237e; padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; box-shadow: 0 0 15px rgba(255,204,0,0.8); z-index: 10; border: 2px solid #1a237e;">
+            <i class="fa-solid fa-sparkles"></i> 法院吉祥物
         </div>
+        <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/shiba.png?raw=true" alt="可愛柴照片" class="avatar-img">
+    </div>
+
+    <div class="info-brief shiba-info">
+        <span class="nickname">Cute Shiba</span>
+        <h1>可愛柴 Shiba</h1>
+        <div class="blue-line"></div>
+        <div style="font-size: 1.1em; color: #444; line-height: 1.8;">
+            出生地：台灣 <img src="https://raw.githubusercontent.com/ChengHan16/Legislature-Family-Website/c5599eac05dbcdaf97afd7dfabdf762d8d4f7e3a/image/Flag_of_the_Republic_of_China.svg" alt="ROC" style="height:15px; vertical-align: middle; border:1px solid #ddd;"><br>
+            職務隸屬：立法院高度偵查尋血犬 (特種勤務員)<br>
+            誕生年份：2017 年<br>
+            核心任務：守護立院和諧、場域安全偵蒐、執行萌力任務
+        </div>
+    </div>
+
+    <div class="ig-link-card shiba-ig">
+        <a href="https://www.instagram.com/shiba_very_kawaii/" target="_blank" class="ig-btn">
+            <i class="fa-brands fa-instagram" style="font-size: 1.2em;"></i>
+        </a>
+    </div>
+</div>
 
         <div class="info-card">
             <h2 style="color: #1a237e; margin-top: 0;">守護議場的萌之力</h2>
@@ -340,9 +451,37 @@
             </p>
         </div>
         
+        <div class="photo-gallery-title">
+            <h2 class="section-title" style="border: none; padding: 0; display: inline-block;">
+                <i class="fa-solid fa-camera-retro" style="color: #1a237e;"></i> 柴柴日常照片集
+            </h2>
+        </div>
+        
+        <div class="shiba-gallery">
+            <div class="gallery-item">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Shiba/Shiba01.png?raw=true" alt="Shiba 01">
+            </div>
+            <div class="gallery-item">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Shiba/Shiba02.jpg?raw=true" alt="Shiba 02">
+            </div>
+            <div class="gallery-item">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Shiba/Shiba03.jpg?raw=true" alt="Shiba 03">
+            </div>
+            <div class="gallery-item">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Shiba/Shiba04.jpg?raw=true" alt="Shiba 04">
+            </div>
+            <div class="gallery-item">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Shiba/Shiba05.jpg?raw=true" alt="Shiba 05">
+            </div>
+            <div class="gallery-item">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Shiba/Shiba06.jpg?raw=true" alt="Shiba 06">
+            </div>
+        </div>
+        
         <div class="info-card" style="margin-top: 40px; text-align: center; border-left-color: #ffcc00;">
             <p style="color: #999; font-size: 0.9em; margin: 0;">Certified Detective Dog | Legislative Yuan | ID: 2017-SHIBA-001</p>
         </div>
+
     </main>
 
     <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
@@ -352,6 +491,4 @@
     </footer>
 
 </body>
-
 </html>
-
