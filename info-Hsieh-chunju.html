@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立法院 - 成員介紹：謝鈞儒</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- 基礎樣式與防溢出 --- */
+        html { scroll-behavior: smooth; }
+        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Noto Sans TC", "Arial", sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- 1. 導覽列樣式 --- */
+        .navbar-static {
+            background-color: #1a237e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        .navbar-full {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-circle {
+            background-color: #ffcc00;
+            color: #1a237e;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 15px; transition: 0.3s; }
+        .nav-links a:hover { border-bottom: 2px solid #ffcc00; }
+        .nav-links a.active-dark { background-color: #004d99; border-radius: 4px; color: white !important; }
+
+        /* --- 2. Banner 樣式 (固定高度) --- */
+        .event-banner {
+            background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid #ffcc00;
+            height: 240px; 
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
+        .banner-info-wrap {
+            display: flex;
+            flex-direction: column; /* 關鍵：由水平改為垂直排列 */
+            align-items: center;    /* 讓內容在垂直排列時依然保持居中 */
+            gap: 15px;             /* 設定兩行之間的距離 */
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #ffcc00;
+        }
+
+        /* --- 3. 主要內容區域 --- */
+        .event-content-area {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .photo-section { flex-shrink: 0; text-align: center; }
+        .avatar-img {
+            width: 200px; height: 200px; border-radius: 12px;
+            border: 4px solid #f0f0f0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        .info-brief h1 { font-size: 42px; color: #1a237e; margin: 0; letter-spacing: 4px; }
+        .nickname { font-size: 20px; color: #666; font-weight: 400; }
+        .blue-line { height: 3px; background: linear-gradient(to right, #1a237e, transparent); width: 300px; margin: 15px 0; }
+
+        .info-card {
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            margin-bottom: 40px; 
+            border-left: 6px solid #ffcc00;
+        }
+
+        .section-title {
+            border-left: 6px solid #1a237e;
+            padding-left: 15px;
+            margin: 40px 0 20px;
+            color: #1a237e;
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+
+        /* --- 4. 網格佈局 (經歷與研究) --- */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 25px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .member-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-top: 5px solid #1a237e;
+            transition: all 0.3s ease;
+        }
+
+        .tag {
+            display: inline-block; background: #e8eaf6; color: #3f51b5;
+            padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-bottom: 10px;
+        }
+
+        .m-title { font-weight: bold; font-size: 1.2em; color: #111; margin-bottom: 8px; display: block; }
+        .m-desc { font-size: 0.95em; color: #666; line-height: 1.6; }
+
+        /* --- 5. 其他元件 --- */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background-color: #1a237e;
+            color: white; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; z-index: 1000;
+            border: 2px solid #ffcc00; transition: 0.3s;
+            text-decoration: none;
+        }
+
+        footer { text-align: center; padding: 25px; background-color: #1a237e; color: white; font-size: 0.9em; }
+
+        /* =============================================
+           響應式優化 (RWD)
+           ============================================= */
+        @media (max-width: 768px) {
+            .navbar-full { flex-direction: column; padding: 10px 5px; }
+            .nav-links { 
+                margin-top: 10px; width: 100%; justify-content: center; display: flex;
+                flex-wrap: nowrap; padding: 10px 0 5px 0; border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links li { margin: 0 4px; flex-shrink: 1; }
+            .nav-links a { padding: 5px 8px; font-size: clamp(12px, 3.2vw, 14px); white-space: nowrap; }
+
+            .profile-header { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .info-brief h1 { font-size: 32px; }
+            .blue-line { margin: 15px auto; }
+            
+            .member-grid { grid-template-columns: 1fr; gap: 20px; }
+
+            /* 1. 調整導覽列外殼，縮小內距 */
+            .navbar-full { 
+                flex-direction: column; 
+                padding: 10px 5px; 
+            }
+
+            /* 2. 調整導覽連結容器 */
+            .event-card-simple {
+                padding: 20px 15px;      /* 縮小手機版內距 */
+                width: 100%;             /* 寬度跟隨父層的 350px */
+                box-sizing: border-box;  /* 關鍵：確保 padding 不會撐破 350px */
+            }
+
+            /* 調整日期圓圈，讓 350px 內的空間分配合理 */
+            .event-date-circle {
+                width: 55px;
+                height: 55px;
+                margin-right: 15px;
+            }
+
+            /* 1. 調整導覽列外殼，縮小內距 */
+            .navbar-full { 
+                flex-direction: column; 
+                padding: 10px 5px; 
+            }
+
+            /* 2. 調整導覽連結容器 */
+            .nav-links { 
+                margin-top: 10px; 
+                width: 100%; 
+                justify-content: center; /* 置中 */
+                display: flex;
+                flex-wrap: nowrap;      /* 關鍵：強制絕對不換行 */
+                padding: 12px 0 5px 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            /* 3. 調整清單項目 */
+            .nav-links li { 
+                margin: 0 4px;          /* 縮小項目間的間距 */
+                flex-shrink: 1;         /* 允許項目在必要時縮小 */
+            }
+
+            /* 4. 調整文字大小與行為 */
+            .nav-links a { 
+                padding: 5px 8px;       /* 縮小按鈕內距 */
+                
+                /* 使用 clamp 讓字體在 12px 到 14px 之間隨螢幕自動縮放 */
+                font-size: clamp(12px, 3.2vw, 14px); 
+                
+                white-space: nowrap;    /* 關鍵：文字絕對不換行 */
+                letter-spacing: -0.5px; /* 稍微縮小字距，節省空間 */
+            }
+            .info-brief {
+                text-align: center; /* 讓所有文字置中 */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* 讓 Flex 項目（如徽章）置中 */
+            }
+            .info-brief div {
+                justify-content: center; /* 確保帶有 flex 的行也是置中 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar-static">
+        <nav class="navbar-full">
+            <div class="logo"><div class="logo-circle">立</div> 立法院 Legislature</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="about.html">關於我們</a></li> 
+                <li><a href="members.html"class="active-dark">成員介紹</a></li> 
+                <li><a href="events.html">活動行程</a></li>
+                <li><a href="index.html">其他</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="event-banner">
+        <h1>成員簡介</h1>
+        <div class="banner-info-wrap">
+            <span>海洋邊境安全委員會</span>
+            <span>高階機動力與智慧感測研究組</span>
+        </div>
+    </section>
+
+<main class="event-content-area">
+        <div class="profile-header">
+            <div class="photo-section">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/hsieh-chunju.png?raw=true" alt="謝鈞儒照片" class="avatar-img">
+            </div>
+            <div class="info-brief">
+                <span class="nickname">hsieh-chunju</span>
+                <h1>謝鈞儒</h1>
+                <div class="blue-line"></div>
+                <div style="font-size: 1.1em; color: #444; line-height: 2;">
+                    出生地：台灣 <img src="https://raw.githubusercontent.com/ChengHan16/Legislature-Family-Website/c5599eac05dbcdaf97afd7dfabdf762d8d4f7e3a/image/Flag_of_the_Republic_of_China.svg" alt="ROC" style="height:15px; vertical-align: middle; border:1px solid #ddd;"><br>
+                    
+                    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
+                        身分地位：現役海巡少將 (Rear Admiral, CGA)
+                        <div style="display: inline-flex; padding: 2px; background: linear-gradient(135deg, #002095 0%, #002095 50%, #fe0000 50%, #fe0000 100%); border-radius: 4px; align-items: center; justify-content: center;">
+                            <div style="background: white; padding: 1px; border-radius: 2px; display: flex;">
+                                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Unit%20patch_Hsieh-chunju.png?raw=true" alt="單位徽章" style="height: 1em; width: auto; display: block;">
+                            </div>
+                        </div>
+                    </div>
+
+                    專業項目：電腦科學、冷冰機械操作、重型機車駕駛<br>
+                    核心價值：科技戍衛海疆，速度與精準的極致結合。
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title" style="color: #d32f2f;"><i class="fa-solid fa-flag-checkered" style="margin-right: 10px;"></i> 巔峰經歷：跨國外交與賽道傳奇</div>
+        <div class="info-card" style="border-left-color: #d32f2f; background-color: #fffde7; box-sizing: border-box;">
+            <div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h2 style="color: #d32f2f; margin-top: 0; font-size: 1.8em;">榮耀實績：極限動力的掌握者</h2>
+                    <p style="line-height: 1.8; color: #333; font-size: 1.1em; font-weight: 500;">
+                        謝鈞儒在資通電與重型機械操作領域展現卓越天賦，2023 年代表國家赴加拿大執行台加外交任務，並於亞洲各大機關與賽事中獲獎無數。
+                    </p>
+                    
+                    <ul class="experience-list" style="margin-top: 15px; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px; padding-left: 15px; border-left: 3px solid #ffcc00;">
+                            <strong>2023年度 — 赴加拿大任職台加外交官員</strong>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 15px; border-left: 3px solid #d32f2f;">
+                            <strong>日本筑波賽道 (Tsukuba Circuit) 挑戰賽 — 冠軍</strong>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 15px; border-left: 3px solid #d32f2f;">
+                            <strong>亞洲公路摩托車錦標賽 (ARRC) 台灣站 — 冠軍</strong>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 15px; border-left: 3px solid #d32f2f;">
+                            <strong>TSR 台灣機車錦標賽 (大型重機組) — 冠軍</strong>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 15px; border-left: 3px solid #666;">
+                            <strong>台灣重型機車錦標賽 (TSBC) — 亞軍</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-grid" style="margin-top: -20px; padding-top: 0;">
+            <div class="member-card" style="border-top-color: #ffcc00; grid-column: span 2;">
+                <span class="tag" style="background: #fff9c4; color: #f57f17;">外交專案</span>
+                <strong class="m-title">2023年度 — 赴加拿大任職台加外交官員</strong>
+                <p class="m-desc">
+                    派駐加拿大期間，謝鈞儒少將運用其電腦科學背景，主導雙邊海洋情資交換平台的數位化升級。透過部屬軍事級加密傳輸協定，強化了台加間在海洋監控數據上的即時共享安全性。此外，更利用影像紀錄技術製作外交成果彙報，成功向國際社會展現台灣海巡在北太平洋區域治理的技術韌性與合作誠意。
+                </p>
+            </div>
+
+            <div class="member-card" style="border-top-color: #d32f2f;">
+                <span class="tag">賽道挑戰</span>
+                <strong class="m-title">日本筑波賽道挑戰賽 — 冠軍</strong>
+                <p class="m-desc">
+                    在日本筑波賽道（Tsukuba Circuit）中，謝鈞儒展現了極致的「冷冰機械操作」專業。針對賽道中著名的最終大彎（Final Corner），利用精密避震器數據分析儀進行預載調整，並在極低溫環境下精確控制輪胎發熱週期。最終憑藉卓越的車身傾角控制與動力輸出時機修正，奪下分組冠軍。
+                </p>
+            </div>
+
+            <div class="member-card" style="border-top-color: #d32f2f;">
+                <span class="tag">國際賽事</span>
+                <strong class="m-title">ARRC 亞洲公路錦標賽 — 冠軍</strong>
+                <p class="m-desc">
+                    代表台灣出戰亞洲最高等級賽事之一。謝鈞儒結合電腦科學中的邏輯演算，預判各路段之燃油損耗與動力曲線分布，並在賽前針對供油電腦（ECU）進行細微參數調校。在激烈的近距離搏鬥中，憑藉對機械結構極限的敏銳感知，維持高頻率降檔減速穩定度，實現台灣站大獲全勝。
+                </p>
+            </div>
+
+            <div class="member-card" style="border-top-color: #d32f2f;">
+                <span class="tag">國內巔峰</span>
+                <strong class="m-title">TSR 台灣機車錦標賽 — 冠軍</strong>
+                <p class="m-desc">
+                    於 TSR 大型重機組賽事中，專注於底盤動力平衡優化。謝鈞儒運用快排系統（Quickshifter）與循跡控制系統（TC）的複合應用技術，在大彎角切入時展現出無懈可擊的抓地力管理。本研究重點在於如何在極端高壓競爭環境下，透過物理數據回傳修正駕駛流暢度，最終以破紀錄成績封王。
+                </p>
+            </div>
+
+            <div class="member-card" style="border-top-color: #666;">
+                <span class="tag">菁英競技</span>
+                <strong class="m-title">台灣重型機車錦標賽 — 亞軍</strong>
+                <p class="m-desc">
+                    在 TSBC 公路賽事中，面對多樣化的天候與氣溫變化，展現了對重型機車各項感測器數據的深度解析能力。謝鈞儒全程運用 4K 影像紀錄器與 GPS 座標分析儀，精準記錄每圈的路線切點（Apex）。雖然遭遇機械動力微幅波動挑戰，仍憑藉深厚的冷冰機械修復直覺維持穩定節奏，展現少將級的沉穩素質。
+                </p>
+            </div>
+        </div>
+
+        <div class="section-title">資通電與影像研究項目</div>
+        <div class="member-grid">
+            <div class="member-card">
+                <span class="tag">AI Computing</span>
+                <strong class="m-title">狗疾病智慧檢測系統</strong>
+                <p class="m-desc">運用深度卷積神經網路 (CNN) 與電腦視覺技術，針對家犬常見之生理徵象進行即時影像辨識。本研究導入遷移學習演算法，在低功耗邊緣運算裝置上實現精準的疾病預判模型，為寵物健康監測提供自動化之解決方案。</p>
+            </div>
+            <div class="member-card">
+                <span class="tag">Visual Arts</span>
+                <strong class="m-title">影像紀錄與視覺製作</strong>
+                <p class="m-desc">專注於高動態範圍 (HDR) 影像捕捉與非線性剪輯技術，特別是在極速運動環境下的穩定拍攝流程。結合雲端協作平台優化後製流，將原始數據轉化為具備高度視覺衝擊力的紀實影像，用於軍事宣導與技術展示。</p>
+            </div>
+            <div class="member-card">
+                <span class="tag">New Media</span>
+                <strong class="m-title">新媒體影音製作研究</strong>
+                <p class="m-desc">探討跨平台串流技術與互動式影音架構，針對不同社群演算法優化內容產製策略。研究重點在於如何透過大數據分析用戶觀看行為，調整視聽張力與資訊密度，提升在國際外交與公眾事務宣導上的影響力。</p>
+            </div>
+        </div>
+
+        <div class="info-card" style="margin-top: 40px; text-align: center; border-left-color: #1a237e;">
+            <p style="color: #999; font-size: 0.9em; margin: 0;">Rear Admiral | Coast Guard Administration & Computer Science | ID: 2026-NAVY-HSIEH-99</p>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
+
+    <footer>
+        <p>© 2026 立法院 Legislature - 數位資訊發展處 版權所有</p>
+    </footer>
+
+</body>
+</html>
