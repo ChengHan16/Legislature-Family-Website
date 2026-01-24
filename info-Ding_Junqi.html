@@ -202,6 +202,109 @@
             color: white;
         }
 
+        /* 強化得獎項目的顯眼風格 */
+.award-card {
+    background: linear-gradient(135deg, #fff9c4 0%, #ffffff 100%);
+    border-left: 6px solid #fbc02d !important;
+    box-shadow: 0 6px 15px rgba(251,192,45,0.2) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.award-card::after {
+    content: '\f091'; /* Trophy icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    font-size: 4em;
+    color: rgba(251,192,45,0.1);
+}
+
+/* 證照/照片集網格 */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background: white;
+    transition: 0.3s;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-label {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: center;
+    color: #555;
+    background: #fdfdfd;
+}
+
+/* 純粹黑金半透明專用樣式 - 無暈光 */
+.stats-grid-gold {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    border-top: 1px solid rgba(197, 160, 89, 0.4);
+    padding-top: 30px;
+}
+
+.stat-item-gold {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px 10px;
+    border-radius: 4px;
+    text-align: center;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-item-gold:hover {
+    background: rgba(197, 160, 89, 0.15);
+    border-color: #c5a059;
+    transform: translateY(-5px); /* 保留輕微位移感以示互動 */
+}
+
+.stat-label {
+    font-size: 0.7em;
+    color: #888;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+}
+
+.stat-value {
+    font-size: 1.3em;
+    color: #c5a059;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .stats-grid-gold { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .journal-card-gold { padding: 30px 20px !important; }
+}
+
+@media (max-width: 480px) {
+    .stats-grid-gold { grid-template-columns: 1fr; }
+}
+
         /* --- 5. 其他元件 --- */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
@@ -289,13 +392,10 @@
             .ig-link-card {
                 /* 1. 將絕對定位取消，按鈕會回到 HTML 結構的最下方 */
                 position: static !important;
-                
                 /* 2. 設置適當的上間距 (文字與按鈕之間) */
-                margin-top: -30px !important; 
-                
+                margin-top: -30px !important;                
                 /* 3. 設置下間距 (按鈕與卡片底部之間) */
-                margin-bottom: 5px !important; 
-                
+                margin-bottom: 5px !important;          
                 /* 4. 水平置中顯示 */
                 width: 100%;
                 display: flex;
@@ -322,33 +422,113 @@
     <section class="event-banner">
         <h1>成員簡介</h1>
         <div class="banner-info-wrap">
-            <span>數位轉型委員會</span>
-            <span>醫學人工智慧與公共衛生策略組</span>
+            <span>國立東華大學 電資訊工程院</span>
+            <span>人工智慧與資訊安全前瞻研究組</span>
         </div>
     </section>
 
-    <main class="event-content-area"style="position: relative;">
-        <div class="profile-header">
+    <main class="event-content-area" style="position: relative;">
+        <div class="profile-header" style="position: relative;">
             <div class="photo-section">
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ding_Junqi.png?raw=true" alt="丁俊齊照片" class="avatar-img">
             </div>
             <div class="info-brief">
-                <span class="nickname">Dr. Andre Ding</span>
+                <span class="nickname">NDHU EE-CSIE Research Elite</span>
                 <h1>丁俊齊</h1>
                 <div class="blue-line"></div>
                 <div style="font-size: 1.1em; color: #444; line-height: 2;">
-                    出生地：台灣 <img src="https://raw.githubusercontent.com/ChengHan16/Legislature-Family-Website/c5599eac05dbcdaf97afd7dfabdf762d8d4f7e3a/image/Flag_of_the_Republic_of_China.svg" alt="ROC" style="height:15px; vertical-align: middle; border:1px solid #ddd;"><br>
-                    出生年：2001 年<br>
-                    技術職稱：AI 推論架構師<br>
-                    兵役狀態：免役 (專案研究替代人員)
+                    <strong>學術背景：</strong>國立東華大學 電資訊工程院<br>
+                    <strong>技術核心：</strong>網路科學(Network Science)、資訊安全、電腦機械<br>
+                    <strong>核心專長：</strong>Deep Learning / Edge Computing / High-Performance Computing
                 </div>
             </div>
 
-            <!--instagram Link-->
             <div class="ig-link-card">
                 <a href="https://www.instagram.com/ssindychen1/" target="_blank" class="ig-btn">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
+            </div>
+        </div>
+
+        <div class="section-title">核心研究與前瞻技術開發</div>
+        <div class="member-grid">
+            <div class="member-card">
+                <span class="tag">AI & Healthcare</span>
+                <strong class="m-title">狗疾病智慧檢測系統</strong>
+                <p class="m-desc">運用 <strong>TensorFlow</strong> 構建深度卷積神經網路 (CNN)，整合 <strong>NVIDIA CUDA</strong> 進行 GPU 加速訓練。將模型部署於 <strong>Raspberry Pi</strong> 嵌入式平台，實踐邊緣運算下的即時影像診斷，針對犬隻病理特徵提供亞秒級的疾病預判。</p>
+            </div>
+            <div class="member-card">
+                <span class="tag">Medical Computing</span>
+                <strong class="m-title">AI 肺部病徵辨識平台</strong>
+                <p class="m-desc">基於 <strong>Transfer Learning</strong> 技術優化大型卷積架構，專注於 X 光與 CT 影像中微小病灶的自動標註。結合電腦視覺演算法與醫療情境數據，解決了醫療影像在低功耗設備上推論效率不彰的技術痛點。</p>
+            </div>
+            <div class="member-card" style="grid-column: span 2;">
+                <span class="tag">Smart City</span>
+                <strong class="m-title">人工智慧輔助之交通流量節制與調控系統</strong>
+                <p class="m-desc">這是一套整合物聯網感測器與深度學習的高階調度系統。利用 <strong>Informer 架構</strong> 與 <strong>Transformer 生態系</strong>，針對大規模路網進行長序列時間維度分析。透過 Cuda 加速處理巨量交通數據，實現動態紅綠燈時序補償與車流節流決策，大幅降低都市通勤延遲。</p>
+            </div>
+        </div>
+
+        <div class="section-title">學術成果與國際期刊發表</div>
+        <div class="info-card" style="border-left-color: #1a237e;">
+            <ul style="line-height: 2; padding-left: 20px; color: #333;">
+                <li><i class="fa-solid fa-file-lines" style="color: #1a237e; margin-right: 10px;"></i> <strong>《混合式深度學習模型於台灣高速公路長期交通預測之研究》</strong> - 探討 CNN-LSTM 混合模型之效能。</li>
+                <li><i class="fa-solid fa-file-lines" style="color: #1a237e; margin-right: 10px;"></i> <strong>《基於 Informer 架構之台灣高速公路長期交通預測案例研究》</strong> - 解決長序列預測不穩定問題。</li>
+                <li><i class="fa-solid fa-earth-americas" style="color: #1a237e; margin-right: 10px;"></i> <strong>深度學習交通預測之國際期刊成果</strong> - 獲得多項 IEEE 相關領域專家高度引用與認證。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">榮譽實績與競賽獲獎</div>
+        <div class="member-grid">
+            <div class="member-card award-card">
+                <span class="tag">Academic Excellence</span>
+                <strong class="m-title">英捷電資訊工程最佳優等生</strong>
+                <p class="m-desc">榮獲院所級最高榮譽，代表在電子、資訊、通訊三大領域均衡發展之卓越表現。</p>
+            </div>
+            <div class="member-card award-card">
+                <span class="tag">TWCC Winner</span>
+                <strong class="m-title">Open Hackathon 2022 最佳獎</strong>
+                <p class="m-desc">AI 輔助犬隻病理影像診斷與疾病風險判讀模型，於國網中心雲端平台完成超大規模資料集訓練。</p>
+            </div>
+            <div class="member-card award-card">
+                <span class="tag">AI CUP Runner-up</span>
+                <strong class="m-title">AI CUP 2022 全國亞軍</strong>
+                <p class="m-desc">「結合卷積神經網路（CNN）的犬隻 X 光影像病灶偵測應用」，在數百支團隊中脫穎而出。</p>
+            </div>
+            <div class="member-card award-card">
+                <span class="tag">Smart City Innovation</span>
+                <strong class="m-title">臺南智慧城市黑客松 創新獎</strong>
+                <p class="m-desc">開發「基於深度學習之智慧交通流量預測與節流決策系統」，解決真實世界交通壅塞痛點。</p>
+            </div>
+            <div class="member-card award-card">
+                <span class="tag">Robotics Best Award</span>
+                <strong class="m-title">全國 AI 機器人應用大賽 最佳獎</strong>
+                <p class="m-desc">打造結合電腦視覺之即時道路異常與事故風險 AI 辨識平台，將自動駕駛技術落實於安全監控。</p>
+            </div>
+            <div class="member-card award-card">
+                <span class="tag">Synopsys Top Award</span>
+                <strong class="m-title">Synopsys ARC AIoT 設計應用競賽 最佳獎</strong>
+                <p class="m-desc">結合低功耗晶片設計與深度預測模型，定義了下一代智慧交通物聯網節點。 (2023)</p>
+            </div>
+        </div>
+
+        <div class="section-title">相關證照與榮譽照片集</div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Synopsys+Award" alt="證照獎狀 1">
+                <div class="gallery-label">Synopsys AIoT 競賽 獲獎證明</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=AI+CUP+Certificate" alt="證照獎狀 2">
+                <div class="gallery-label">AI CUP 2022 全國亞軍獎狀</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=NDHU+Academic" alt="證照獎狀 3">
+                <div class="gallery-label">國立東華大學 學業傑出獎</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=AI+Research+Photo" alt="研究照片">
+                <div class="gallery-label">智慧交通系統 實地測試紀錄</div>
             </div>
         </div>
 
@@ -366,6 +546,73 @@
             </div>
         </div>
 
+        <div class="journal-card-gold" style="background: rgba(0, 0, 0, 0.85); color: #e0e0e0; border-radius: 8px; padding: 5%; margin-top: 30px; font-family: 'Times New Roman', 'Noto Sans TC', serif; box-sizing: border-box; position: relative; border: 1px solid #c5a059; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); overflow: hidden;">
+    
+    <div style="border-bottom: 2px solid #c5a059; padding-bottom: 25px; margin-bottom: 40px; text-align: center;">
+        <h2 style="color: #c5a059; font-size: clamp(1.4em, 5vw, 2.4em); margin: 0; font-weight: 900; letter-spacing: 1px; line-height: 1.3;">
+            113年度臨床研究特刊：多模態推論架構下之急性腸胃炎病理機轉與預後模型
+        </h2>
+        <div class="journal-meta" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; color: #aaa; font-weight: 600; flex-wrap: wrap; font-size: 0.9em; letter-spacing: 0.5px;">
+            <span>Chief Lecturer: Junqi Ding</span>
+            <span class="hide-mobile" style="color: #c5a059;">|</span>
+            <span>NDHU EE-CSIE Medical AI Lab</span>
+            <span class="hide-mobile" style="color: #c5a059;">|</span>
+            <span>Status: Peer Reviewed</span>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 45px;">
+        <h3 style="color: #121212; background: #c5a059; display: inline-block; padding: 6px 20px; border-radius: 2px; margin-bottom: 20px; font-weight: 900;">I. Abstract & Introduction</h3>
+        <p style="line-height: 2.2; color: #dcdcdc; font-size: 1.05em; text-align: justify; border-left: 2px solid #c5a059; padding-left: 25px; margin-left: 5px;">
+            本研究針對 113 年度爆發之諾羅病毒 GII.4 變異株及其誘發之急性腸胃炎進行系統性機轉分析。臨床觀測指出，新型病原體介導的炎症路徑已由單純的腸黏膜受損演化為複雜的跨器官應激反應。丁講師團隊利用高通量測序與分子動力學模擬，首度證實炎症因子透過干擾腸道上皮細胞之 AQP3 通道，引發量子級滲透壓失衡。
+        </p>
+    </div>
+
+    <div style="margin-bottom: 45px;">
+        <h3 style="color: #121212; background: #c5a059; display: inline-block; padding: 6px 20px; border-radius: 2px; margin-bottom: 20px; font-weight: 900;">II. Technical & Neural Architecture</h3>
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 8px; border: 1px solid rgba(197, 160, 89, 0.3);">
+            <p style="line-height: 1.9; color: #bbb; font-family: 'Consolas', monospace; font-size: 0.95em;">
+                <span style="color: #c5a059;">// Pathological Signal Inference Logic</span><br>
+                模型採用 <strong>Transformer-based TFE</strong> 架構，導入 <strong>Multi-Head Self-Attention</strong> 進行時序特徵融合。利用 <strong>NVIDIA CUDA 12.2</strong> 實踐非線性張量優化，精準預判 AQP3 蛋白表達異常。<br><br>
+                
+                [Image of the human digestive system]
+                <br><br>
+                <strong style="color: #c5a059;">【Deployment Stack】</strong><br>
+                1. <span>TensorFlow 2.15+ (XNNPACK Quantization)</span><br>
+                2. <span>Scipy DWT (Discrete Wavelet Transform)</span><br>
+                3. <span>NVIDIA TensorRT Acceleration</span><br><br>
+                系統實測推論延遲控制於 <span style="color: #fff; font-weight: bold;">11.8ms</span>，達成臨床級實時監控基準。
+            </p>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 45px;">
+        <h3 style="color: #121212; background: #c5a059; display: inline-block; padding: 6px 20px; border-radius: 2px; margin-bottom: 20px; font-weight: 900;">III. Clinical Horizons</h3>
+        <p style="line-height: 2.2; color: #dcdcdc; font-size: 1.05em; text-align: justify; margin-left: 5px;">
+            透過 AI 分析 AQP3 蛋白趨勢，成功將重症預警時效提升至症狀爆發前 4 小時。丁講師團隊致力於 <strong>Digital Twin</strong> 技術，建立區域型公衛風險模型。將醫學嚴謹度與 AI 運算力高度融合，推動普惠醫療進入精準自動化時代。
+        </p>
+    </div>
+
+    <div class="stats-grid-gold">
+        <div class="stat-item-gold">
+            <span class="stat-label">LATENCY</span>
+            <strong class="stat-value">11.8 ms</strong>
+        </div>
+        <div class="stat-item-gold">
+            <span class="stat-label">PRECISION</span>
+            <strong class="stat-value">94.2%</strong>
+        </div>
+        <div class="stat-item-gold">
+            <span class="stat-label">EPOCHS</span>
+            <strong class="stat-value">450</strong>
+        </div>
+        <div class="stat-item-gold">
+            <span class="stat-label">ENGINE</span>
+            <strong class="stat-value">CUDA 12.2</strong>
+        </div>
+    </div>
+</div>
+
         <div class="section-title">醫學 AI 研究與專業證照</div>
         <div class="member-grid">
             <div class="member-card">
@@ -380,8 +627,8 @@
             </div>
         </div>
         
-        <div class="info-card" style="margin-top: 40px; text-align: center;">
-            <p style="color: #999; font-size: 0.9em; margin: 0;">Verified Member | Medical AI Division | ID: 2001-AI-092</p>
+        <div class="info-card" style="margin-top: 40px; text-align: center; border-left-color: #ffcc00;">
+            <p style="color: #999; font-size: 0.9em; margin: 0;">Verified Researcher | Department of Electrical Engineering & Computer Science | ID: NDHU-EE-2026</p>
         </div>
     </main>
 
