@@ -86,7 +86,7 @@
             overflow: hidden;
         }
 
-        .event-banner h1 { font-size: 3em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
         .banner-info-wrap {
             display: flex;
@@ -126,7 +126,7 @@
 
         .info-brief h1 { font-size: 42px; color: #1a237e; margin: 0; letter-spacing: 4px; }
         .nickname { font-size: 20px; color: #666; font-weight: 400; }
-        .blue-line { height: 3px; background: linear-gradient(to right, #1a237e, transparent); width: 200px; margin: 15px 0; }
+        .blue-line { height: 3px; background: linear-gradient(to right, #1a237e, transparent); width: 300px; margin: 15px 0; }
 
         .info-card {
             background: white; 
@@ -171,6 +171,36 @@
 
         .m-title { font-weight: bold; font-size: 1.2em; color: #111; margin-bottom: 8px; display: block; }
         .m-desc { font-size: 0.95em; color: #666; line-height: 1.6; }
+        
+        /* --- 電腦版樣式 --- */
+        /* 將按鈕釘在 profile-header 右上角 */
+        .ig-link-card {
+            position: absolute;
+            top: 55px;
+            right: 35px;
+            z-index: 5;
+        }
+
+        .ig-btn {
+            text-decoration: none;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(188, 24, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ig-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
+            color: white;
+        }
 
         /* --- 5. 其他元件 --- */
         .back-to-top {
@@ -195,8 +225,6 @@
             }
             .nav-links li { margin: 0 4px; flex-shrink: 1; }
             .nav-links a { padding: 5px 8px; font-size: clamp(12px, 3.2vw, 14px); white-space: nowrap; }
-
-            .event-banner h1 { font-size: 2.2em; }
 
             .profile-header { flex-direction: column; text-align: center; padding: 30px 20px; }
             .info-brief h1 { font-size: 32px; }
@@ -257,6 +285,22 @@
                 white-space: nowrap;    /* 關鍵：文字絕對不換行 */
                 letter-spacing: -0.5px; /* 稍微縮小字距，節省空間 */
             }
+
+            .ig-link-card {
+                /* 1. 將絕對定位取消，按鈕會回到 HTML 結構的最下方 */
+                position: static !important;
+                
+                /* 2. 設置適當的上間距 (文字與按鈕之間) */
+                margin-top: -30px !important; 
+                
+                /* 3. 設置下間距 (按鈕與卡片底部之間) */
+                margin-bottom: 5px !important; 
+                
+                /* 4. 水平置中顯示 */
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -283,7 +327,7 @@
         </div>
     </section>
 
-    <main class="event-content-area">
+    <main class="event-content-area"style="position: relative;">
         <div class="profile-header">
             <div class="photo-section">
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ding_Junqi.png?raw=true" alt="丁俊齊照片" class="avatar-img">
@@ -298,6 +342,13 @@
                     技術職稱：AI 推論架構師<br>
                     兵役狀態：免役 (專案研究替代人員)
                 </div>
+            </div>
+
+            <!--instagram Link-->
+            <div class="ig-link-card">
+                <a href="https://www.instagram.com/ssindychen1/" target="_blank" class="ig-btn">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
             </div>
         </div>
 
@@ -342,4 +393,3 @@
 
 </body>
 </html>
-
