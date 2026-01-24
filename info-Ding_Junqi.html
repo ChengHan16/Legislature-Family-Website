@@ -305,6 +305,115 @@
     .stats-grid-gold { grid-template-columns: 1fr; }
 }
 
+/* 獎狀與研究圖片專業相框 */
+.cert-item {
+    border: 8px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    transition: 0.3s;
+}
+.cert-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* 超浮誇期刊證明外框 */
+.grand-journal-award {
+    position: relative;
+    margin: 60px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #c5a059 0%, #fff 50%, #c5a059 100%);
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(197, 160, 89, 0.6);
+    text-align: center;
+    overflow: hidden;
+}
+
+.grand-journal-award::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, rgba(197, 160, 89, 0.3), transparent 30%);
+    animation: rotateGold 6s linear infinite;
+}
+
+@keyframes rotateGold {
+    100% { transform: rotate(360deg); }
+}
+
+.journal-inner-frame {
+    position: relative;
+    background: #121212;
+    padding: 30px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.journal-img-main {
+    width: 100%;
+    max-width: 800px;
+    border: 3px solid #c5a059;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
+}
+
+.award-shimmer {
+    font-weight: 900;
+    color: #c5a059;
+    font-size: 1.5em;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.8);
+}
+
+/* 確保圖片完整觀看且不裁切 */
+.gallery-grid-full {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.gallery-item-full {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item-full:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-item-full img {
+    width: 100%;
+    height: auto; /* 關鍵：高度自動，確保比例完整 */
+    display: block;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.gallery-label-dark {
+    padding: 12px 5px 5px;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #1a237e;
+    text-align: center;
+}
+
+/* 針對手機版微調 */
+@media (max-width: 768px) {
+    .gallery-grid-full {
+        grid-template-columns: 1fr; /* 手機版單欄完整呈現 */
+    }
+}
+
         /* --- 5. 其他元件 --- */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
@@ -512,23 +621,42 @@
             </div>
         </div>
 
-        <div class="section-title">相關證照與榮譽照片集</div>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://via.placeholder.com/400x300?text=Synopsys+Award" alt="證照獎狀 1">
-                <div class="gallery-label">Synopsys AIoT 競賽 獲獎證明</div>
+        <div class="section-title">相關獎狀與證明</div>
+        <div class="gallery-grid-full">
+            <div class="gallery-item-full">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Andrew/58B42B5F-EC30-42D2-B164-1C7F17596F99.jpg?raw=true" alt="全國 AI CUP 競賽優等證明">
+                <div class="gallery-label-dark">全國 AI CUP 競賽優等證明</div>
             </div>
-            <div class="gallery-item">
-                <img src="https://via.placeholder.com/400x300?text=AI+CUP+Certificate" alt="證照獎狀 2">
-                <div class="gallery-label">AI CUP 2022 全國亞軍獎狀</div>
+            <div class="gallery-item-full">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Andrew/59849BD0-23D4-4C1A-A1F5-46D2DB14B6CE.jpg?raw=true" alt="學術優異榮譽狀">
+                <div class="gallery-label-dark">學術優異榮譽狀</div>
             </div>
-            <div class="gallery-item">
-                <img src="https://via.placeholder.com/400x300?text=NDHU+Academic" alt="證照獎狀 3">
-                <div class="gallery-label">國立東華大學 學業傑出獎</div>
+        </div>
+
+        <div class="section-title">核心研究實錄</div>
+        <div class="gallery-grid-full">
+            <div class="gallery-item-full">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Andrew/0B9C48C6-D5F9-49F9-9E8C-F0DE7088B24F.jpg?raw=true" alt="研究實地採樣紀錄">
+                <div class="gallery-label-dark">研究實地採樣與數據分析紀錄</div>
             </div>
-            <div class="gallery-item">
-                <img src="https://via.placeholder.com/400x300?text=AI+Research+Photo" alt="研究照片">
-                <div class="gallery-label">智慧交通系統 實地測試紀錄</div>
+            <div class="gallery-item-full">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Andrew/37C04A8B-848D-4D3A-8330-719D8CEFB86D.jpg?raw=true" alt="實驗室多模態模型訓練環境">
+                <div class="gallery-label-dark">實驗室多模態模型訓練環境</div>
+            </div>
+        </div>
+
+        <div class="section-title" style="color: #c5a059;"><i class="fa-scroll fa-solid"></i> 國際學術期刊認證</div>
+        <div class="grand-journal-award">
+            <div class="journal-inner-frame">
+                <div class="award-shimmer">Academic Publication Excellence</div>
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Andrew/4141B1D7-6C3E-488F-B094-ADE98E89DEA6.jpg?raw=true" alt="期刊證明" class="journal-img-main">
+                <div style="margin-top: 25px; color: #fff;">
+                    <h3 style="color: #c5a059; margin-bottom: 10px;">國際學術論文錄用證明</h3>
+                    <p style="font-size: 0.9em; opacity: 0.8; line-height: 1.6;">
+                        丁俊齊講師於 113 年度 之研究成果已獲國際學術期刊正式收錄。<br>
+                        研究內容結合人工智慧、數學模型與時間序列分析技術，應用於交通流量預測，並通過嚴謹之國際同儕審查，獲得學術界高度認可。
+                    </p>
+                </div>
             </div>
         </div>
 
