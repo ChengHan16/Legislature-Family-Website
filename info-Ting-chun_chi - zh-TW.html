@@ -176,7 +176,7 @@
         /* 將按鈕釘在 profile-header 右上角 */
         .ig-link-card {
             position: absolute;
-            top: 85px; /* IG按鈕位置定位 */
+            /*top: 85px; /* IG按鈕位置定位 */
             right: 35px;
             z-index: 5;
         }
@@ -200,6 +200,46 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
             color: white;
+        }
+
+        .fb-link-card {
+            position: absolute;
+            top: 85px; /* 維持原位 */
+            right: 35px;
+            z-index: 5;
+        }
+
+        .fb-btn {
+            text-decoration: none;
+            /* 修改為 Facebook 官方藍色 */
+            background: #1877F2; 
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px; /* 維持圓角膠囊狀 */
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* 修改陰影顏色為 Facebook 藍的擴散感 */
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .fb-btn:hover {
+            /* 滑過時稍微加深藍色 */
+            background: #166fe5;
+            transform: translateY(-3px);
+            /* 加強 Facebook 藍的發光效果 */
+            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.5);
+            color: white;
+        }
+
+        .fb-btn i {
+            font-size: 16px; /* 控制 f 圖標的大小 */
+            margin-right: 5px; /* 與文字 Facebook 之間的距離 */
+            display: inline-block;
+            vertical-align: middle;
         }
 
         /* 強化得獎項目的顯眼風格 */
@@ -875,6 +915,12 @@
                         <i class="fa-brands fa-instagram"></i> Instagram
                     </a>
                 </div>
+
+                <div class="social-link-item">
+                    <a href="https://www.facebook.com/ding.jun.qi.991619?locale=zh_TW" target="_blank" class="fb-btn">
+                        <i class="fa-brands fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -1173,4 +1219,3 @@
         });
         </script>
 </html>
-
