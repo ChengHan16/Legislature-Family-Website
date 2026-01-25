@@ -275,6 +275,53 @@
     }
 }
 
+/* 可愛柴爬101 專屬樣式 */
+.shiba-101-section {
+    text-align: center;
+    margin: 60px 0;
+}
+
+.title-101 {
+    color: #008080; /* 101建築常見的藍綠配色 */
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.shiba-101-card {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: inline-block;
+    max-width: 50%;
+    transition: 0.3s;
+    border: 2px solid #008080; /* 101配色外框 */
+}
+
+.shiba-101-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,128,128,0.2);
+}
+
+.shiba-101-card img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 10px;
+    display: block;
+}
+
+.shiba-101-desc {
+    margin-top: 15px;
+    color: #555;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
         /* --- 5. 其他元件 --- */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
@@ -386,7 +433,7 @@
 
     <main class="event-content-area">
         <div class="profile-header shiba-header" style="position: relative;">
-            
+
             <div class="photo-section shiba-photo" style="position: relative;">
                 <div style="position: absolute; top: -10px; right: -10px; background: linear-gradient(45deg, #ffcc00, #ffffff); color: #1a237e; padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; box-shadow: 0 0 15px rgba(255,204,0,0.8); z-index: 10; border: 2px solid #1a237e;">
                     <i class="fa-solid fa-sparkles"></i> 法院吉祥物
@@ -396,7 +443,7 @@
 
             <div class="info-brief shiba-info">
                 <span class="nickname">Cute Shiba</span>
-                <h1>可愛柴 Shiba</h1>
+                <h1>可愛柴</h1>
                 <div class="blue-line"></div>
                 <div style="font-size: 1.1em; color: #444; line-height: 1.8;">
                     出生地：台灣 <img src="https://raw.githubusercontent.com/ChengHan16/Legislature-Family-Website/c5599eac05dbcdaf97afd7dfabdf762d8d4f7e3a/image/Flag_of_the_Republic_of_China.svg" alt="ROC" style="height:15px; vertical-align: middle; border:1px solid #ddd;"><br>
@@ -477,7 +524,19 @@
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Shiba/Shiba06.jpg?raw=true" alt="Shiba 06">
             </div>
         </div>
-        
+
+        <div class="shiba-101-section">
+            <div class="title-101">
+                <i class="fa-solid fa-building"></i> 勇闖高峰：可愛柴爬台北 101
+            </div>
+            <div class="shiba-101-card">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Shiba/shiba-101.jpg?raw=true" alt="可愛柴爬101">
+                <div class="shiba-101-desc">
+                    <strong>2026 年度挑戰任務：</strong> Shiba 展現驚人體力，成功「登頂」台北 101，象徵立院守護力更上一層樓！<br>畫家：Nina
+                </div>
+            </div>
+        </div>
+
         <div class="info-card" style="margin-top: 40px; text-align: center; border-left-color: #ffcc00;">
             <p style="color: #999; font-size: 0.9em; margin: 0;">Certified Detective Dog | Legislative Yuan | ID: 2017-SHIBA-001</p>
         </div>
