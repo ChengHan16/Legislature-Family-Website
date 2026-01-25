@@ -579,13 +579,17 @@
             font-family: 'Consolas', 'Monaco', monospace;
             font-size: 14px;
             font-weight: 600;
-            color: #ffffff; /* 提升文字亮度 */
-            background: #1a1a1a; /* 使用深色背景營造對比 */
-            border: 1px solid #d4af37; /* 加上金邊呼應主色調 */
+            color: #ffffff; 
+            /* 修改這裡：rgba 前三個值控制顏色，最後一個 0.7 代表 70% 不透明度 */
+            background: rgba(26, 26, 26, 0.8); 
+            /* 選擇性加入：讓半透明背景帶有磨砂玻璃感 (需瀏覽器支援) */
+            backdrop-filter: blur(4px); 
+            
+            border: 1px solid #d4af37; 
             padding: 4px 12px;
             border-radius: 4px;
-            letter-spacing: 1.5px; /* 增加字距更具科技感 */
-            box-shadow: inset 0 0 5px rgba(212, 175, 55, 0.2); /* 內部微光效果 */
+            letter-spacing: 1.5px; 
+            box-shadow: inset 0 0 5px rgba(212, 175, 55, 0.2); 
             display: inline-block;
         }
 
@@ -668,6 +672,15 @@
         /* --- 5. 其他元件 --- */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px; background-color: #1a237e;
+            color: white; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; z-index: 1000;
+            border: 2px solid #ffcc00; transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .to-email {
+            position: fixed; bottom: 100px; right: 30px;
             width: 50px; height: 50px; background-color: #1a237e;
             color: white; border-radius: 50%; display: flex;
             justify-content: center; align-items: center; z-index: 1000;
@@ -860,25 +873,6 @@
                 <div class="social-link-item">
                     <a href="https://www.instagram.com/ssindychen1/" target="_blank" class="ig-btn">
                         <i class="fa-brands fa-instagram"></i> Instagram
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-title">聯絡我</div>
-        <div class="summoner-data-card">
-            <div class="summoner-avatar-box">
-                <div class="contact-icon-box">
-                    <i class="fa-solid fa-envelope"></i>
-                </div>
-            </div>
-            <div class="summoner-info-box">
-                <div class="summoner-main-row">
-                    <h3 class="summoner-name">電子郵件信箱</h3>
-                </div>
-                <div class="summoner-tags">
-                    <a href="mailto:611221407@gms.ndhu.edu.tw" class="email-link">
-                        <i class="fa-solid fa-paper-plane" style="margin-right: 8px; font-size: 14px; color: black;"></i>611221407@gms.ndhu.edu.tw
                     </a>
                 </div>
             </div>
@@ -1120,7 +1114,30 @@
         <div class="info-card" style="margin-top: 40px; text-align: center; border-left-color: #ffcc00;">
             <p style="color: #999; font-size: 0.9em; margin: 0;">Verified Researcher | Department of Electrical Engineering & Computer Science | ID: NDHU-EE-2026</p>
         </div>
+
+        <div class="section-title">聯絡我</div>
+        <div class="summoner-data-card">
+            <div class="summoner-avatar-box">
+                <div class="contact-icon-box">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+            </div>
+            <div class="summoner-info-box">
+                <div class="summoner-main-row">
+                    <h3 class="summoner-name">電子郵件信箱</h3>
+                </div>
+                <div class="summoner-tags">
+                    <a href="mailto:611221407@gms.ndhu.edu.tw" class="email-link">
+                        <i class="fa-solid fa-paper-plane" style="margin-right: 8px; font-size: 14px; color: black;"></i>611221407@gms.ndhu.edu.tw
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <a href="mailto:611221407@gms.ndhu.edu.tw" class="to-email">
+        <i class="fa-solid fa-envelope"></i>
+    </a>
 
     <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
 
