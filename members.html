@@ -356,6 +356,22 @@
             color: white;
             font-size: 0.8em;
         }
+
+        /* 動態載入提示樣式 */
+        .loading-msg {
+            width: 100%;
+            text-align: center;
+            padding: 50px;
+            color: #1a237e;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .loading-msg i {
+            margin-bottom: 10px;
+            display: block;
+            font-size: 2em;
+            animation: fa-spin 2s infinite linear;
+        }
         
         
         /* --- 5. RWD 響應式調整 --- */
@@ -435,6 +451,20 @@
                 height: 100px;
             }
             
+            /* 手機版 標題列和黃字說明大小調整 Star */
+            .event-banner { /* 欄位高度大小*/
+                height: 160px; 
+            }
+            .event-banner h1 { /* 大標題*/
+                font-size: 35px; 
+            }        
+            .banner-info-wrap { /* 提示字*/
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 12px;
+            }
+            /* 手機版 標題列和黃字說明大小調整 End */
+
         }
     </style>
 </head>
@@ -448,313 +478,24 @@
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html"class="active-dark">成員介紹</a></li> 
                 <li><a href="events.html">活動行程</a></li>
-                <li><a href="Other.html">其他</a></li>
+                <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="event-banner">
         <h1>成員介紹</h1>
-
         <div class="banner-info-wrap">
             <span><i class="fa-solid fa-calendar-check"></i> 團隊成員介紹</span>
             <span><i class="fa-solid fa-crown"></i> 人員編制說明</span>
         </div>
     </section>
 
-    <main class="member-list">
-        
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 1</div>
-            <div class="member-image-wrapper">
-                <a href="info-leader.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/leader2.png?raw=true" alt="成員 1 頭像">
-                </a>
-            </div>
-            <div class="member-title">班長</div>
+    <main class="member-list" id="member-container">
+        <div class="loading-msg">
+            <i class="fa-solid fa-circle-notch"></i>
+            正在同步成員資料庫...
         </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 2</div>
-            <div class="member-image-wrapper">
-                <a href="info-momoe - zh-TW.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/MOMOE.png?raw=true" alt="成員 2 頭像">
-                </a>
-            </div>
-            <div class="member-title">もも</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 3</div>
-            <div class="member-image-wrapper">
-                <a href="info-Ting-chun_chi - zh-TW.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ding_Junqi.png?raw=true" alt="成員 3 頭像">
-                </a>
-            </div>
-            <div class="member-title">俊齊</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 4</div>
-            <div class="member-image-wrapper">
-                <a href="info-Chen_Jiawei.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Deltataforce.png?raw=true" alt="成員 4 頭像">
-                </a>
-            </div>
-            <div class="member-title">佳偉</div>
-        </div>
-        
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 5</div>
-            <div class="member-image-wrapper">
-                <a href="info-Liu-Shuming.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Liu%20Shuming.png?raw=true" alt="成員 5 頭像">
-                </a>
-            </div>
-            <div class="member-title">書銘</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 6</div>
-            <div class="member-image-wrapper">
-                <a href="info-Liang_Bojun.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Liang%20Bojun.png?raw=true" alt="成員 6 頭像">
-                </a>
-            </div>
-            <div class="member-title">博俊</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 7</div>
-            <div class="member-image-wrapper">
-                <a href="info-Huang_Weiren.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Huang_Weiren.png?raw=true" alt="成員 7 頭像">
-                </a>
-            </div>
-            <div class="member-title">韋仁</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 8</div>
-            <div class="member-image-wrapper">
-                <a href="info-Ye_Guangting.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye%20Guangting.png?raw=true" alt="成員 8 頭像">
-                </a>
-            </div>
-            <div class="member-title">光庭</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 9</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Li_Zhengde.png?raw=true" alt="成員 9 頭像">
-            </div>
-            <div class="member-title">正德</div>
-        </div>
-        
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 10</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Ye_Yixian.png?raw=true" alt="成員 10 頭像">
-            </div>
-            <div class="member-title">奕賢</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 11</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Chen%20Weicheng.png?raw=true" alt="成員 11 頭像">
-            </div>
-            <div class="member-title">威丞</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 12</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Guo_Jiangxu.png?raw=true" alt="成員 12 頭像">
-            </div>
-            <div class="member-title">江旭</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 13</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Wang%20Zunxuan.png?raw=true" alt="成員 13 頭像">
-            </div>
-            <div class="member-title">尊玄</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 14</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 14 頭像">
-            </div>
-            <div class="member-title">俊諺</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 15</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 15 頭像">
-            </div>
-            <div class="member-title">成一</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 16</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 16 頭像">
-            </div>
-            <div class="member-title">崇憲</div>
-        </div>              
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 17</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 17 頭像">
-            </div>
-            <div class="member-title">凱駿</div>
-        </div>      
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 18</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 18 頭像">
-            </div>
-            <div class="member-title">宗航</div>
-        </div>      
-        
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 19</div>
-            <div class="member-image-wrapper">
-                <a href="info-Hsieh-chunju.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 19 頭像">
-                </a>
-            </div>
-            <div class="member-title">鈞儒</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 20</div>
-            <div class="member-image-wrapper">
-                <a href="info-Jiang_Chengyuan.html">
-                    <img src="https://raw.githubusercontent.com/ChengHan16/Legislature-Family-Website/refs/heads/main/image/Jiang%20Chengyuan.png" alt="成員 20 頭像">
-                </a>
-            </div>
-            <div class="member-title">承遠</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 21</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 21 頭像">
-            </div>
-            <div class="member-title">凱瑞</div>
-        </div>
-        
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 22</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 22 頭像">
-            </div>
-            <div class="member-title">智皓</div>
-        </div>  
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 23</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 23 頭像">
-            </div>
-            <div class="member-title">哲遠</div>
-        </div>  
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 24</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 24 頭像">
-            </div>
-            <div class="member-title">皓鈞</div>
-        </div>  
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 25</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 25 頭像">
-            </div>
-            <div class="member-title">祐瑜</div>
-        </div>  
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 26</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 26 頭像">
-            </div>
-            <div class="member-title">智軒</div>
-        </div>
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 27</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 27 頭像">
-            </div>
-            <div class="member-title">隆勳</div>
-        </div> 
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 28</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 28 頭像">
-            </div>
-            <div class="member-title">鎮遠</div>
-        </div>  
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 29</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 29 頭像">
-            </div>
-            <div class="member-title">冠叡</div>
-        </div>  
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 30</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 30 頭像">
-            </div>
-            <div class="member-title">柏鑫</div>
-        </div>  
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 31</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 31 頭像">
-            </div>
-            <div class="member-title">承謬</div>
-        </div>  
-
-        <div class="member-item">
-            <div class="member-name-placeholder">成員 00</div>
-            <div class="member-image-wrapper">
-                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Mysterious01.png?raw=true" alt="成員 00 頭像">
-            </div>
-            <div class="member-title">**</div>
-        </div>
-
-        <div style="flex-basis: 100%; text-align: center; margin: 40px 0 20px;">
-            <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); margin-bottom: 20px;">
-            <h2 style="font-size: 1.8em; color: #1a237e; letter-spacing: 5px; font-weight: bold;">守護神</h2>
-        </div>
-
-        <div class="member-item guardian-member">
-            <div class="member-name-placeholder">吉祥物</div>
-            <div class="member-image-wrapper" style="border: 3px solid #ffcc00; box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);">
-                <a href="info-Shiba.html">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/shiba.png?raw=true" alt="守護神柴犬頭像">
-                </a>
-            </div>
-            <div class="member-title" style="color: #bc9b00; font-weight: bold;">可愛柴 Shiba</div>
-        </div>
-        
     </main>
 
     <a href="#" class="back-to-top" title="回到最頂端"><i class="fa-solid fa-chevron-up"></i></a>
@@ -763,7 +504,76 @@
         <p>© 2026 立法院 Legislature. All rights reserved.</p>
     </footer>
 
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script>
+        // ** 1. Firebase 配置 (與 Data 網頁一致) **
+        const firebaseConfig = {
+            apiKey: "AIzaSyACnoimIASfb1rb59SbgLDkUmyYR6ODbUU",
+            authDomain: "llwb-ed686.firebaseapp.com",
+            projectId: "llwb-ed686",
+            storageBucket: "llwb-ed686.firebasestorage.app", 
+            messagingSenderId: "940345852074",
+            appId: "1:940345852074:web:7a30cca5a6d997a92350d3",
+            measurementId: "G-KWL4ZE3D18"
+        };
+
+        // 初始化 Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('member-container');
+
+            // ** 2. 監聽 Firebase 資料 (即時更新) **
+            db.collection("content").orderBy("timestamp", "asc").onSnapshot((snapshot) => {
+                    container.innerHTML = ""; 
+                    
+                    snapshot.docs.forEach((doc, index) => {
+                        const data = doc.data();
+                        const nickname = data.text || '未命名';
+                        const imgSrc = data.imageUrl || '預設圖片網址';
+                        const memberLink = data.link || '#'; // 讀取資料庫中的 link 欄位
+                        const memberNumber = index + 1;
+
+                    // 判斷是否為「守護神」(包含 Shiba 或 柴犬 或 吉祥物)
+                    const isGuardian = nickname.includes("Shiba") || nickname.includes("柴犬") || nickname.includes("吉祥物");
+
+                    // 如果遇到守護神，且還沒放過分隔線
+                    if (isGuardian && !hasGuardianDivider) {
+                        const divider = `
+                            <div style="flex-basis: 100%; text-align: center; margin: 40px 0 20px;">
+                                <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); margin-bottom: 20px;">
+                                <h2 style="font-size: 1.8em; color: #1a237e; letter-spacing: 5px; font-weight: bold;">守護神</h2>
+                            </div>`;
+                        container.insertAdjacentHTML('beforeend', divider);
+                        hasGuardianDivider = true;
+                    }
+
+                    // 生成與你原本 members.html 一模一樣的卡片格式
+                    const cardHTML = `
+                        <div class="member-item">
+                            <div class="member-name-placeholder">成員 ${memberNumber}</div>
+                            <div class="member-image-wrapper">
+                                <a href="${memberLink}">
+                                    <img src="${imgSrc}" alt="${nickname} 頭像">
+                                </a>
+                            </div>
+                            <div class="member-title">${nickname}</div>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', cardHTML);
+                });
+            }, (error) => {
+                console.error("Firebase 讀取失敗:", error);
+                container.innerHTML = `<p style='color:red;'>連線錯誤: ${error.message}</p>`;
+            });
+        });
+    </script>
+
 </body>
 </html>
-
 
