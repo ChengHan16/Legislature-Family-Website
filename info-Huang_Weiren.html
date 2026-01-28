@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>立法院 - 成員介紹：丁俊齊</title>
+    <title>立法院 - 成員介紹：黃韋仁</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -117,6 +117,81 @@
             margin-bottom: 40px;
         }
 
+        /*語言切換|Instagram|Facebook 按鈕設定位置*/
+        .ig-btn {
+            text-decoration: none;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(188, 24, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ig-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
+            color: white;
+        }
+
+        .fb-link-card {
+            position: absolute;
+            top: 85px; /* 維持原位 */
+            right: 35px;
+            z-index: 5;
+        }
+
+        .fb-btn {
+            text-decoration: none;
+            /* 修改為 Facebook 官方藍色 */
+            background: #1877F2; 
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px; /* 維持圓角膠囊狀 */
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* 修改陰影顏色為 Facebook 藍的擴散感 */
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .fb-btn:hover {
+            /* 滑過時稍微加深藍色 */
+            background: #166fe5;
+            transform: translateY(-3px);
+            /* 加強 Facebook 藍的發光效果 */
+            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.5);
+            color: white;
+        }
+
+        .fb-btn i {
+            font-size: 16px; /* 控制 f 圖標的大小 */
+            margin-right: 5px; /* 與文字 Facebook 之間的距離 */
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .header-actions {
+            position: absolute; /* 相對於 profile-header 定位 */
+            top: 20px;          /* 距離頂部 20px */
+            right: 20px;        /* 距離右側 20px */
+            display: flex;
+            flex-direction: column; /* 讓按鈕上下排列 */
+            align-items: flex-end;  /* 讓按鈕靠右對齊 */
+            gap: 12px;          /* 設定按鈕之間的間距，防止重疊 */
+            z-index: 10;        /* 確保選單彈出時不會被其他內容遮擋 */
+        }
+
+        /*語言切換|Instagram|Facebook 按鈕設定位置 End*/
+
         .photo-section { flex-shrink: 0; text-align: center; }
         .avatar-img {
             width: 200px; height: 200px; border-radius: 12px;
@@ -183,6 +258,129 @@
         }
 
         footer { text-align: center; padding: 25px; background-color: #1a237e; color: white; font-size: 0.9em; }
+
+        /* 神魔之塔 */
+        .summoner-data-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-left: 6px solid #ffc400;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .summoner-avatar-box {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .summoner-avatar-box img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid #ffc400;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .summoner-allmax-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffc400;
+            color: #1a1a1a;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 10px;
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+
+        .summoner-info-box {
+            flex-grow: 1;
+        }
+
+        .summoner-main-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .summoner-name {
+            font-size: 22px;
+            color: #000000;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .summoner-uid {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff; /* 提升文字亮度 */
+            background: #1a1a1a; /* 使用深色背景營造對比 */
+            border: 1px solid #d4af37; /* 加上金邊呼應主色調 */
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: 1.5px; /* 增加字距更具科技感 */
+            box-shadow: inset 0 0 5px rgba(212, 175, 55, 0.2); /* 內部微光效果 */
+            display: inline-block;
+        }
+
+        .summoner-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .s-tag {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #1c170f;
+        }
+
+        .s-tag-guild {
+            border-color: rgba(212, 175, 55, 0.3);
+            color: #1c170f;
+        }
+        @media (max-width: 768px) {
+            .summoner-data-card { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 20px; 
+            }
+
+            /* 手機版強制置中並調整間距 */
+            .summoner-main-row {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 12px !important; /* 增加名稱與 UID 的垂直間距 */
+                margin-bottom: 15px !important;
+            }
+
+            /* 調整手機版 UID 字體大小以防溢出 */
+            .summoner-uid {
+                font-size: 13px;
+                padding: 6px 15px;
+            }
+
+            .summoner-tags {
+                justify-content: center !important;
+            }
+        }
+        /* 神魔之塔 */
 
         /* =============================================
            響應式優化 (RWD)
@@ -255,6 +453,28 @@
                 white-space: nowrap;    /* 關鍵：文字絕對不換行 */
                 letter-spacing: -0.5px; /* 稍微縮小字距，節省空間 */
             }
+            
+            /*語言切換|Instagram|Facebook 按鈕設定位置*/
+            .header-actions {
+                position: static;   /* 回復普通流向 */
+                margin-top: -30px;
+                align-items: center; /* 居中對齊 */
+                width: 100%;
+            }
+
+            /* 手機版 標題列和黃字說明大小調整 Star */
+            .event-banner { /* 欄位高度大小*/
+                height: 160px; 
+            }
+            .event-banner h1 { /* 大標題*/
+                font-size: 30px; 
+            }        
+            .banner-info-wrap { /* 提示字*/
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 16px;
+            }
+            /* 手機版 標題列和黃字說明大小調整 End */
         }
     </style>
 </head>
@@ -268,7 +488,7 @@
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html"class="active-dark">成員介紹</a></li> 
                 <li><a href="events.html">活動行程</a></li>
-                <li><a href="Other.html">其他</a></li>
+                <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
     </header>
@@ -281,8 +501,8 @@
         </div>
     </section>
 
-    <main class="event-content-area">
-        <div class="profile-header">
+    <main class="event-content-area" style="position: relative;">
+        <div class="profile-header" style="position: relative;">
             <div class="photo-section">
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Huang_Weiren.png?raw=true" alt="黃韋仁照片" class="avatar-img">
             </div>
@@ -296,6 +516,41 @@
                     畢業院校：南臺科技大學 電子工程系<br>
                     技術職稱：射頻通訊系統架構師 / 天線設計資深工程師<br>
                     核心研究：微波電路設計、射頻辨識系統、多頻段天線微型化分析
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <div class="social-link-item">
+                    <a href="https://www.instagram.com/huang_wei_ren/" target="_blank" class="ig-btn">
+                        <i class="fa-brands fa-instagram"></i> Instagram
+                    </a>
+                </div>
+
+                <div class="social-link-item">
+                    <a href="https://www.facebook.com/huang.wei.ren.432061?locale=zh_TW" target="_blank" class="fb-btn">
+                        <i class="fa-brands fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">神魔之塔召喚師資訊</div>
+        <div class="summoner-data-card">
+            <!--
+            <div class="summoner-avatar-box">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/v20251-12th-iOS_1024.png?raw=true" alt="召喚師頭像">
+                <div class="summoner-allmax-badge">ALL MAX</div>
+            </div>
+            -->
+            <div class="summoner-info-box">
+                <div class="summoner-main-row">
+                    <h3 class="summoner-name">程肖宇的暗影士兵</h3>
+                    <span class="summoner-uid">UID: 517710379</span>
+                </div>
+                <div class="summoner-tags">
+                    <span class="s-tag"><i class="fa-solid fa-trophy"></i> 神魔宮府</span>
+                    <span class="s-tag s-tag-guild"><i class="fa-solid fa-shield-cat"></i> 歐拉歐拉</span>
+                    <span class="s-tag"><i class="fa-solid fa-check"></i> 認證召喚師</span>
                 </div>
             </div>
         </div>
@@ -442,5 +697,4 @@
         <p>© 2026 立法院 Legislature - 數位資訊發展處 版權所有</p>
     </footer>
 </body>
-
 </html>
