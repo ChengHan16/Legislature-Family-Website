@@ -98,7 +98,7 @@
             color: #ffcc00;
         }
 
-        /*語言切換|Instagram|Facebook 按鈕設定位置*/
+        /*按鈕設定位置*/
         .ig-btn {
             text-decoration: none;
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
@@ -159,7 +159,7 @@
             display: inline-block;
             vertical-align: middle;
         }
-        /*語言切換|Instagram|Facebook 按鈕設定位置 end*/
+        /*按鈕設定位置 end*/
 
         /* --- 3. 主要內容區域 --- */
         .event-content-area {
@@ -349,101 +349,7 @@
             justify-content: center !important;
         }
     }
-        /* 神魔之塔 End */
-
-        /* --- 競技場賽季紀錄專用樣式 --- */
-        .season-record-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            padding: 30px;
-            margin-top: 20px;
-            border: 1px solid #e0e0e0;
-            border-top: 5px solid #ffcc00; /* 王者金頂邊 */
-        }
-
-        .season-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .season-title-text {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: #1a237e;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .season-badge {
-            background: #1a237e;
-            color: #ffcc00;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.7em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .season-desc {
-            color: #555;
-            line-height: 1.8;
-            font-size: 0.95em;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            border-left: 4px solid #ddd;
-        }
-
-        /* 圖片證明區塊 */
-        .evidence-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .evidence-item {
-            text-align: center;
-        }
-
-        .evidence-img {
-            /* 1. 將最大寬度從 450px 改小，例如 300px 或更小 */
-            width: 70%;            /* 讓圖片佔據容器寬度的比例縮小 */
-            max-width: 280px;      /* 限制最大寬度，避免在寬螢幕下太大 */
-            
-            border-radius: 6px;
-            border: 1px solid #dcdcdc; /* 維持細邊框 */
-            padding: 4px;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease;
-            display: block;        /* 確保居中生效 */
-            margin: 0 auto;        /* 讓圖片在格子內置中 */
-        }
-
-        .evidence-img:hover {
-            transform: scale(1.02);
-            border-color: #ffcc00;
-        }
-
-        .evidence-label {
-            display: block;
-            margin-top: 10px;
-            font-size: 0.85em;
-            color: #888;
-            font-style: italic;
-        }
-
-        @media (max-width: 768px) {
-            .evidence-grid { grid-template-columns: 1fr; }
-            .season-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-        }
+        /* 神魔之塔 */
 
         @media (max-width: 768px) {
             .summoner-data-card { flex-direction: column; text-align: center; gap: 20px; }
@@ -483,7 +389,7 @@
             .member-card { width: 100% !important; max-width: 350px; margin: 0 auto; }
         }
 
-        /* /*語言切換|Instagram|Facebook 按鈕設定位置 右上角功能容器 */
+        /* 右上角功能容器 */
         .header-actions {
             position: absolute; /* 相對於 profile-header 定位 */
             top: 20px;          /* 距離頂部 20px */
@@ -500,13 +406,17 @@
             width: auto;
         }
 
-        /* 語言切換|Instagram|Facebook 按鈕設定位置 | 如果是手機版，建議取消絕對定位以防重疊 */
+        /* 如果是手機版，建議取消絕對定位以防重疊 */
         @media (max-width: 768px) {
             .header-actions {
                 position: static;   /* 回復普通流向 */
-                margin-top: -30px;
+                margin-top: -20px;
                 align-items: center; /* 居中對齊 */
                 width: 100%;
+        }
+
+        .event-banner h1 { 
+            font-size: 3.5em; 
         }
 
         /* 2. 調整導覽連結容器 */
@@ -536,20 +446,6 @@
                 white-space: nowrap;    /* 關鍵：文字絕對不換行 */
                 letter-spacing: -0.5px; /* 稍微縮小字距，節省空間 */
             }
-
-            /* 手機版 標題列和黃字說明大小調整 Star */
-            .event-banner { /* 欄位高度大小*/
-                height: 160px; 
-            }
-            .event-banner h1 { /* 大標題*/
-                font-size: 30px; 
-            }        
-            .banner-info-wrap { /* 提示字*/
-                margin-top: 10px;
-                padding-bottom: 10px;
-                font-size: 16px;
-            }
-            /* 手機版 標題列和黃字說明大小調整 End */
     }
     </style>
 </head>
@@ -566,7 +462,7 @@
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html" class="active-dark">成員介紹</a></li> 
                 <li><a href="events.html">活動行程</a></li>
-                <li><a href="index.html">其他</a></li>
+                <li><a href="Other.html">其他</a></li>
             </ul>
         </nav>
     </header>
@@ -613,12 +509,10 @@
 
         <div class="section-title">神魔之塔召喚師資訊</div>
         <div class="summoner-data-card">
-            <!--
             <div class="summoner-avatar-box">
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/v20251-12th-iOS_1024.png?raw=true" alt="召喚師頭像">
                 <div class="summoner-allmax-badge">ALL MAX</div>
             </div>
-            -->
             <div class="summoner-info-box">
                 <div class="summoner-main-row">
                     <h3 class="summoner-name">布丁 <i class="fa-solid fa-heart" style="font-size: 0.8em; color: #ff4d4d;"></i> 艦長</h3>
@@ -662,33 +556,6 @@
                 <span class="tag">Academic</span>
                 <strong class="m-title">幻想文學研究專業證明</strong>
                 <p class="m-desc">深入研究古代帝王史與現代心理學，將其運用於創造極具張力的「王者人格」角色原型。</p>
-            </div>
-        </div>
-
-        <div class="section-title">賽季榮譽紀錄</div>
-        <div class="season-record-card">
-            <div class="season-header">
-                <div class="season-title-text">
-                    <i class="fa-solid fa-crown" style="color: #ffcc00;"></i>
-                    《神魔之塔》競技場賽季紀錄－王者級
-                </div>
-                <div class="season-badge">2026 Q1 SEASON</div>
-            </div>
-
-            <div class="season-desc">
-                <strong>賽季說明：</strong><br>
-                《神魔之塔》（Tower of Saviors）競技場將於 2026 年 1 月 5 日起至 2026 年 3 月 1 日止舉行本期「王者級」賽季。此為競技場之最高階對戰階級，唯有頂尖召喚師方能參與排名對戰，爭取賽季專屬榮譽與高階獎勵。
-            </div>
-
-            <div class="evidence-grid">
-                <div class="evidence-item">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Liu%20Shuming/IMG_0476.jpg?raw=true" alt="賽季證明1" class="evidence-img">
-                    <span class="evidence-label">賽季排名對戰截圖 (一)</span>
-                </div>
-                <div class="evidence-item">
-                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Liu%20Shuming/IMG_0477.jpg?raw=true" alt="賽季證明2" class="evidence-img">
-                    <span class="evidence-label">賽季排名對戰截圖 (二)</span>
-                </div>
             </div>
         </div>
         
