@@ -92,8 +92,8 @@
             display: flex;
             flex-direction: column; 
             align-items: center;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 15px;
+            margin-top: 20px;
             font-size: 1.1em;
             color: #ffcc00;
         }
@@ -211,6 +211,46 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
             color: white;
+        }
+
+        .fb-link-card {
+            position: absolute;
+            top: 85px; /* 維持原位 */
+            right: 35px;
+            z-index: 5;
+        }
+
+        .fb-btn {
+            text-decoration: none;
+            /* 修改為 Facebook 官方藍色 */
+            background: #1877F2; 
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px; /* 維持圓角膠囊狀 */
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* 修改陰影顏色為 Facebook 藍的擴散感 */
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .fb-btn:hover {
+            /* 滑過時稍微加深藍色 */
+            background: #166fe5;
+            transform: translateY(-3px);
+            /* 加強 Facebook 藍的發光效果 */
+            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.5);
+            color: white;
+        }
+
+        .fb-btn i {
+            font-size: 16px; /* 控制 f 圖標的大小 */
+            margin-right: 5px; /* 與文字 Facebook 之間的距離 */
+            display: inline-block;
+            vertical-align: middle;
         }
 
         /* 強化得獎項目的顯眼風格 */
@@ -781,10 +821,24 @@
             /* 右上角功能容器 END */    
             .header-actions {        
                 position: static;    /* 回復普通流向 */
-                margin-top: 20px;
+                margin-top: -30px;
                 align-items: center; /* 居中對齊 */
                 width: 100%;
             }
+
+            /* 手機版 標題列和黃字說明大小調整 Star */
+            .event-banner { /* 欄位高度大小*/
+                height: 160px; 
+            }
+            .event-banner h1 { /* 大標題*/
+                font-size: 30px; 
+            }        
+            .banner-info-wrap { /* 提示字*/
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 16px;
+            }
+            /* 手機版 標題列和黃字說明大小調整 End */
 
         }
     </style>
@@ -799,7 +853,7 @@
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html"class="active-dark">成員介紹</a></li> 
                 <li><a href="events.html">活動行程</a></li>
-                <li><a href="Other.html">其他</a></li>
+                <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
     </header>
@@ -846,15 +900,23 @@
                         <i class="fa-brands fa-instagram"></i> Instagram
                     </a>
                 </div>
+
+                <div class="social-link-item">
+                    <a href="https://www.facebook.com/ding.jun.qi.991619?locale=zh_TW" target="_blank" class="fb-btn">
+                        <i class="fa-brands fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
             </div>
         </div>
 
         <div class="section-title">神魔之塔（Tower of Saviors）召喚師情報</div>
         <div class="summoner-data-card">
+            <!--
             <div class="summoner-avatar-box">
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/v20251-12th-iOS_1024.png?raw=true" alt="召喚師アイコン">
                 <div class="summoner-allmax-badge">ALL MAX</div>
             </div>
+            -->
             <div class="summoner-info-box">
                 <div class="summoner-main-row">
                     <h3 class="summoner-name">Ninarwe</h3>
@@ -1079,4 +1141,3 @@
         });
         </script>
 </html>
-
