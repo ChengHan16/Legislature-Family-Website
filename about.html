@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>立法院 - 成員組織名錄</title>
+    <title>立法院 - 關於我們</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -19,20 +19,6 @@
             flex-direction: column;
             min-height: 100vh;
         }
-
-        /* --- 1. 導覽列樣式 --- */
-        /*.navbar-static {
-            background-color: #1a237e;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar-full {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-        }*/
 
         .navbar-static {
             background-color: #1a237e;
@@ -86,7 +72,6 @@
         .nav-links a:hover { border-bottom: 2px solid #ffcc00; }
         .nav-links a.active-dark { background-color: #004d99; border-radius: 4px; color: white !important; }
 
-        /* --- 2. 活動詳情 Banner 樣式 --- */
         /* --- 2. 活動詳情 Banner 樣式 --- */
         .event-banner {
             background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
@@ -228,6 +213,21 @@
                 white-space: nowrap;    /* 關鍵：文字絕對不換行 */
                 letter-spacing: -0.5px; /* 稍微縮小字距，節省空間 */
             }
+
+            /* 手機版 標題列和黃字說明大小調整 Star */
+            .event-banner { /* 欄位高度大小*/
+                height: 160px; 
+            }
+            .event-banner h1 { /* 大標題*/
+                font-size: 35px; 
+            }        
+            .banner-info-wrap { /* 提示字*/
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 12px;
+            }
+            /* 手機版 標題列和黃字說明大小調整 End */
+
         }
 
         @media (max-width: 1100px) {
@@ -260,7 +260,7 @@
                 <li><a href="about.html"class="active-dark">關於我們</a></li> 
                 <li><a href="members.html">成員介紹</a></li> 
                 <li><a href="events.html">活動行程</a></li>
-                <li><a href="Other.html">其他</a></li>
+                <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
     </header>
@@ -339,5 +339,4 @@
 
 </body>
 </html>
-
 
