@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>立法院 - 成員組織名錄</title>
+    <title>立法院 - 活動行程</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -284,6 +284,21 @@
             .events-grid {
                 width: 350px;
             }
+
+            /* 手機版 標題列和黃字說明大小調整 Star */
+            .event-banner { /* 欄位高度大小*/
+                height: 160px; 
+            }
+            .event-banner h1 { /* 大標題*/
+                font-size: 35px; 
+            }        
+            .banner-info-wrap { /* 提示字*/
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 12px;
+            }
+            /* 手機版 標題列和黃字說明大小調整 End */
+
         }
 
         @media (max-width: 1100px) {
@@ -302,7 +317,7 @@
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html">成員介紹</a></li> 
                 <li><a href="events.html"class="active-dark">活動行程</a></li>
-                <li><a href="Other.html">其他</a></li>
+                <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
     </header>
@@ -335,6 +350,39 @@
         <div class="container-white">
         <!-- 你的網頁內容 -->
         </div>
+
+        <!--<div class="events-grid">
+            <a href="#" class="event-card-link">
+                <article class="event-card-simple">
+                    <div class="event-date-circle">
+                        <span class="day">25</span>
+                        <span class="month">DEC</span>
+                    </div>
+                    <div class="event-info-box">
+                        <h3>待新增</h3>
+                        <p class="date-text"><i class="fa-regular fa-clock"></i> ****-**-** **</p>
+                    </div>
+                    <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </article>
+            </a>
+        </div>
+
+        <div class="events-grid">
+            <a href="#" class="event-card-link">
+                <article class="event-card-simple">
+                    <div class="event-date-circle">
+                        <span class="day">25</span>
+                        <span class="month">DEC</span>
+                    </div>
+                    <div class="event-info-box">
+                        <h3>待新增</h3>
+                        <p class="date-text"><i class="fa-regular fa-clock"></i> ****-**-** **</p>
+                    </div>
+                    <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </article>
+            </a>
+        </div>
+    -->
     </main>
 
     <a href="#" class="back-to-top" title="回到最頂端"><i class="fa-solid fa-chevron-up"></i></a>
@@ -345,4 +393,3 @@
 
 </body>
 </html>
-
