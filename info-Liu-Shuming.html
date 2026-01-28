@@ -86,17 +86,80 @@
             overflow: hidden;
         }
 
-        .event-banner h1 { font-size: 3em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
         .banner-info-wrap {
             display: flex;
-            flex-direction: column; 
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
+            flex-direction: column; /* 關鍵：由水平改為垂直排列 */
+            align-items: center;    /* 讓內容在垂直排列時依然保持居中 */
+            gap: 15px;             /* 設定兩行之間的距離 */
+            margin-top: 20px;
             font-size: 1.1em;
             color: #ffcc00;
         }
+
+        /*按鈕設定位置*/
+        .ig-btn {
+            text-decoration: none;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(188, 24, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ig-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
+            color: white;
+        }
+
+        .fb-link-card {
+            position: absolute;
+            top: 85px; /* 維持原位 */
+            right: 35px;
+            z-index: 5;
+        }
+
+        .fb-btn {
+            text-decoration: none;
+            /* 修改為 Facebook 官方藍色 */
+            background: #1877F2; 
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px; /* 維持圓角膠囊狀 */
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* 修改陰影顏色為 Facebook 藍的擴散感 */
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .fb-btn:hover {
+            /* 滑過時稍微加深藍色 */
+            background: #166fe5;
+            transform: translateY(-3px);
+            /* 加強 Facebook 藍的發光效果 */
+            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.5);
+            color: white;
+        }
+
+        .fb-btn i {
+            font-size: 16px; /* 控制 f 圖標的大小 */
+            margin-right: 5px; /* 與文字 Facebook 之間的距離 */
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /*按鈕設定位置 end*/
 
         /* --- 3. 主要內容區域 --- */
         .event-content-area {
@@ -164,6 +227,228 @@
         .m-title { font-weight: bold; font-size: 1.2em; color: #111; margin-bottom: 8px; display: block; }
         .m-desc { font-size: 0.95em; color: #666; line-height: 1.6; }
 
+        /* 召喚師資訊卡：內斂專業暗金版 */
+        .summoner-data-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-left: 6px solid #ffc400;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .summoner-avatar-box {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .summoner-avatar-box img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid #ffc400;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .summoner-allmax-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffc400;
+            color: #1a1a1a;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 10px;
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+
+        .summoner-info-box {
+            flex-grow: 1;
+        }
+
+        .summoner-main-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .summoner-name {
+            font-size: 22px;
+            color: #000000;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .summoner-uid {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff; /* 提升文字亮度 */
+            background: #1a1a1a; /* 使用深色背景營造對比 */
+            border: 1px solid #d4af37; /* 加上金邊呼應主色調 */
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: 1.5px; /* 增加字距更具科技感 */
+            box-shadow: inset 0 0 5px rgba(212, 175, 55, 0.2); /* 內部微光效果 */
+            display: inline-block;
+        }
+
+        .summoner-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .s-tag {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #1c170f;
+        }
+
+        .s-tag-guild {
+            border-color: rgba(212, 175, 55, 0.3);
+            color: #1c170f;
+        }
+        
+        @media (max-width: 768px) {
+            .summoner-data-card { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 20px; 
+        }
+
+        /* 手機版強制置中並調整間距 */
+        .summoner-main-row {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 12px !important; /* 增加名稱與 UID 的垂直間距 */
+            margin-bottom: 15px !important;
+        }
+
+        /* 調整手機版 UID 字體大小以防溢出 */
+        .summoner-uid {
+            font-size: 13px;
+            padding: 6px 15px;
+        }
+
+        .summoner-tags {
+            justify-content: center !important;
+        }
+    }
+        /* 神魔之塔 End */
+
+        /* --- 競技場賽季紀錄專用樣式 --- */
+        .season-record-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+            border-top: 5px solid #ffcc00; /* 王者金頂邊 */
+        }
+
+        .season-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .season-title-text {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1a237e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .season-badge {
+            background: #1a237e;
+            color: #ffcc00;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .season-desc {
+            color: #555;
+            line-height: 1.8;
+            font-size: 0.95em;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ddd;
+        }
+
+        /* 圖片證明區塊 */
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .evidence-item {
+            text-align: center;
+        }
+
+        .evidence-img {
+            /* 1. 將最大寬度從 450px 改小，例如 300px 或更小 */
+            width: 70%;            /* 讓圖片佔據容器寬度的比例縮小 */
+            max-width: 280px;      /* 限制最大寬度，避免在寬螢幕下太大 */
+            
+            border-radius: 6px;
+            border: 1px solid #dcdcdc; /* 維持細邊框 */
+            padding: 4px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+            display: block;        /* 確保居中生效 */
+            margin: 0 auto;        /* 讓圖片在格子內置中 */
+        }
+
+        .evidence-img:hover {
+            transform: scale(1.02);
+            border-color: #ffcc00;
+        }
+
+        .evidence-label {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: #888;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .evidence-grid { grid-template-columns: 1fr; }
+            .season-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .summoner-data-card { flex-direction: column; text-align: center; gap: 20px; }
+        }
+
         /* --- 5. 其他元件 --- */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
@@ -188,8 +473,6 @@
             .nav-links li { margin: 0 4px; flex-shrink: 1; }
             .nav-links a { padding: 5px 8px; font-size: clamp(10px, 3vw, 14px); white-space: nowrap; }
 
-            .event-banner { height: auto; padding: 40px 20px; }
-            .event-banner h1 { font-size: 2.2em; }
 
             .profile-header { flex-direction: column; text-align: center; padding: 30px 20px; }
             .info-brief h1 { font-size: 32px; }
@@ -199,6 +482,75 @@
             .member-grid { grid-template-columns: 1fr; gap: 20px; }
             .member-card { width: 100% !important; max-width: 350px; margin: 0 auto; }
         }
+
+        /* 右上角功能容器 */
+        .header-actions {
+            position: absolute; /* 相對於 profile-header 定位 */
+            top: 20px;          /* 距離頂部 20px */
+            right: 20px;        /* 距離右側 20px */
+            display: flex;
+            flex-direction: column; /* 讓按鈕上下排列 */
+            align-items: flex-end;  /* 讓按鈕靠右對齊 */
+            gap: 12px;          /* 設定按鈕之間的間距，防止重疊 */
+            z-index: 10;        /* 確保選單彈出時不會被其他內容遮擋 */
+        }
+
+        /* 確保按鈕本身不會因為容器縮放而變形 */
+        .lang-dropdown, .social-link-item {
+            width: auto;
+        }
+
+        /* 如果是手機版，建議取消絕對定位以防重疊 */
+        @media (max-width: 768px) {
+            .header-actions {
+                position: static;   /* 回復普通流向 */
+                margin-top: -20px;
+                align-items: center; /* 居中對齊 */
+                width: 100%;
+        }
+
+        /* 2. 調整導覽連結容器 */
+            .nav-links { 
+                margin-top: 10px; 
+                width: 100%; 
+                justify-content: center; /* 置中 */
+                display: flex;
+                flex-wrap: nowrap;      /* 關鍵：強制絕對不換行 */
+                padding: 12px 0 5px 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            /* 3. 調整清單項目 */
+            .nav-links li { 
+                margin: 0 4px;          /* 縮小項目間的間距 */
+                flex-shrink: 1;         /* 允許項目在必要時縮小 */
+            }
+
+            /* 4. 調整文字大小與行為 */
+            .nav-links a { 
+                padding: 5px 8px;       /* 縮小按鈕內距 */
+                
+                /* 使用 clamp 讓字體在 12px 到 14px 之間隨螢幕自動縮放 */
+                font-size: clamp(12px, 3.2vw, 14px); 
+                
+                white-space: nowrap;    /* 關鍵：文字絕對不換行 */
+                letter-spacing: -0.5px; /* 稍微縮小字距，節省空間 */
+            }
+
+            /* 手機版 標題列和黃字說明大小調整 Star */
+            .event-banner { /* 欄位高度大小*/
+                height: 160px; 
+            }
+            .event-banner h1 { /* 大標題*/
+                font-size: 40px; 
+            }        
+            .banner-info-wrap { /* 提示字*/
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 16px;
+            }
+            /* 手機版 標題列和黃字說明大小調整 End */
+    }
     </style>
 </head>
 <body>
@@ -207,14 +559,14 @@
         <nav class="navbar-full">
             <a href="index.html" class="logo">
                 <div class="logo-circle">立</div> 
-                立法院 <span style="font-weight: 300; font-size: 0.8em; margin-left:10px;">Legislature</span>
+                立法院 Legislature
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">首頁</a></li>
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html" class="active-dark">成員介紹</a></li> 
                 <li><a href="events.html">活動行程</a></li>
-                <li><a href="Other.html">其他</a></li>
+                <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
     </header>
@@ -227,8 +579,8 @@
         </div>
     </section>
 
-    <main class="event-content-area">
-        <div class="profile-header">
+    <main class="event-content-area" style="position: relative;">
+        <div class="profile-header" style="position: relative;">
             <div class="photo-section">
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Liu%20Shuming.png?raw=true" alt="劉書銘照片" class="avatar-img">
             </div>
@@ -241,6 +593,68 @@
                     兵役狀態：神域至尊王者皆位 (禁衛軍總指揮官)<br>
                     技術職稱：首席幻想架構師 / 浪漫文學導師<br>
                     核心價值：筆尖下的權力，才是真實的霸權。
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <div class="social-link-item">
+                    <a href="https://www.instagram.com/ziyanyue_/" target="_blank" class="ig-btn">
+                        <i class="fa-brands fa-instagram"></i> Instagram
+                    </a>
+                </div>
+
+                <div class="social-link-item">
+                    <a href="https://www.facebook.com/liu.shu.ming.406527?locale=zh_TW" target="_blank" class="fb-btn">
+                        <i class="fa-brands fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">神魔之塔召喚師資訊</div>
+        <div class="summoner-data-card">
+            <!--
+            <div class="summoner-avatar-box">
+                <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/v20251-12th-iOS_1024.png?raw=true" alt="召喚師頭像">
+                <div class="summoner-allmax-badge">ALL MAX</div>
+            </div>
+            -->
+            <div class="summoner-info-box">
+                <div class="summoner-main-row">
+                    <h3 class="summoner-name">布丁 <i class="fa-solid fa-heart" style="font-size: 0.8em; color: #ff4d4d;"></i> 艦長</h3>
+                    <span class="summoner-uid">UID: 913221746</span>
+                </div>
+                <div class="summoner-tags">
+                    <span class="s-tag"><i class="fa-solid fa-trophy"></i> 不能戰勝的神</span>
+                    <span class="s-tag s-tag-guild"><i class="fa-solid fa-shield-cat"></i> [Miss] 布丁</span>
+                    <span class="s-tag"><i class="fa-solid fa-check"></i> 認證召喚師</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">賽季榮譽紀錄</div>
+        <div class="season-record-card">
+            <div class="season-header">
+                <div class="season-title-text">
+                    <i class="fa-solid fa-crown" style="color: #ffcc00;"></i>
+                    《神魔之塔》競技場賽季紀錄－王者級
+                </div>
+                <div class="season-badge">2026 Q1 SEASON</div>
+            </div>
+
+            <div class="season-desc">
+                <strong>賽季說明：</strong><br>
+                《神魔之塔》（Tower of Saviors）競技場將於 2026 年 1 月 5 日起至 2026 年 3 月 1 日止舉行本期「王者級」賽季。此為競技場之最高階對戰階級，唯有頂尖召喚師方能參與排名對戰，爭取賽季專屬榮譽與高階獎勵。
+            </div>
+
+            <div class="evidence-grid">
+                <div class="evidence-item">
+                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Liu%20Shuming/IMG_0476.jpg?raw=true" alt="賽季證明1" class="evidence-img">
+                    <span class="evidence-label">賽季排名對戰截圖 (一)</span>
+                </div>
+                <div class="evidence-item">
+                    <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Liu%20Shuming/IMG_0477.jpg?raw=true" alt="賽季證明2" class="evidence-img">
+                    <span class="evidence-label">賽季排名對戰截圖 (二)</span>
                 </div>
             </div>
         </div>
@@ -290,5 +704,4 @@
     </footer>
 
 </body>
-
 </html>
