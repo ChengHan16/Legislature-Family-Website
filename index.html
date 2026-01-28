@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>立法院 Legislature</title>
+    <title>歡迎來到立法院</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -205,6 +205,24 @@
             flex-shrink: 0;
         }
 
+        .event-banner {
+            background: linear-gradient(135deg, #1a237e 0%, #0d1241 100%);
+            color: white;
+            padding: 60px 20px; /* 保持你要求的內距 */
+            text-align: center;
+            border-bottom: 4px solid #ffcc00;
+
+            /* --- 新增以下屬性來固定範圍 --- */
+            height: 240px;           /* 設定一個固定的總高度 */
+            box-sizing: border-box;  /* 確保 padding 不會額外撐大這 300px */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 讓內容在固定高度內垂直居中 */
+            overflow: hidden;        /* 萬一文字真的太多，強制裁切不溢出 */
+        }
+
+        .event-banner h1 { font-size: 3.5em; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
         /* --- 5. 其他元件 --- */
         .back-to-top {
             position: fixed; bottom: 30px; right: 30px;
@@ -287,6 +305,21 @@
                 white-space: nowrap;    /* 關鍵：文字絕對不換行 */
                 letter-spacing: -0.5px; /* 稍微縮小字距，節省空間 */
             }
+
+            /* 手機版 標題列和黃字說明大小調整 Star */
+            .event-banner { /* 欄位高度大小*/
+                height: 160px; 
+            }
+            .event-banner h1 { /* 大標題*/
+                font-size: 35px; 
+            }        
+            .banner-info-wrap { /* 提示字*/
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 12px;
+            }
+            /* 手機版 標題列和黃字說明大小調整 End */
+
         }
     </style>
 </head>
@@ -351,6 +384,7 @@
                         <span class="action-arrow"><i class="fa-solid fa-arrow-right"></i></span>
                     </article>
                 </a>
+                
                 
                 <a href="events.html" class="event-card-link">
                     <article class="event-card-simple" style="background-color: #fafafa;">
