@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>立法院 - 成員介紹：丁俊齊</title>
+    <title>立法院 - 成員介紹：陳佳偉</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -116,6 +116,81 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             margin-bottom: 40px;
         }
+
+        /*語言切換|Instagram|Facebook 按鈕設定位置*/
+        .ig-btn {
+            text-decoration: none;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(188, 24, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ig-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
+            color: white;
+        }
+
+        .fb-link-card {
+            position: absolute;
+            top: 85px; /* 維持原位 */
+            right: 35px;
+            z-index: 5;
+        }
+
+        .fb-btn {
+            text-decoration: none;
+            /* 修改為 Facebook 官方藍色 */
+            background: #1877F2; 
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px; /* 維持圓角膠囊狀 */
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* 修改陰影顏色為 Facebook 藍的擴散感 */
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .fb-btn:hover {
+            /* 滑過時稍微加深藍色 */
+            background: #166fe5;
+            transform: translateY(-3px);
+            /* 加強 Facebook 藍的發光效果 */
+            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.5);
+            color: white;
+        }
+
+        .fb-btn i {
+            font-size: 16px; /* 控制 f 圖標的大小 */
+            margin-right: 5px; /* 與文字 Facebook 之間的距離 */
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .header-actions {
+            position: absolute; /* 相對於 profile-header 定位 */
+            top: 20px;          /* 距離頂部 20px */
+            right: 20px;        /* 距離右側 20px */
+            display: flex;
+            flex-direction: column; /* 讓按鈕上下排列 */
+            align-items: flex-end;  /* 讓按鈕靠右對齊 */
+            gap: 12px;          /* 設定按鈕之間的間距，防止重疊 */
+            z-index: 10;        /* 確保選單彈出時不會被其他內容遮擋 */
+        }
+
+        /*語言切換|Instagram|Facebook 按鈕設定位置 End*/
 
         .photo-section { flex-shrink: 0; text-align: center; }
         .avatar-img {
@@ -255,6 +330,28 @@
                 white-space: nowrap;    /* 關鍵：文字絕對不換行 */
                 letter-spacing: -0.5px; /* 稍微縮小字距，節省空間 */
             }
+
+            /*語言切換|Instagram|Facebook 按鈕設定位置*/
+            .header-actions {
+                position: static;   /* 回復普通流向 */
+                margin-top: -30px;
+                align-items: center; /* 居中對齊 */
+                width: 100%;
+            }
+
+            /* 手機版 標題列和黃字說明大小調整 Star */
+            .event-banner { /* 欄位高度大小*/
+                height: 160px; 
+            }
+            .event-banner h1 { /* 大標題*/
+                font-size: 30px; 
+            }        
+            .banner-info-wrap { /* 提示字*/
+                margin-top: 10px;
+                padding-bottom: 10px;
+                font-size: 16px;
+            }
+            /* 手機版 標題列和黃字說明大小調整 End */
         }
     </style>
 </head>
@@ -268,7 +365,7 @@
                 <li><a href="about.html">關於我們</a></li> 
                 <li><a href="members.html"class="active-dark">成員介紹</a></li> 
                 <li><a href="events.html">活動行程</a></li>
-                <li><a href="Other.html">其他</a></li>
+                <li><a href="index.html">其他</a></li>
             </ul>
         </nav>
     </header>
@@ -281,8 +378,8 @@
         </div>
     </section>
 
-    <main class="event-content-area">
-        <div class="profile-header">
+    <main class="event-content-area" style="position: relative;">
+        <div class="profile-header" style="position: relative;">
             <div class="photo-section">
                 <img src="https://github.com/ChengHan16/Legislature-Family-Website/blob/main/image/Deltataforce.png?raw=true" alt="陳佳偉照片" class="avatar-img">
             </div>
@@ -295,6 +392,20 @@
                     兵役狀態：海軍陸戰隊 士官 (志願役精銳部隊)<br>
                     技術職稱：高階硬體爆破師 / 重機機械工程師<br>
                     核心價值：沒有處理不了的電路，只有不夠大的過電壓。
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <div class="social-link-item">
+                    <a href="https://www.instagram.com/jorutp/" target="_blank" class="ig-btn">
+                        <i class="fa-brands fa-instagram"></i> Instagram
+                    </a>
+                </div>
+
+                <div class="social-link-item">
+                    <a href="https://www.facebook.com/chen.jia.wei.425419?locale=zh_TW" target="_blank" class="fb-btn">
+                        <i class="fa-brands fa-facebook-f"></i> Facebook
+                    </a>
                 </div>
             </div>
         </div>
@@ -346,4 +457,3 @@
 
 </body>
 </html>
-
